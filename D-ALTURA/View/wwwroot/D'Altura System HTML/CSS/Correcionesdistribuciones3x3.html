@@ -1,0 +1,63 @@
+<div class="central-container"> <!-- Nuevo contenedor para los centrales -->
+    <div class="central-superior">
+        <div class="input-group">
+            <div class="form-group">
+                <label for="producto">Producto:</label>
+                <input type="text" id="producto" name="producto" class="short-input">
+            </div>
+            <div class="form-group">
+                <button type="button" class="buscar-button">Buscar</button>
+            </div>
+            <div class="form-group">
+                <label for="nombreProducto">Nombre del Producto:</label>
+                <input type="text" id="nombreProducto" name="nombreProducto" placeholder="Nombre del Producto" readonly class="short-input">
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="form-group">
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" placeholder="Código" class="short-input">
+            </div>
+            <div class="form-group">
+                <label for="stocks">Stocks:</label>
+                <input type="text" id="stocks" placeholder="Stocks" class="short-input">
+            </div>
+            <div class="form-group">
+                <label for="precio-venta">Precio Venta:</label>
+                <input type="text" id="precio-venta" placeholder="Precio Venta" class="short-input">
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="text" id="cantidad" placeholder="Cantidad" class="short-input">
+            </div>
+            <div class="form-group">
+                <label for="igv">IGV:</label>
+                <input type="text" id="igv" placeholder="IGV" class="short-input">
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select id="estado">
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="action-button">AGREGAR</button>
+            <button class="action-button">ELIMINAR</button>
+        </div>
+    </div>
+    <div class="central-inferior">
+        <div class="direccion-container form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" placeholder="Dirección" class="full-width-input">
+        </div>
+        <div class="plazo-container form-group">
+            <label for="seccion-plazo">Sección del Plazo</label>
+            <input type="text" id="seccion-plazo" placeholder="Sección del Plazo" class="full-width-input">
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Usuarios</title>
+    <link rel="stylesheet" href="css/usuarios.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BÚSQUEDA DE USUARIOS</h1>
+        <div class="search-container">
+            <div class="criteria">
+                <label>Criterio de Búsqueda:</label>
+                <input type="radio" id="nombre" name="criterio" value="nombre">
+                <label for="nombre">Nombre</label>
+                <input type="radio" id="dni" name="criterio" value="dni">
+                <label for="dni">DNI</label>
+            </div>
+            <input type="text" id="searchInput" placeholder="Escriba su búsqueda...">
+            <button id="buscarBtn">Buscar</button>
+            <button id="salirBtn">Salir</button>
+        </div>
+        
+        <div class="results-container">
+        </div>
+
+        <div class="actions">
+            <button id="nuevoBtn">Nuevo</button>
+            <button id="editarBtn">Editar</button>
+            <button id="anularBtn">Anular</button>
+        </div>
+    </div>
+
+    <script src="js/usuarios.js"></script>
+</body>
+</html>

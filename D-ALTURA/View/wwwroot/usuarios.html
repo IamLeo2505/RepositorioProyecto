@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Nuevo Usuario</title>
+    <link rel="stylesheet" href="css/RegistrarEmpleadoStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registrar Nuevo Usuario</h1>
+        <div class="form-container">
+            <div class="search-box">
+                <button class="btn btn-search">BUSCAR</button>
+            </div>
+            <form id="userForm">
+                <div class="input-group">
+                    <label for="usuario">Ingrese Usuario</label>
+                    <input type="text" id="usuario" placeholder="Ingrese usuario">
+                </div>
+                <div class="input-group">
+                    <label for="password">Ingrese Password</label>
+                    <input type="password" id="password" placeholder="Ingrese password">
+                </div>
+                <div class="input-group">
+                    <label for="acceso">Tipo de Acceso</label>
+                    <select id="acceso">
+                        <option value="Cajero">CAJERO</option>
+                        <option value="Administrador">ADMINISTRADOR</option>
+                    </select>
+                </div>
+                <div id="estado" class="input">
+                    <label>Seleccione Estado</label>
+                    <div>
+                        <input type="radio" id="activo" name="estado" value="Activo">
+                        <label for="activo">Activo</label>
+                        <input type="radio" id="inactivo" name="estado" value="Inactivo">
+                        <label for="inactivo">Inactivo</label>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-save">GUARDAR</button>
+                    <button type="reset" class="btn btn-cancel">CANCELAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/usuario.js"></script>
+
+   
+</body>
+</html>

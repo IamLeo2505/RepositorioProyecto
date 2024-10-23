@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Web</title>
+    <link rel="stylesheet" href="CSS/RegistrarClienteStyle.css">
+</head>
+<body>
+    <h1 class="titulo">Registrar Nuevo Cliente</h1>
+    <div class="form-container">
+        <input type="text" id="Cantidad" placeholder="">
+
+        <div class="input-group">
+            <div>
+                <label for="nombre">Ingrese Nombre:</label>
+                <input type="text" id="nombre">
+            </div>
+            <div>
+                <label for="apellido">Ingrese Apellido:</label>
+                <input type="text" id="apellido">
+            </div>
+            <div>
+                <label for="ruc">Ingrese RUC:</label>
+                <input type="text" id="ruc">
+            </div>
+        </div>
+        <div class="input-group">
+            <div>
+                <label for="documento">Ingrese Documento:</label>
+                <input type="text" id="documento">
+            </div>
+            <div>
+                <label for="telefono">Ingrese Teléfono:</label>
+                <input type="text" id="telefono">
+            </div>
+            <div class="form-group">
+                <label for="estado">Seleccione Estado:</label>
+                <div class="radio">
+                    <label><input type="radio" name="estado" value="activo"> Activo</label>
+                    <label><input type="radio" name="estado" value="inactivo"> Inactivo</label>
+                </div>
+            </div>                        
+        </div>
+    </div>
+
+    <div class="botones">
+        <button class="guardar"><b>Guardar</b></button>
+        <button class="cancelar"><b>Cancelar</b></button>
+    </div>
+</body>
+</html>

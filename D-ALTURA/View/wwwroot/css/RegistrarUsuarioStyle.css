@@ -1,0 +1,150 @@
+/* Estilos generales */
+body {
+    background-color: #00bf63;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+body label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: black;
+}
+
+/* Título principal */
+.titulo {
+    color: rgb(7, 7, 7);
+    margin-bottom: 20px;
+    margin-right: 60%;
+    font-size: 24px;
+}
+
+/* Contenedor principal */
+.form-container {
+    background-color: #b78e6b;
+    width: 80%;
+    padding: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#Cantidad {
+    position: relative;
+    top: -10px;
+    width: 100px;
+}
+
+/* Grupos de inputs organizados en 3x3 */
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input-group input[type="radio"] {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+    left: 50px;
+}
+
+.radio {
+    display: flex;          /* Alineación horizontal */
+    gap: 20px;             /* Espacio entre los radios */
+}
+
+.radio label {
+    display: flex;         /* Alinea el texto con el radio */
+    align-items: center;   /* Alinea verticalmente */
+    gap: 5px;             /* Espacio entre el radio y el texto */
+}
+
+.input-group div {
+    width: 32%; /* Cada input ocupará un tercio del espacio */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.botones {
+    display: flex;
+    justify-content: flex-end;
+    width: 60%;
+    position: relative;
+    left: 125px;
+    top: 25px;
+}
+
+button {
+    padding: 10px 20px;
+    border-color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.guardar {
+    background-color: #2e8b57;
+    color: white;
+    margin-right: 10px;
+}
+
+.cancelar {
+    background-color: #ff3131;
+    color: white;
+}
+
+/* Prevenir que los botones se muevan con el redimensionamiento */
+@media (max-width: 768px) {
+    .form-container {
+        width: 80%;
+    }
+    .botones {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 95%;
+    }
+    .botones {
+        width: 95%;
+    }
+}

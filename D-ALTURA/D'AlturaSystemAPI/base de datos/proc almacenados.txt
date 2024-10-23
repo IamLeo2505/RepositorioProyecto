@@ -1,0 +1,544 @@
+ --========procedimiento buscar cliente por dni
+create proc spbuscar_cliente_dni
+@dni varchar(8)
+as
+select * from cliente where dni like @dni+'%'
+go
+
+ --========procedimiento buscar cliente por nombre
+create proc spbuscar_cliente_nombre
+@nombre varchar(20)
+as
+select * from cliente where nombre like @nombre+'%'
+go
+
+--========procedimiento guardar cliente
+create proc spguardar_cliente
+@idcliente int output,
+@nombre varchar(20),
+@apellidos varchar (20),
+@dni varchar (8),
+@ruc varchar(11),
+@telefono char(9),
+@estado varchar(10)
+as
+insert into cliente
+values (@nombre,@apellidos,@dni,@ruc,@telefono,@estado)
+go
+--procedimiento editar cliente
+create proc speditar_cliente
+@idcliente int,
+@nombre varchar(20),
+@apellidos varchar (20),
+@dni varchar (8),
+@ruc varchar(11),
+@telefono char(9),
+@estado varchar(10)
+as
+update cliente set nombre=@nombre, apellidos=@apellidos,dni=@dni,ruc=@ruc,telefono=@telefono,estado=@estado
+where idcliente=@idcliente
+go
+
+--procedimiento eliminar cliente
+create proc speliminar_cliente
+@idcliente int
+as
+delete from cliente where idcliente=@idcliente
+go
+
+--procedimiento listar cliente
+create proc splistar_cliente
+as
+select * from cliente
+go
+
+
+
+
+
+--listar categoria
+create proc splistar_categoria
+as 
+select * from categoria 
+go
+
+--buscar categoria
+create proc spbuscar_categoria
+@desc varchar(20)
+as
+select * from categoria 
+where descripcion like @desc + '%'
+go
+
+--guardar categoria
+create proc spguardar_categoria
+@idcategoria int output,
+@descripcion varchar(15)
+as
+insert into categoria (descripcion)
+values (@descripcion)
+go
+
+--editar categoria
+create proc speditar_categoria
+@idcategoria int,
+@descripcion varchar(15)
+as
+update categoria set descripcion=@descripcion
+where idcategoria=@idcategoria
+go
+
+
+--eliminar categoria
+create proc speliminar_categoria
+@idcategoria int
+as
+delete from categoria
+where idcategoria=@idcategoria
+go
+
+
+--========procedimiento buscar producto por codigo
+create proc spbuscar_producto_codigo
+@codigo varchar(30)
+as
+select producto.idproducto, producto.codigo, producto.nombre, producto.descripcion, 
+producto.f_ingreso, producto.f_vencimiento, producto.precio_compra,
+producto.precio_venta, producto.stock,producto.estado,
+producto.idcategoria, categoria.descripcion AS categoria 
+from categoria INNER JOIN producto on categoria.idcategoria=producto.idcategoria
+where codigo like @codigo
+order by idproducto
+go
+
+
+
+ --========procedimiento buscar producto por nombre
+create proc spbuscar_producto_nombre
+@nombre varchar(30)
+as
+select producto.idproducto, producto.codigo, producto.nombre, producto.descripcion, 
+producto.f_ingreso, producto.f_vencimiento, producto.precio_compra,
+producto.precio_venta, producto.stock,producto.estado,
+producto.idcategoria, categoria.descripcion AS categoria 
+from categoria INNER JOIN producto on categoria.idcategoria=producto.idcategoria
+where nombre like @nombre+'%'
+order by idproducto
+go
+
+--========procedimiento guardar producto
+create proc spguardar_producto
+@idproducto int output,
+@codigo varchar(30),
+@nombre varchar(30),
+@descripcion varchar(50),
+@f_ingreso date,
+@f_vencimiento date,
+@precio_compra decimal(8,2),
+@precio_venta decimal(8,2),
+@stock int,
+@estado varchar(10),
+@idcategoria int
+as
+insert into producto
+values(@codigo,@nombre,@descripcion,@f_ingreso,@f_vencimiento,@precio_compra,@precio_venta,@stock,@estado,@idcategoria)
+go
+--procedimiento editar producto
+create proc speditar_producto
+@idproducto int,
+@codigo varchar(30),
+@nombre varchar(30),
+@descripcion varchar(50),
+@f_ingreso date,
+@f_vencimiento date,
+@precio_compra decimal(8,2),
+@precio_venta decimal(8,2),
+@stock int,
+@estado varchar(10),
+@idcategoria int
+as
+update producto set codigo=@codigo,nombre=@nombre,descripcion=@descripcion,f_ingreso=@f_ingreso,f_vencimiento=@f_vencimiento,
+precio_compra=@precio_compra,precio_venta=@precio_venta,stock=@stock,estado=@estado,idcategoria=@idcategoria
+where idproducto=@idproducto
+go
+
+--procedimiento eliminar producto
+create proc speliminar_producto
+@idproducto int
+as
+delete from producto where idproducto=@idproducto
+go
+
+--procedimiento listar producto
+create proc splistar_producto
+as
+select producto.idproducto, producto.codigo, producto.nombre, producto.descripcion, 
+producto.f_ingreso, producto.f_vencimiento, producto.precio_compra,
+producto.precio_venta, producto.stock,producto.estado,
+producto.idcategoria, categoria.descripcion AS categoria 
+from categoria INNER JOIN producto on categoria.idcategoria=producto.idcategoria
+go
+
+--========procedimiento buscar proveedor por razon social
+create proc spbuscar_proveedor_razonsocial
+@razonsocial varchar(30)
+as
+select * from proveedor where razonsocial like @razonsocial+'%'
+go
+--========procedimiento buscar proveedor por dni
+create proc spbuscar_proveedor_dni
+@dni varchar(8)
+as
+select * from proveedor where dni like @dni+'%'
+go
+--========procedimiento guardar proveedor
+create proc spguardar_proveedor
+@idproveedor int output,
+@razonsocial varchar(20),
+@dni varchar (8),
+@ruc varchar(11),
+@telefono char(9),
+@direccion varchar (50),
+@estado varchar(10)
+as
+insert into proveedor
+values (@razonsocial,@dni,@ruc,@telefono,@direccion,@estado)
+go
+--procedimiento editar cliente
+create proc speditar_proveedor
+@idprovedor int,
+@razonsocial varchar(20),
+@dni varchar (8),
+@ruc varchar(11),
+@telefono char(9),
+@direccion varchar (50),
+@estado varchar(10)
+as
+update proveedor set razonsocial=@razonsocial,dni=@dni,ruc=@ruc,telefono=@telefono,direccion=@direccion,estado=@estado
+where idproveedor=@idprovedor
+go
+
+--procedimiento eliminar cliente
+create proc speliminar_proveedor
+@idproveedor int
+as
+delete from proveedor where idproveedor=@idproveedor
+go
+
+--procedimiento listar provedor
+create proc splistar_proveedor
+as
+select * from proveedor
+go
+
+--========procedimiento buscar empleado por dni
+create proc spbuscar_empleado_dni
+@dni varchar(8)
+as
+select * from empleado where dni like @dni+'%'
+go
+
+ --========procedimiento buscar empleado por nombre
+create proc spbuscar_empleado_nombre
+@nombre varchar(20)
+as
+select * from empleado where nombre like @nombre+'%'
+go
+
+--========procedimiento guardar cliente
+create proc spguardar_empleado
+@idempleado int output,
+@nombre varchar(20),
+@apellidos varchar (20),
+@dni varchar (8),
+@telefono char(9),
+@direccion varchar(50),
+@estado varchar(10)
+as
+insert into empleado
+values (@nombre,@apellidos,@dni,@telefono,@direccion,@estado)
+go
+--procedimiento editar cliente
+create proc speditar_empleado
+@idempleado int,
+@nombre varchar(20),
+@apellidos varchar (20),
+@dni varchar (8),
+@telefono char(9),
+@direccion varchar(50),
+@estado varchar(10)
+as
+update empleado set nombre=@nombre, apellidos=@apellidos,dni=@dni,telefono=@telefono,direccion=@direccion,estado=@estado
+where idempleado=@idempleado
+go
+
+--procedimiento eliminar empleado
+create proc speliminar_empleado
+@idempleado int
+as
+delete from empleado where idempleado=@idempleado
+go
+
+--procedimiento listar empleado
+create proc splistar_empleado
+as
+select * from empleado
+go
+
+
+--========procedimiento buscar usuario por nombre
+create proc spbuscar_usuario_nombre_usuario
+@nombre varchar(20)
+as
+select usuario.idusuario,usuario.idempleado,empleado.nombre,
+empleado.apellidos,usuario.usuario,usuario.pass,usuario.acceso,
+usuario.estado from usuario INNER JOIN empleado
+on usuario.idempleado=empleado.idempleado
+where empleado.nombre like @nombre+'%'
+go
+ --========procedimiento buscar empleado por nombrede usuario
+create proc spbuscar_usuario_nombreusuario
+@nombreusuario varchar(20)
+as
+select usuario.idusuario,usuario.idempleado,empleado.nombre,
+empleado.apellidos,usuario.usuario,usuario.pass,usuario.acceso,
+usuario.estado from usuario INNER JOIN empleado
+on usuario.idempleado=empleado.idempleado 
+where usuario like @nombreusuario+'%'
+go
+
+--========procedimiento guardar usuario
+create proc spguardar_usuario
+@idusuario int output,
+@usuario varchar(20),
+@pass varchar (20),
+@acceso varchar (20),
+@estado varchar(10),
+@idempleado int
+as
+insert into usuario
+values (@usuario,@pass,@acceso,@estado,@idempleado)
+go
+
+--========procedimiento editar usuario
+create proc speditar_usuario
+@idusuario int,
+@usuario varchar(20),
+@pass varchar (20),
+@acceso varchar (20),
+@estado varchar(10),
+@idempleado int
+as
+update usuario
+set usuario=@usuario,pass=@pass,acceso=@acceso,estado=@estado,idempleado=@idempleado
+where idusuario=@idusuario
+go
+
+
+--procedimiento eliminar usuario
+create proc speliminar_usuario
+@idusuario int
+as
+delete from usuario where idusuario=@idusuario
+go
+
+--procedimiento listar usuario
+create proc splistar_usuario
+as
+select usuario.idusuario,usuario.idempleado,empleado.nombre,
+empleado.apellidos,usuario.usuario,usuario.pass,usuario.acceso,
+usuario.estado from usuario INNER JOIN empleado
+on usuario.idempleado=empleado.idempleado
+go
+---procedimiento inicio de seion
+
+create proc spinicio_sesion
+@usuario varchar(20),
+@password varchar(20)
+as
+select usuario.idusuario, usuario.idempleado,
+empleado.nombre, empleado.apellidos,
+usuario.usuario,usuario.pass,usuario.acceso,usuario.estado
+from usuario INNER JOIN empleado
+on usuario.idempleado = empleado.idempleado
+where usuario=@usuario and pass=@password and usuario.estado='ACTIVO'
+
+go
+
+---procedimiento de listar compras
+
+ create proc splistar_compra
+ as
+ select top 200 compra.idcompra,proveedor.razonsocial,compra.fecha,empleado.nombre+' '+empleado.apellidos as empleado,
+ compra.tipo_documento,compra.num_documento,compra.estado,compra.subtotal,
+ compra.igv,compra.total from compra INNER JOIN proveedor
+ on compra.idproveedor=proveedor.idproveedor INNER JOIN usuario
+ on compra.idusuario=usuario.idusuario INNER JOIN empleado
+ on usuario.idempleado = empleado.idempleado 
+ order by idcompra desc 
+ go
+
+ ---procedimiento  buscar compras por fechas
+ create proc spbuscar_compras_fechas
+ @fechainicio varchar(20),
+ @fechafin varchar(20)
+ as
+ select compra.idcompra,proveedor.razonsocial,compra.fecha,empleado.nombre+' '+empleado.apellidos as empleado,
+ compra.tipo_documento,compra.num_documento,compra.estado,compra.subtotal,
+ compra.igv,compra.total from compra INNER JOIN proveedor
+ on compra.idproveedor=proveedor.idproveedor INNER JOIN usuario
+ on compra.idusuario=usuario.idusuario INNER JOIN empleado
+ on usuario.idempleado = empleado.idempleado 
+ where compra.fecha>= @fechainicio and compra.fecha<= @fechafin
+ go
+
+ ---procedimiento guardar compras
+ create proc spguardar_compra
+ @idcompra int output,
+ @fecha date,
+ @num_documento varchar (7),
+ @tipo_documento varchar (7),
+ @subtotal decimal(8,2),
+ @igv decimal (8,2),
+ @total decimal (8,2),
+ @estado varchar(20),
+ @idusuario int,
+ @idproveedor int
+ as
+ insert into compra
+ values(@fecha,@num_documento,@tipo_documento,@subtotal,@igv,@total,@estado,@idusuario,@idproveedor)
+--devolvemos ei id compra generado
+ set @idcompra=@@IDENTITY
+ go
+
+ ---procedimiento anular una  compra
+ create proc spanular_compra
+ @idcompra int
+ as
+ update  compra set estado='ANULADO'
+ where idcompra=@idcompra
+
+ go
+  ---procedimiento guaradar detalle compra
+ create proc spguardar_detalle_compra
+ @iddetallecompra int output,
+ @cantidad int,
+ @precio decimal(8,2),
+ @total decimal(8,2),
+ @idcompra int,
+ @idproducto int
+ as
+ insert into detallecompra values(@cantidad,@precio,@total,@idcompra,@idproducto)
+ go
+
+ create proc splistar_detallecompra
+ @idcompra int
+ as
+ select detallecompra.idcompra,producto.idproducto,
+ producto.nombre,detallecompra.cantidad,
+ producto.precio_compra,detallecompra.total
+ from detallecompra INNER JOIN producto
+ on detallecompra.idproducto = producto.idproducto
+ where idcompra=@idcompra
+ go
+
+
+---procedimiento de listar ventas
+
+ create proc splistar_venta
+ as
+ select top 200 venta.idventa,cliente.nombre+'   '+ cliente.apellidos as cliente,
+ venta.fecha,empleado.nombre+' '+empleado.apellidos as empleado,
+ venta.tipo_documento,venta.serie,venta.num_documento,venta.estado,venta.subtotal,
+ venta.igv,venta.total from venta INNER JOIN cliente
+ on venta.idcliente=cliente.idcliente INNER JOIN usuario
+ on venta.idusuario=usuario.idusuario INNER JOIN empleado
+ on usuario.idempleado = empleado.idempleado 
+ order by idventa desc 
+ go
+
+ ---procedimiento  buscar ventas por fechas
+ create proc spbuscar_ventas_fechas
+ @fechainicio varchar(20),
+ @fechafin varchar(20)
+ as
+ select   venta.idventa,cliente.nombre+'   '+ cliente.apellidos as cliente,
+ venta.fecha,empleado.nombre+' '+empleado.apellidos as empleado,
+ venta.tipo_documento,venta.serie,venta.num_documento,venta.estado,venta.subtotal,
+ venta.igv,venta.total from venta INNER JOIN cliente
+ on venta.idcliente=cliente.idcliente INNER JOIN usuario
+ on venta.idusuario=usuario.idusuario INNER JOIN empleado
+ on usuario.idempleado = empleado.idempleado 
+ where venta.fecha>= @fechainicio and venta.fecha<= @fechafin
+ go
+
+ ---procedimiento guardar venta
+ create proc spguardar_venta
+ @idventa int output,
+ @fecha date,
+ @serie varchar (7),
+ @num_documento varchar (7),
+ @tipo_documento varchar (7),
+ @subtotal decimal(8,2),
+ @igv decimal (8,2),
+ @total decimal (8,2),
+ @estado varchar(20),
+ @idusuario int,
+ @idcliente int
+ as
+ insert into venta
+ values(@fecha,@serie,@num_documento,@tipo_documento,@subtotal,@igv,@total,@estado,@idusuario,@idcliente)
+ --devolvemos ei id venta generado
+ set @idventa=@@IDENTITY
+ go
+
+ ---procedimiento anular una  venta
+ create proc spanular_venta
+ @idventa int
+ as
+ update  venta  set estado='ANULADO'
+ where idventa =@idventa 
+
+ go
+  ---procedimiento guaradar detalle venta 
+ create proc spguardar_detalle_venta 
+ @iddetalleventa int output,
+ @cantidad int,
+ @precio decimal(8,2),
+ @total decimal(8,2),
+ @idventa  int,
+ @idproducto int  
+ as
+ insert into detalleventa values(@cantidad,@precio,@total,@idventa ,@idproducto)
+ go
+
+ create proc splistar_detalleventa
+ @idventa int
+ as
+ select detalleventa.idventa ,producto.idproducto,
+ producto.nombre,detalleventa.cantidad,
+ producto.precio_venta,detalleventa.total
+ from detalleventa INNER JOIN producto
+ on detalleventa.idproducto = producto.idproducto
+ where idventa=@idventa
+ go
+
+-----procedimiento Disminuir stock
+ create proc spdisminuir_stock
+ @idproducto int,
+ @cantidad int
+  as
+ update producto set stock = stock - @cantidad 
+ where idproducto=@idproducto
+go
+
+---procedimiento almacenado consultar stock minimo
+create proc spconsultar_stock
+as
+select producto.idproducto, producto.codigo, producto.nombre, producto.descripcion, 
+producto.f_ingreso, producto.f_vencimiento, producto.precio_compra,
+producto.precio_venta, producto.stock,producto.estado,
+producto.idcategoria, categoria.descripcion AS categoria 
+from categoria INNER JOIN producto on categoria.idcategoria=producto.idcategoria
+where stock<=10
+go

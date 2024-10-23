@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Web</title>
+    <link rel="stylesheet" href="CSS/RegistrarCompraStyle.css">
+</head>
+<body>
+    <h1 class="titulo">Registrar Nuevo Usuario</h1>
+    <div class="form-container">
+        <input type="text" id="Cantidad" placeholder="">
+
+        <div class="input-group">
+            <div>
+                <label for="nombreempleado">Ingrese Nombre Empleado:</label>
+                <input type="text" id="nombreempleado">
+            </div>
+            <div>
+                <label for="apellidoempleado">Ingrese Apellido Empleado:</label>
+                <input type="text" id="apellidoempleado">
+            </div>
+            <div>
+                <label for="tipoacceso">Ingrese Tipo de Acceso:</label>
+                <select id="tipoacceso">
+                    <option>Cajero</option>
+                    <option>Bodeguero</option>
+                    <option>Analista de Credito</option>
+                    <option>Vendedor</option>
+                    <option>Administrador</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-group">
+            <div>
+                <label for="usuario">Ingrese Usuario:</label>
+                <input type="text" id="usuario">
+            </div>
+            <div>
+                <label for="password">Ingrese Password:</label>
+                <input type="password" id="password">
+            </div>
+            <div class="form-group">
+                <label for="estado">Seleccione Estado:</label>
+                <div class="radio">
+                    <label><input type="radio" name="estado" value="activo"> Activo</label>
+                    <label><input type="radio" name="estado" value="inactivo"> Inactivo</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="botones">
+        <button class="guardar"><b>Guardar</b></button>
+        <button class="cancelar"><b>Cancelar</b></button>
+    </div>
+</body>
+</html>
