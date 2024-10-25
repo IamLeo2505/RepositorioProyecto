@@ -3,50 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Web</title>
+    <title>Registrar Cliente</title>
     <link rel="stylesheet" href="CSS/RegistrarClienteStyle.css">
 </head>
 <body>
     <h1 class="titulo">Registrar Nuevo Cliente</h1>
     <div class="form-container">
-        <input type="text" id="Cantidad" placeholder="">
-
-        <div class="input-group">
-            <div>
-                <label for="nombre">Ingrese Nombre:</label>
-                <input type="text" id="nombre">
-            </div>
-            <div>
-                <label for="apellido">Ingrese Apellido:</label>
-                <input type="text" id="apellido">
-            </div>
-            <div>
-                <label for="ruc">Ingrese RUC:</label>
-                <input type="text" id="ruc">
-            </div>
-        </div>
-        <div class="input-group">
-            <div>
-                <label for="documento">Ingrese Documento:</label>
-                <input type="text" id="documento">
-            </div>
-            <div>
-                <label for="telefono">Ingrese Teléfono:</label>
-                <input type="text" id="telefono">
-            </div>
-            <div class="form-group">
-                <label for="estado">Seleccione Estado:</label>
-                <div class="radio">
-                    <label><input type="radio" name="estado" value="activo"> Activo</label>
-                    <label><input type="radio" name="estado" value="inactivo"> Inactivo</label>
+        <form id="form-cliente">
+            <div class="input-group">
+                <div>
+                    <label for="nombre">Ingrese Nombre:</label>
+                    <input type="text" id="nombre" required>
                 </div>
-            </div>                        
-        </div>
+                <div>
+                    <label for="apellido">Ingrese Apellido:</label>
+                    <input type="text" id="apellidos" required>
+                </div>
+                <div>
+                    <label for="direccion">Ingrese RUC:</label>
+                    <input type="text" id="RUC" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <div>
+                    <label for="dni">Ingrese Documento:</label>
+                    <input type="text" id="Documento" required>
+                </div>
+                <div>
+                    <label for="telefono">Ingrese Teléfono:</label>
+                    <input type="text" id="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Seleccione Estado:</label>
+                    <div id="estado" class="radio">
+                        <label><input type="radio" name="estado" value="activo" required> Activo</label>
+                        <label><input type="radio" name="estado" value="inactivo" required> Inactivo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-cliente">
+                <div class="botones">
+                    <button type="submit" id="guardar" class="guardar"><b>Guardar</b></button>
+                    <button type="reset" class="cancelar"><b>Cancelar</b></button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="botones">
-        <button class="guardar"><b>Guardar</b></button>
-        <button class="cancelar"><b>Cancelar</b></button>
-    </div>
+   <script src="js/Cliente.js"></script>
 </body>
 </html>
