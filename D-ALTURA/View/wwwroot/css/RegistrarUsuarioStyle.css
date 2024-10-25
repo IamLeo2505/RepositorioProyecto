@@ -22,15 +22,15 @@ body label {
 .titulo {
     color: rgb(7, 7, 7);
     margin-bottom: 20px;
-    margin-right: 60%;
     font-size: 24px;
+    align-items: center;
 }
 
 /* Contenedor principal */
 .form-container {
     background-color: #b78e6b;
-    width: 80%;
-    padding: 50px;
+    width: 100%;
+    padding: 40px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -38,13 +38,33 @@ body label {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#Cantidad {
-    position: relative;
-    top: -10px;
-    width: 100px;
+#idempleado{
+    width: 150px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1 px solid #ccc;
+    border-radius: 5px;
 }
 
-/* Grupos de inputs organizados en 3x3 */
+/* Botón de Buscar */
+.buscar-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+    gap: 80px;
+}
+
+.buscar {
+    padding: 10px 20px;
+    background-color: #008c9e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Grupos de inputs */
 .input-group {
     display: flex;
     justify-content: space-between;
@@ -52,64 +72,53 @@ body label {
     margin-bottom: 10px;
 }
 
-.input-group input[type="radio"] {
-    margin-right: 5px;
-    width: 18px;
-    height: 18px;
+.input-group div {
+    width: 32%; /* Cada input ocupará un tercio del espacio */
 }
 
+input[type="text"],
+input[type="password"],
 select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     font-size: 14px;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    position: relative;
-    left: 50px;
-}
-
-.radio {
-    display: flex;          /* Alineación horizontal */
-    gap: 20px;             /* Espacio entre los radios */
-}
-
-.radio label {
-    display: flex;         /* Alinea el texto con el radio */
-    align-items: center;   /* Alinea verticalmente */
-    gap: 5px;             /* Espacio entre el radio y el texto */
-}
-
-.input-group div {
-    width: 32%; /* Cada input ocupará un tercio del espacio */
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-.botones {
+/* Radio buttons */
+.radio-group {
     display: flex;
-    justify-content: flex-end;
-    width: 60%;
-    position: relative;
-    left: 125px;
-    top: 25px;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Espacio adicional entre la sección de estado y los botones */
+    gap: 10%
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group{
+    justify-content: right;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Botones de acción */
+.botones-acciones {
+    width: 170%;
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espacio entre los botones */
+    margin-top: 20px;
 }
 
 button {
@@ -122,7 +131,6 @@ button {
 .guardar {
     background-color: #2e8b57;
     color: white;
-    margin-right: 10px;
 }
 
 .cancelar {
@@ -135,16 +143,10 @@ button {
     .form-container {
         width: 80%;
     }
-    .botones {
-        width: 80%;
-    }
 }
 
 @media (max-width: 480px) {
     .form-container {
-        width: 95%;
-    }
-    .botones {
         width: 95%;
     }
 }

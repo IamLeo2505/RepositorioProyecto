@@ -6,6 +6,7 @@ using D_AlturaSystemAPI.Modelos;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.EntityFrameworkCore;
 
 namespace D_AlturaSystemAPI.Controllers
 {
@@ -99,6 +100,48 @@ namespace D_AlturaSystemAPI.Controllers
                                 telefono = rd["telefono"].ToString(),
                                 direccion = rd["direccion"].ToString(),
                                 estado = rd["estado"].ToString()
+
+                            });
+                        }
+                    }
+
+                }
+                empleado = listado.Where(item => item.idempleado == idempleado).FirstOrDefault();
+                return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = empleado });
+
+            }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = empleado });
+            }
+        }
+
+        [HttpGet]
+        [Route("ObtenerForEmpleado/{idempleado:int}")]
+
+        public IActionResult ObtenerEmpleadoForUsuario(int idempleado)
+        {
+            List<Empleado> listado = new List<Empleado>();
+            Empleado empleado = new Empleado();
+
+            try
+            {
+
+                using (var connection = new SqlConnection(ConnectSQL))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand("pA_Empleado_For_Usuario", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            listado.Add(new Empleado()
+                            {
+                                idempleado = Convert.ToInt32(rd["idempleado"]),
+                                nombre = rd["nombre"].ToString(),
+                                apellidos = rd["apellidos"].ToString(),
 
                             });
                         }
