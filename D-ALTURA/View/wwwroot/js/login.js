@@ -6,35 +6,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const usuario = document.getElementById('usuario').value;
         const pass = document.getElementById('pass').value;
+        var psw = CryptoJS.MD5(pass).toString(CryptoJS.enc.Base64)
+        console.log(psw)
 
         if (!usuario || !pass) {
-            alert('Por favor, ingrese su usuario y contrase�a.');
+            alert('Por favor, ingrese su usuario y contraseña.');
             return;
         }
 
-        fetch('http://localhost:5000/api/usuarios/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                usuario: usuario,
-                pass: pass
-            }),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la solicitud');
-                }
-                return response.json();
-            })
+        fetch('https://localhost:5000/api/Usuarios/ListadeUsuarios')
+            .then(response => response.json())
             .then(data => {
-                alert('Inicio de sesion exitoso');
-                console.log(data); 
-                window.location.href = 'usuarios.html';
+                data.response.forEach(item => {
+                    if (item.usuario == usuario && item.pass == pass) {
+                        alert('Inicio de sesion exitoso');
+                        window.location.href = 'usuarios.html';
+                    }
+                })
             })
             .catch(error => {
-                alert(error.message); 
+                alert(error.message);
                 console.error('Error:', error);
             });
     });

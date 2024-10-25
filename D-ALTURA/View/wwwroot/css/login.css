@@ -77,6 +77,16 @@ input[type="text"], input[type="password"] {
         border-bottom: 2px solid #2E8B57;
     }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+input:autofill {
+    box-shadow: 0 0 0 30px rgb(0, 0, 0) inset; /* Modern browsers */
+    text-fill-color: rgb(255, 255, 255);
+}
+
 button {
     background-color: dimgray;
     color: white;
