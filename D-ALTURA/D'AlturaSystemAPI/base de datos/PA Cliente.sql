@@ -8,19 +8,19 @@ begin
 end
 
 
-CREATE PROCEDURE pA_guardar_cliente(
+create proc pA_guardar_cliente(
 @nombre varchar(50),
 @apellidos varchar(50),
-@dni varchar(16),
 @ruc varchar(11),
 @telefono varchar(8),
-@estado varchar(12)
+@dni varchar(16),
+@estado varchar(10)
 ) as 
 begin
      insert into cliente(nombre, apellidos, dni, telefono, ruc, estado)
 	 values (@nombre, @apellidos, @dni, @telefono, @ruc, @estado)
 end
-GO
+
 
 
 create proc pA_editar_cliente(
@@ -30,7 +30,7 @@ create proc pA_editar_cliente(
 @dni varchar(16) null,
 @telefono varchar(8) null,
 @ruc varchar(11) null,
-@estado varchar(12) null
+@estado varchar(10) null
 ) as 
 begin
 
@@ -53,6 +53,6 @@ create proc pA_eliminar_cliente(
 as 
 begin
      update cliente
-	 set estado = 0
+	 set activo = 0
 	 where idcliente = @idcliente;
 end

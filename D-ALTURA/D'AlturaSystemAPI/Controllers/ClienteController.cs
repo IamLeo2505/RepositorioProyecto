@@ -48,7 +48,7 @@ namespace D_AlturaSystemAPI.Controllers
                                 ruc = rd["ruc"].ToString(),
                                 telefono = rd["telefono"].ToString(),
                                 apellidos = rd["apellidos"].ToString(),
-                                estado = rd["estado"].ToString()
+                                activo = Convert.ToInt32(rd["activo"]),
 
                             });
                         }
@@ -92,7 +92,7 @@ namespace D_AlturaSystemAPI.Controllers
                                 ruc = rd["ruc"].ToString(),
                                 telefono = rd["telefono"].ToString(),
                                 nombre = rd["nombre"].ToString(),
-                                estado = rd["estado"].ToString()
+                                activo = Convert.ToInt32(rd["estado"].ToString())
 
                             });
                         }
@@ -127,7 +127,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.Parameters.AddWithValue("dni", objeto.dni);
                     cmd.Parameters.AddWithValue("ruc", objeto.ruc);
                     cmd.Parameters.AddWithValue("telefono", objeto.telefono);
-                    cmd.Parameters.AddWithValue("estado", objeto.estado);
+                    cmd.Parameters.AddWithValue("activo", objeto.activo);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
@@ -162,7 +162,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.Parameters.AddWithValue("dni", objeto.dni is null ? DBNull.Value : objeto.dni);
                     cmd.Parameters.AddWithValue("ruc", objeto.ruc is null ? DBNull.Value : objeto.ruc);
                     cmd.Parameters.AddWithValue("telefono", objeto.telefono is null ? DBNull.Value : objeto.telefono);
-                    cmd.Parameters.AddWithValue("estado", objeto.estado is null ? DBNull.Value : objeto.estado);
+                    cmd.Parameters.AddWithValue("activo", objeto.activo == 0 ? DBNull.Value : objeto.activo);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();

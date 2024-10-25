@@ -11,9 +11,6 @@ body {
     height: 100vh;
 }
 
-.form-group {
-        margin-top: 2%;
-}
 body label {
     display: block;
     font-size: 16px;
