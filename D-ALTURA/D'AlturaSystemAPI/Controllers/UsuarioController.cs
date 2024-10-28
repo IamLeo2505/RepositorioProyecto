@@ -28,7 +28,7 @@ namespace D_AlturaSystemAPI.Controllers
 
 
         [HttpGet]
-        [Route("Lista de Usuarios")]
+        [Route("ListadeUsuarios")]
         public IActionResult Listado()
         {
             List<Usuario> listado = new List<Usuario>();
@@ -195,7 +195,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.ExecuteNonQuery();
                 }
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "Dato eliminado." });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Usuario eliminado." });
 
             }
             catch (Exception error)
