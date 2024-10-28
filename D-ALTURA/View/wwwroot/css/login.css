@@ -1,133 +1,130 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #151515;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #151515;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .background {
-    width: 780px;
-    height: 300px;
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+  width: 780px;
+  height: 300px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden; 
 }
 
 .panelLogo {
-    flex: 1;
-    width: 380px;
-    background-color: #2E8B57;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+  flex: 1;
+  width: 380px;
+  background-color: #2E8B57;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 #Logo {
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .panelForm {
-    flex: 2;
-    width: 100%;
-    padding: 20px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex: 2;
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
-    color: white;
-    font-family: 'Century Gothic';
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
+  color: white;
+  font-family: 'Century Gothic';
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 input[type="text"], input[type="password"] {
-    width: 85%;
-    padding: 12px;
-    margin-bottom: 15px;
-    margin-left: 30px;
-    border: none;
-    border-bottom: 2px solid dimgray;
-    background: transparent;
-    font-family: 'Century Gothic';
-    font-size: 16px;
-    color: #fff;
-    outline: none;
-    transition: border-bottom 0.5s ease;
+  width: 85%;
+  padding: 12px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  border: none;
+  border-bottom: 2px solid dimgray;
+  background: transparent;
+  font-family: 'Century Gothic';
+  font-size: 16px;
+  color: #fff;
+  outline: none;
+  transition: border-bottom 0.5s ease;
 }
 
-    input[type="text"]:focus, input[type="password"]:focus {
-        border-bottom: 2px solid #2E8B57;
-    }
+input[type="text"]:focus, input[type="password"]:focus {
+  border-bottom: 2px solid #2E8B57;
+}
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset;
-    -webkit-text-fill-color: rgb(255, 255, 255);
-}
-
-input:autofill {
-    box-shadow: 0 0 0 30px rgb(0, 0, 0) inset; /* Modern browsers */
-    text-fill-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset;
+  -webkit-text-fill-color: rgb(255, 255, 255); 
 }
 
 button {
-    background-color: dimgray;
-    color: white;
-    font-family: 'Century Gothic';
-    font-size: 14px;
-    font-weight: bold;
-    padding: 12px;
-    margin-top: 10px;
-    margin-left: 30px;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    width: 85%;
-    transition: backgroundcolor 0.5s ease;
+  background-color: dimgray;
+  color: white;
+  font-family: 'Century Gothic';
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px;
+  margin-top: 10px;
+  margin-left: 30px;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  width: 85%;
+  transition: backgroundcolor 0.5s ease;
 }
 
-    button:hover {
-        background-color: #616161;
-    }
+button:hover{
+  background-color: #616161;
+}
 
-    button:active {
-        background-color: #246b45;
-    }
+button:active{
+  background-color: #246b45;
+}
 
 .forgot {
-    text-align: center;
-    margin-top: 5px;
-    font-family: 'Century Gothic';
-    font-size: 13px;
+  text-align: center;
+  margin-top: 5px;
+  font-family: 'Century Gothic';
+  font-size: 13px;
 }
 
 a {
-    color: #fff;
-    text-decoration: none;
-    transition: backgroundcolor 0,5s ease;
+  color: #fff;
+  text-decoration: none;
+  transition: backgroundcolor 0,5s ease;
+  
 }
 
-    a:active {
-        color: #3498db;
-    }
+a:active {
+  color: #3498db;
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
+a:hover {
+  text-decoration: underline;
+}
+
