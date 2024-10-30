@@ -1,0 +1,186 @@
+/* Configuración General */
+body {
+    background-color: #00bf63;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Encabezado */
+#header-A {
+    background-color: #2e8b57;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: -175px;
+    color: white;
+}
+
+.logo img {
+    height: 60px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar a:hover {
+    background-color: #2e8b57;
+}
+
+/* Menú Desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2e8b57;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #13d413;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Formulario de Búsqueda de Ventas */
+.buscar-container {
+    background-color: #b78e6b;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.titulo {
+    font-size: 2rem;
+    color: #070707;
+    margin-top: 40px;
+}
+
+.header-right {
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+/* Contenedor de Fecha y Botón de Búsqueda */
+.date-search {
+    display: flex;
+    gap: 10px;
+    background-color: #b58d4c;
+    padding: 15px;
+    border-radius: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.date-field {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.btn-buscar {
+    align-self: center;
+    padding: 8px 15px;
+    background-color: #28b4e0;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 400px;
+}
+
+/* Contenedor de Resultados */
+.results-table {
+    height: 200px;
+    background-color: #b58d4c;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Botones de Acción */
+.action-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border: 2px solid white;
+}
+
+.nuevo {
+    background-color: #287d28;
+}
+
+.ver-detalle {
+    background-color: #5bb45d;
+}
+
+.anular {
+    background-color: #e04c4c;
+}
+
+.reporte {
+    background-color: #787878;
+}
+
+.salir {
+    background-color: #c62e2e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+    }
+    .navbar a {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Nueva Venta</title>
+    <link rel="stylesheet" href="CSS/Venta.css">
+</head>
+<body>
+    <form id="venta">
+        <h1 class="titulo">Registrar Nueva Venta</h1>
+            <div class="container">
+            <div class="left-panel"> 
+                <label for="tipo-comprobante">Tipo de Comprobante</label>
+                    <select id="tipo-comprobante">
+                        <option value="">Seleccionar...</option>
+                        <option value="boleta">Boleta</option>
+                        <option value="factura">Factura</option>
+                    </select>
+    
+                <label for="serie">Serie</label>
+                <input type="text" id="serie">
+    
+                <label for="n-comprobante">N° de Comprobante</label>
+                <input type="text" id="n-comprobante">
+    
+                <label for="fecha-venta">Fecha Venta</label>
+                <input type="date" id="fecha-venta" value="2024-01-01">
+    
+                <label for="cliente">Cliente</label>
+                <input type="text" id="idcliente" placeholder="ID">
+                <button id="buscar-cliente">Buscar</button>
+                <input type="text" id="nombre" placeholder="Nombre del Cliente" readonly>
+                <input type="text" id="apellidos" placeholder="Apellidos del Cliente" readonly>
+    
+                <div class="totals">
+                <label>Sub Total: <span id="subtotal">0.0</span></label>
+                <label>Impuesto: <span id="impuesto">0.0</span></label>
+                <label>Total a Pagar: <span id="total">0.0</span></label>
+                </div>
+    
+                <button class="btn guardar">Guardar</button>
+                <button class="btn cancelar">Cancelar</button>
+            </div>
+    
+        <div class="right-section">
+            <div class="middle-panel">
+                <label for="codigo">Código</label>
+                <input type="text" id="codigo">
+    
+                <label for="producto">Producto</label>
+                <input type="text" id="producto">
+                <button id="buscar-producto">Buscar</button>
+    
+                <label for="stock">Stocks</label>
+                <input type="text" id="stock" readonly>
+    
+                <label for="precio-venta">Precio Venta</label>
+                <input type="text" id="precio-venta">
+    
+                <label for="cantidad">Cantidad</label>
+                <input type="text" id="cantidad">
+    
+                <label for="igv">IGV</label>
+                <input type="text" id="igv" readonly>
+    
+                <button class="btn agregar">Agregar</button>
+                <button class="btn eliminar">Eliminar</button>
+            </div>
+
+            <div class="right-panel">
+                <table id="productos-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>IGV</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </form>
+    <script src="js/Venta.js"></script>
+</body>
+</html>    

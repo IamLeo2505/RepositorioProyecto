@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Realizar la solicitud fetch
-        fetch('http://localhost:5083/api/Empleado/GuardarCambios', {
+        fetch('https://localhost:5083/api/Empleado/GuardarCambios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

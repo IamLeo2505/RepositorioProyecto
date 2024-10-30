@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Realizar la solicitud fetch
-        fetch('http://localhost:5000/api/Categoría/GuardarCambios', {
+        fetch('https://localhost:5000/api/Categoría/GuardarCambios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
