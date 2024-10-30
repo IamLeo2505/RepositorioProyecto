@@ -121,42 +121,49 @@ namespace D_AlturaSystemAPI.Controllers
 
         public IActionResult ObtenerEmpleadoForUsuario(int idempleado)
         {
-            List<Empleado> listado = new List<Empleado>();
-            Empleado empleado = new Empleado();
+            Empleado empleado = null;  // Empleado será nulo hasta que se asigne un valor encontrado en la base de datos
 
             try
             {
-
                 using (var connection = new SqlConnection(ConnectSQL))
                 {
                     connection.Open();
-                    var cmd = new SqlCommand("pA_Empleado_For_Usuario", connection);
+                    var cmd = new SqlCommand("pA_BuscarEmpleado", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro para buscar al empleado específico
+                    cmd.Parameters.AddWithValue("@IdEmpleado", idempleado);
 
                     using (var rd = cmd.ExecuteReader())
                     {
-                        while (rd.Read())
+                        // Leer los resultados, esperando un único registro
+                        if (rd.Read())
                         {
-                            listado.Add(new Empleado()
+                            empleado = new Empleado()
                             {
                                 idempleado = Convert.ToInt32(rd["idempleado"]),
                                 nombre = rd["nombre"].ToString(),
-                                apellidos = rd["apellidos"].ToString(),
-
-                            });
+                                apellidos = rd["apellidos"].ToString()
+                            };
                         }
                     }
-
                 }
-                empleado = listado.Where(item => item.idempleado == idempleado).FirstOrDefault();
-                return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = empleado });
 
+                if (empleado != null)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = empleado });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "Empleado no encontrado.", response = empleado });
+                }
             }
             catch (Exception error)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = empleado });
             }
         }
+
 
 
         [HttpPost]
@@ -184,7 +191,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 }
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "Los cambios se han guardado con éxito." });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Los cambios del Empleado se han guardado con éxito." });
 
             }
             catch (Exception error)

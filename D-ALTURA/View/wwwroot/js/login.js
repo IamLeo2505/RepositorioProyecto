@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(psw)
 
         if (!usuario || !pass) {
-            alert('Por favor, ingrese su usuario y contraseña.');
+            alert('Por favor, ingrese su usuario y contraseï¿½a.');
             return;
         }
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.response.forEach(item => {
                     if (item.usuario == usuario && item.pass == pass) {
                         alert('Inicio de sesion exitoso');
-                        window.location.href = 'pages/usuarios.html';
+                        window.location.href = 'interfazprincipal.html';
                     }
                 })
             })

@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const dni = document.getElementById('dni').value;
         const direccion = document.getElementById('direccion').value;
         const telefono = document.getElementById('telefono').value;
-        
-        // Obtener el valor del estado (si está marcado)
         const estado = document.querySelector('input[name="estado"]:checked') ? document.querySelector('input[name="estado"]:checked').value : '';
 
         // Validar si hay algún campo vacío
@@ -19,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Realizar la solicitud fetch
-        fetch('https://localhost:5083/api/Empleado/GuardarCambios', {
+        fetch('https://localhost:5000/api/Empleado/GuardarCambios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

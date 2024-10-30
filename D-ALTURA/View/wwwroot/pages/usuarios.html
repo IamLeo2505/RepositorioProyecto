@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Nuevo Usuario</title>
-    <link rel="stylesheet" href="css/RegistrarEmpleadoStyle.css">
+    <link rel="stylesheet" href="../css/usuario.css">
 </head>
 <body>
     <div class="container">
         <h1>Registrar Nuevo Usuario</h1>
         <div class="form-container">
-            <div class="search-box">
-                <button class="btn btn-search">BUSCAR</button>
-            </div>
             <form id="userForm">
+                <div class="search-box">
+                    <button id="btnbuscar" type="button" class="btn btn-search">BUSCAR</button>
+                    <input type="text" id="EmpleadoID" placeholder="ID Empleado">
+                </div>
+                <div class="input-group">
+                    <label for="usuario">Nombre del Empleado</label>
+                    <input type="text" id="nombre" placeholder="Nombre del Empleado">
+                </div>
+                <div class="input-group">
+                    <label for="usuario">Apellidos del Empleado</label>
+                    <input type="text" id="apellidos" placeholder="Apellidos del Empleado">
+                </div>
                 <div class="input-group">
                     <label for="usuario">Ingrese Usuario</label>
                     <input type="text" id="usuario" placeholder="Ingrese usuario">
                 </div>
                 <div class="input-group">
                     <label for="password">Ingrese Password</label>
-                    <input type="password" id="password" placeholder="Ingrese password">
+                    <input type="password" id="pass" placeholder="Ingrese password">
                 </div>
                 <div class="input-group">
                     <label for="acceso">Tipo de Acceso</label>
@@ -42,12 +51,9 @@
                     <button type="submit" class="btn btn-save">GUARDAR</button>
                     <button type="reset" class="btn btn-cancel">CANCELAR</button>
                 </div>
-            </form>
-        </div>
-    </div>
-
+            </div>
+        </form>
+    </div>  
     <script src="js/usuario.js"></script>
-
-   
 </body>
 </html>

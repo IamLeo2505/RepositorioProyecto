@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const telefono = document.getElementById('telefono').value;
         const estado = document.querySelector('input[name="estado"]:checked')?.value;
 
-        if (!nombre || !apellidos || !direccion || !telefono || !dni || !estado) {
+        if (!nombre || !apellidos || !dni || !telefono || !direccion || !estado) {
             alert('Por favor, llene todos los campos.');
             return;
         }
 
-        fetch('http://localhost:5000/api/Empleado/GuardarCambios', {
+        fetch('https://localhost:5000/api/Empleado/GuardarCambios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({
                 nombre: nombre,
                 apellidos: apellidos, 
-                direccion: direccion,
                 dni: dni, 
                 telefono: telefono,
+                direccion: direccion,
                 estado: estado
             }),
         })

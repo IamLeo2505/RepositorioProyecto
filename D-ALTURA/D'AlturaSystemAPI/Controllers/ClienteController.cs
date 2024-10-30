@@ -109,6 +109,55 @@ namespace D_AlturaSystemAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("BuscarCliente/{idcliente:int}")]
+
+        public IActionResult ObtenerClienteForVenta(int idcliente)
+        {
+            Cliente cliente = null;  // Cliente será nulo hasta que se asigne un valor encontrado en la base de datos
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectSQL))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand("pA_BuscarCliente", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro para buscar al cliente específico
+                    cmd.Parameters.AddWithValue("@IdCliente", idcliente);
+
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        // Leer los resultados, esperando un único registro
+                        if (rd.Read())
+                        {
+                            cliente = new Cliente()
+                            {
+                                idcliente = Convert.ToInt32(rd["idcliente"]),
+                                nombre = rd["nombre"].ToString(),
+                                apellidos = rd["apellidos"].ToString()
+                            };
+                        }
+                    }
+                }
+
+                if (cliente != null)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = cliente });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "Empleado no encontrado.", response = cliente });
+                }
+            }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = cliente });
+            }
+        }
+
+
         [HttpPost]
         [Route("GuardarCambios")]
 
