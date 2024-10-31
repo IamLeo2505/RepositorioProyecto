@@ -56,3 +56,14 @@ begin
 	 set activo = 0
 	 where idcliente = @idcliente;
 end
+
+CREATE PROCEDURE pA_BuscarEmpleado
+    @idempleado INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT nombre, apellidos
+    FROM empleado
+    WHERE idempleado = @idempleado;
+END;
