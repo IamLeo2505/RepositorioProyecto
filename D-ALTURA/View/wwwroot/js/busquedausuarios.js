@@ -1,4 +1,4 @@
-document.getElementById('buscarBtn').addEventListener('click', function() {
+document.getElementById('btnbuscar').addEventListener('click', function() {
     const searchInput = document.getElementById('searchInput').value;
     const criterio = document.querySelector('input[name="criterio"]:checked');
     

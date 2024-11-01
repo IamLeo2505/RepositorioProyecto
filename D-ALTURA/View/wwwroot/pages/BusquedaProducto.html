@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Productos</title>
+    <link rel="stylesheet" href="CSS/BusquedaProducto.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BÚSQUEDA DE PRODUCTOS</h1>
+            <span class="productos-text">PRODUCTOS</span>
+        </header>
+        <div class="search-section">
+            <div class="search-criteria">
+                <div class="container-criterio">
+                    <label>Criterio de Búsqueda:</label>
+                    <div class="container-radio">
+                        <label><input type="radio" name="search" value="codigo"> Código</label>
+                        <label><input type="radio" name="search" value="nombre"> Nombre</label>
+                    </div>
+                </div>
+                <input type="text" class="search-box" placeholder="Ingrese el criterio">
+                <button class="btn buscar" type="button">Buscar</button>
+                <button class="btn salir" type="button">Salir</button>
+            </div>
+            <div class="results"></div>
+        </div>
+        <div class="options-section">
+            <button class="btn" type="button">Ventas por Fecha</button>
+            <button class="btn" type="button">Stocks Mínimo</button>
+            <button class="btn" type="button">Caducidad</button>
+            <button class="btn" type="button">Compra por Fecha</button>
+            <button class="btn nuevo" type="button">Nuevo</button>
+            <button class="btn editar" type="button">Editar</button>
+            <button class="btn anular" type="submit">Anular</button>
+        </div>
+    </div>
+</body>
+</html>

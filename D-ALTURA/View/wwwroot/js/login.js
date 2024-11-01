@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 data.response.forEach(item => {
                     if (item.usuario == usuario && item.pass == pass) {
-                        alert('Inicio de sesion exitoso');
+                        const token = "tokenIS";
+                        sessionStorage.setItem("token", token);
+                        
+                        alert('Inicio de sesión exitoso');
                         window.location.href = 'interfazprincipal.html';
                     }
                 })

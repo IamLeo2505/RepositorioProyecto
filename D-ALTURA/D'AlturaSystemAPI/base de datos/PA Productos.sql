@@ -69,3 +69,14 @@ as
 begin
 delete from producto where idproducto = @idproducto
 end
+
+CREATE PROCEDURE pA_BuscarProductoCodigo
+    @codigo VARCHAR(30)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT codigo, nombre, stock, precio_venta
+    FROM dbo.producto
+    WHERE codigo = @codigo;
+END;

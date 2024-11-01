@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsqueda de Usuarios</title>
-    <link rel="stylesheet" href="../css/BusquedaUsuario.css">
+    <title>Búsqueda de Productos</title>
+    <link rel="stylesheet" href="CSS/BusquedaProveedor.css">
 </head>
 <body>
-    <form id="buscarusuario">
     <div class="container">
         <header>
-            <h1>BÚSQUEDA DE USUARIOS</h1>
-            <span class="categories-text">Usuarios</span>
+            <h1>BÚSQUEDA DE PROVEEDORES</h1>
+            <span class="suppliers-text">PROVEEDORES</span>
         </header>
         <div class="search-section">
             <div class="search-criteria">
                 <div class="container-criterio">
-                    <label>Buscar Usuario:</label>
+                    <label>Criterio de Búsqueda:</label>
+                    <div class="container-radio">
+                        <label><input type="radio" name="search" value="razonsocial"> Razon Social</label>
+                        <label><input type="radio" name="search" value="dni"> DNI</label>
+                    </div>
                 </div>
-                <input type="text" class="search-box" placeholder="Ingrese el usuario">
+                <input type="text" class="search-box" placeholder="Ingrese el criterio">
                 <button class="btn buscar" type="button">Buscar</button>
-                <button class="btn reportes" type="button">Reportes</button>
                 <button class="btn salir" type="button">Salir</button>
             </div>
             <div class="results"></div>
@@ -31,7 +33,5 @@
             <button class="btn anular" type="submit">Anular</button>
         </div>
     </div>
-    </form>
-    <script src="../js/busquedausuarios.js"></script>
 </body>
 </html>

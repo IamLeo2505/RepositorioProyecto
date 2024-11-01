@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #00bf63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 5px solid #f0f0f0;
+    text-align: center;
+}
+
+.container-criterio {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.fecha-container {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.fecha-container input {
+    padding: 3%;
+}
+
+.container-criterio label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+header {
+    position: relative;
+}
+
+h1 {
+    color: black;
+    font-size: 2em;
+}
+
+.ventas-text {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 1.2em;
+    color: black;
+}
+
+.search-section {
+    margin-top: 20px;
+}
+
+.search-criteria {
+    background-color: #b78e6b;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-criteria label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    border: 3px solid white;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.detalle {
+    background-color: #6cf27e;
+    color: black;
+}
+
+.reporte {
+    background-color: #969393;
+    color: black;
+}
+
+.buscar {
+    background-color: #00c2ff;
+}
+
+.salir {
+    background-color: #d73333;
+}
+
+.results {
+    background-color: #b78e6b;
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.options-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.options-section .nuevo {
+    background-color: #2b832e;
+}
+
+.options-section .anular {
+    background-color: #ff3d3d;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%; 
+    }
+
+    .btn {
+        font-size: 0.9em; 
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .btn {
+        font-size: 0.8em; 
+        padding: 6px 12px;
+    }
+
+    .productos-text {
+        font-size: 1em;
+    }
+
+    .search-criteria {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .options-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}

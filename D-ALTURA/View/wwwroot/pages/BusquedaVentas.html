@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Productos</title>
+    <link rel="stylesheet" href="CSS/BusquedaVentas.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BÚSQUEDA DE VENTAS</h1>
+            <span class="ventas-text">VENTAS</span>
+        </header>
+        <div class="search-section">
+            <div class="search-criteria">
+                <div class="container-criterio">
+                    <div class="fecha-container">
+                        <label>Fecha de Inicio</label>
+                        <input type="datetime-local" class="date-box">
+                    </div>
+                    <div class="fecha-container">
+                        <label>Fecha de Fin</label>
+                        <input type="datetime-local" class="date-box">
+                    </div>
+                </div>
+                <button class="btn buscar" type="button">Buscar</button>
+            </div>
+            <div class="results"></div>
+        </div>
+        <div class="options-section">
+            <button class="btn nuevo" type="button">Nuevo</button>
+            <button class="btn detalle" type="button">Ver Detalle</button>
+            <button class="btn anular" type="submit">Anular</button>
+            <button class="btn reporte" type="button">Reporte</button>
+            <button class="btn salir" type="button">Salir</button>
+        </div>
+    </div>
+</body>
+</html>

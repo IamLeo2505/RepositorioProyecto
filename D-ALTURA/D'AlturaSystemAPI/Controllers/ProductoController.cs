@@ -47,7 +47,7 @@ namespace D_AlturaSystemAPI.Controllers
                             listado.Add(new Producto()
                             {
                                 idproducto = Convert.ToInt32(rd["idproducto"]),
-                                codigo = Convert.ToInt32(rd["codigo"]),
+                                codigo = rd["codigo"].ToString(),
                                 nombre = rd["nombre"].ToString(),
                                 descripcion = rd["descripcion"].ToString(),
                                 f_ingreso = Convert.ToDateTime(rd["f_ingreso"]),
@@ -99,7 +99,7 @@ namespace D_AlturaSystemAPI.Controllers
                             listado.Add(new Producto()
                             {
                                 idproducto = Convert.ToInt32(rd["idproducto"]),
-                                codigo = Convert.ToInt32(rd["codigo"]),
+                                codigo = rd["codigo"].ToString(),
                                 nombre = rd["nombre"].ToString(),
                                 descripcion = rd["descripcion"].ToString(),
                                 f_ingreso = Convert.ToDateTime(rd["f_ingreso"]),
@@ -124,6 +124,56 @@ namespace D_AlturaSystemAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = producto });
             } 
         }
+
+        [HttpGet]
+        [Route("BuscarProducto/{codigo}")]
+
+        public IActionResult BuscarProductoParaVenta(int codigo)
+        {
+            Producto producto = null;  // Producto será nulo hasta que se asigne un valor encontrado en la base de datos
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectSQL))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand("pA_BuscarProductoCodigo", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro para buscar al producto específico
+                    cmd.Parameters.AddWithValue("@codigo", codigo);
+
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        // Leer los resultados, esperando un único registro
+                        if (rd.Read())
+                        {
+                            producto = new Producto()
+                            {
+                                codigo = rd["codigo"].ToString(),
+                                nombre = rd["nombre"].ToString(),
+                                stock = Convert.ToInt32(rd["stock"].ToString()),
+                                precio_venta = Convert.ToDecimal(rd["precio_venta"].ToString())
+                            };
+                        }
+                    }
+                }
+
+                if (producto != null)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = producto });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "Producto no encontrado.", response =  producto });
+                }
+            }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = producto });
+            }
+        }
+
 
         [HttpPost]
         [Route("Guardar")]
@@ -177,7 +227,7 @@ namespace D_AlturaSystemAPI.Controllers
                     connection.Open();
                     var cmd = new SqlCommand("pA_editar_producto", connection);
                     cmd.Parameters.AddWithValue("idproducto", objeto.idproducto == 0 ? DBNull.Value : objeto.idproducto);
-                    cmd.Parameters.AddWithValue("codigo", objeto.codigo == 0 ? DBNull.Value : objeto.codigo);
+                    cmd.Parameters.AddWithValue("codigo", objeto.codigo is null ? DBNull.Value : objeto.codigo);
                     cmd.Parameters.AddWithValue("nombre", objeto.nombre is null ? DBNull.Value : objeto.nombre);
                     cmd.Parameters.AddWithValue("descripcion", objeto.descripcion is null ? DBNull.Value : objeto.descripcion);
                     cmd.Parameters.AddWithValue("f_ingreso", objeto.f_ingreso == DateTime.MinValue ? DateTime.Now : objeto.f_ingreso);
