@@ -16,14 +16,32 @@
         <div class="search-section">
             <div class="search-criteria">
                 <div class="container-criterio">
-                    <label>Buscar Usuario:</label>
+                    <label>Criterio de Búsqueda:</label>
+                    <div class="container-radio">
+                        <label><input type="radio" name="search" value="nombre"> Nombre</label>
+                        <label><input type="radio" name="search" value="dni"> DNI</label>
+                    </div>
                 </div>
                 <input type="text" class="search-box" placeholder="Ingrese el usuario">
                 <button class="btn buscar" type="button">Buscar</button>
                 <button class="btn reportes" type="button">Reportes</button>
                 <button class="btn salir" type="button">Salir</button>
             </div>
-            <div class="results"></div>
+            <div class="results">
+                <table id="usuariosTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Contraseña</th>
+                            <th>Acceso</th>
+                            <th>Estado</th>
+                            <th>ID Empleado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
         <div class="options-section">
             <button class="btn nuevo" type="button">Nuevo</button>

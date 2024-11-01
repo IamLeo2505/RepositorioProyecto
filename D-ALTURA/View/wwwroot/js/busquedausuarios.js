@@ -1,37 +1,28 @@
-document.getElementById('btnbuscar').addEventListener('click', function() {
-    const searchInput = document.getElementById('searchInput').value;
-    const criterio = document.querySelector('input[name="criterio"]:checked');
-    
-    if (!criterio) {
-        alert('Por favor, selecciona un criterio de búsqueda.');
-        return;
-    }
-
-    if (searchInput === "") {
-        alert('El campo de búsqueda está vacío.');
-        return;
-    }
-
-    // Aquí iría la lógica para buscar los datos
-    alert(`Buscando por ${criterio.value}: ${searchInput}`);
+document.querySelector('.buscar').addEventListener('click', () => {
+    const criterio = document.querySelector('input[name="criterio"]:checked').value; // 'nombre' o 'dni'
+    const query = document.querySelector('.search-box').value;
+    fetchUsuarios(criterio, query);
 });
 
-document.getElementById('salirBtn').addEventListener('click', function() {
-    // Lógica para cerrar o salir
-    window.close();
-});
-
-document.getElementById('nuevoBtn').addEventListener('click', function() {
-    alert('Añadir nuevo usuario.');
-    // Aquí va la lógica para agregar un nuevo usuario
-});
-
-document.getElementById('editarBtn').addEventListener('click', function() {
-    alert('Editar usuario seleccionado.');
-    // Aquí va la lógica para editar usuario
-});
-
-document.getElementById('anularBtn').addEventListener('click', function() {
-    alert('Anular usuario seleccionado.');
-    // Aquí va la lógica para anular usuario
-});
+function fetchUsuarios(criterio, query) {
+    fetch(`/api/usuarios?${criterio}=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.querySelector('#usuariosTable tbody');
+            tbody.innerHTML = ''; // Limpiar resultados previos
+            data.forEach(usuario => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.usuario}</td>
+                    <td>
+                        <button class="editar" onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button class="eliminar" onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error al obtener usuarios:', error));
+}

@@ -79,4 +79,4 @@ BEGIN
     SELECT codigo, nombre, stock, precio_venta
     FROM dbo.producto
     WHERE codigo = @codigo;
-END;
+END;	

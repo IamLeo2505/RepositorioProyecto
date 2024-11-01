@@ -93,6 +93,70 @@ h1 {
     background-color: #ff3d3d;
 }
 
+#usuariosTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Encabezados de la tabla */
+#usuariosTable thead th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Filas de la tabla */
+#usuariosTable tbody tr {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+}
+
+#usuariosTable tbody tr:nth-child(even) {
+    background-color: #e9e9e9;
+}
+
+/* Celdas de la tabla */
+#usuariosTable td {
+    padding: 10px;
+}
+
+/* Hover para las filas */
+#usuariosTable tbody tr:hover {
+    background-color: #d1e7dd;
+}
+
+/* Botones de acción en la tabla */
+#usuariosTable button.editar {
+    background-color: #ffc107; /* Color amarillo */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+#usuariosTable button.eliminar {
+    background-color: #dc3545; /* Color rojo */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#usuariosTable button.editar:hover {
+    background-color: #e0a800;
+}
+
+#usuariosTable button.eliminar:hover {
+    background-color: #c82333;
+}
+
 .results {
     background-color: #b78e6b;
     height: 300px;
