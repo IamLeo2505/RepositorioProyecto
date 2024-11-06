@@ -10,7 +10,7 @@ END
 use SystemAlturaCoffee
 go
 
-CREATE PROC pA_guardar_compra (
+AlTER PROC pA_guardar_compra (
     @idcompra int,
     @fecha date,
     @num_documento varchar(7),
@@ -23,9 +23,10 @@ CREATE PROC pA_guardar_compra (
 ) 
 AS 
 BEGIN
-    INSERT INTO compra(idcompra, fecha, num_documento, subtotal, iva, total, estado, idusuario, idproveedor)
-    VALUES (@idcompra, @fecha, @num_documento, @subtotal, @iva, @total, @estado, @idusuario, @idproveedor)
+    INSERT INTO compra(fecha, num_documento, subtotal, iva, total, estado, idusuario, idproveedor)
+    VALUES (@fecha, @num_documento, @subtotal, @iva, @total, @estado, @idusuario, @idproveedor)
 END
+GO
 
 CREATE PROC pA_editar_compra(
   @idcompra int,

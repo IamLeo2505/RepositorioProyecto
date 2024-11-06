@@ -84,11 +84,11 @@ namespace D_AlturaSystemAPI.Controllers
         {
             var datos = serviciosBD.ObtenerDatosdeEmpleados();
 
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Empleados.rdlc"); 
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Empleado.rdlc"); 
 
             LocalReport reporte = new(path);
 
-            reporte.AddDataSource("dtEmpleados", datos);
+            reporte.AddDataSource("dsEmpleados", datos);
 
             var result = reporte.Execute(RenderType.Pdf);
 

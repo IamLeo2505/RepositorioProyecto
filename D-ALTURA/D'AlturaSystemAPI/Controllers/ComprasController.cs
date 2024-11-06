@@ -117,6 +117,7 @@ namespace D_AlturaSystemAPI.Controllers
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_guardar_compra", connection);
+                    cmd.Parameters.AddWithValue("idcompra", objeto.idcompra);
                     cmd.Parameters.AddWithValue("fecha", objeto.fecha);
                     cmd.Parameters.AddWithValue("num_documento", objeto.num_documento);
                     cmd.Parameters.AddWithValue("subtotal", objeto.subtotal);
