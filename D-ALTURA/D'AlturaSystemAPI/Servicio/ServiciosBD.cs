@@ -85,5 +85,24 @@ namespace D_AlturaSystemAPI.Servicio
             }
             return dat;
         }
+
+        public DataTable ObtenerDatosdeEmpleados()
+        {
+            DataTable datos = new();
+
+            string query = "select * from vEmpleados";
+
+            string connect = confi.GetConnectionString("ConnectSQL");
+
+            using (SqlConnection conn = new(connect))
+            {
+                using SqlCommand cmd = new(new(query), conn);
+                conn.Open();
+
+                using SqlDataAdapter dato = new(cmd);
+                dato.Fill(datos);
+            }
+            return datos;
+        }
     }
 }

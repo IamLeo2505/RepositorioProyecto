@@ -78,5 +78,21 @@ namespace D_AlturaSystemAPI.Controllers
 
             return File(result.MainStream, "application/pdf", "ReportedeProductos.pdf");
         }
+
+        [HttpGet("ReporteEmpleados")]
+        public IActionResult ObtenerDatosEmpleados()
+        {
+            var datos = serviciosBD.ObtenerDatosdeEmpleados();
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Empleados.rdlc"); 
+
+            LocalReport reporte = new(path);
+
+            reporte.AddDataSource("dtEmpleados", datos);
+
+            var result = reporte.Execute(RenderType.Pdf);
+
+            return File(result.MainStream, "application/pdf", "ReportedeEmpleados.pdf");
+        }
     }
 }
