@@ -1,4 +1,5 @@
-function calculartotal(subtotalproducto, impuestoproducto){
+// Función para calcular el total
+function calculartotal(subtotalproducto, impuestoproducto) {
     const subtotal = parseFloat(document.getElementById("subtotal").innerText) + subtotalproducto;
     const impuesto = parseFloat(document.getElementById("impuesto").innerText) + impuestoproducto;
     const total = subtotal + impuesto;
@@ -8,8 +9,7 @@ function calculartotal(subtotalproducto, impuestoproducto){
     document.getElementById("total").innerText = total.toFixed(2);
 }
 
-
-
+// Función para buscar cliente
 async function buscarCliente() {
     const idcliente = document.getElementById("ClienteID").value;
     const token = sessionStorage.getItem("token");
@@ -21,9 +21,7 @@ async function buscarCliente() {
 
     try {
         const response = await fetch(`https://localhost:5000/api/Cliente/BuscarCliente/${idcliente}`, {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (response.ok) {
@@ -42,6 +40,7 @@ async function buscarCliente() {
     }
 }
 
+// Función para buscar producto
 async function buscarProducto() {
     const codigo = document.getElementById("codigoProducto").value;
     const token = sessionStorage.getItem("token");
@@ -70,35 +69,36 @@ async function buscarProducto() {
     }
 }
 
-
+// Función para decodificar el token JWT
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
     return JSON.parse(jsonPayload);
 }
-document.getElementById("buscarcliente").addEventListener("click", function(event) {
+
+// Eventos
+document.getElementById("buscarcliente").addEventListener("click", function (event) {
     event.preventDefault();
     buscarCliente();
 });
 
-document.getElementById("buscarproducto").addEventListener("click", function(event) {
-        event.preventDefault();
-        buscarProducto();
+document.getElementById("buscarproducto").addEventListener("click", function (event) {
+    event.preventDefault();
+    buscarProducto();
 });
 
-document.querySelector(".btnagregar").addEventListener("click", async function(event) {
+document.querySelector(".btnagregar").addEventListener("click", function (event) {
     event.preventDefault();
-    
-    // Asegúrate de que precio_venta y cantidad están definidos
+
     const precio_venta = parseFloat(document.getElementById("precioventa").value);
     const cantidad = parseInt(document.getElementById("cantidad").value);
 
     if (!isNaN(precio_venta) && cantidad > 0) {
         const totalproducto = precio_venta * cantidad;
-        const impuestoproducto = totalproducto * (IVA / 100); // Asegúrate de que IVA está definido
+        const impuestoproducto = totalproducto * (IVA / 100);
 
         const tableRow = document.createElement("tr");
         tableRow.innerHTML = `
@@ -112,76 +112,96 @@ document.querySelector(".btnagregar").addEventListener("click", async function(e
         document.querySelector("#productos-table tbody").appendChild(tableRow);
         calculartotal(totalproducto, impuestoproducto);
 
-        // Limpiar campos
         document.getElementById("codigoProducto").value = "";
         document.getElementById("nombreproducto").value = "";
-        document.getElementById("cantidad").value = ""; // Limpiar también la cantidad
+        document.getElementById("cantidad").value = "";
     } else {
         alert("Por favor, completa todos los campos.");
     }
+});
 
+// Evento para guardar la venta
+document.getElementById('venta').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-}
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+        alert("Usuario no autenticado");
+        return;
+    }
 
-,document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('venta').addEventListener('submit', async function (event) {
-            // Evita que se recargue la página
-            event.preventDefault();
+    const decodedToken = parseJwt(token);
+    const idusuario = decodedToken.idusuario;
 
+    const ventaData = {
+        fecha: document.getElementById("fecha-venta").value,
+        serie: document.getElementById("serie").value,
+        num_documento: document.getElementById("n-comprobante").value,
+        subtotal: parseFloat(document.getElementById("subtotal").innerText),
+        iva: parseFloat(document.getElementById("impuesto").innerText),
+        total: parseFloat(document.getElementById("total").innerText),
+        estado: "activo",
+        idusuario: idusuario,
+        idcliente: document.getElementById("ClienteID").value
+    };
 
-            // Guardar venta
-            const token = sessionStorage.getItem("token");
-             if (!token) {
-                alert("Usuario no autenticado");
-                return;
-            }
-
-        const decodedToken = parseJwt(token);
-        const idusuario = decodedToken.idusuario;
-
-        const ventaData = {
-            fecha: document.getElementById("fecha-venta").value,
-            serie: document.getElementById("serie").value,
-            num_documento: document.getElementById("n-comprobante").value,
-            subtotal: parseFloat(document.getElementById("subtotal").innerText),
-            iva: parseFloat(document.getElementById("impuesto").innerText),
-            total: parseFloat(document.getElementById("total").innerText),
-            estado: "activo",
-            idusuario: idusuario,
-            idcliente: document.getElementById("ClienteID").value
-        };
-
-         try {
-            const response = await fetch("https://localhost:5000/api/Venta/Guardar", {
+    try {
+        const ventaResponse = await fetch("https://localhost:5000/api/Venta/Guardar", {
             method: "POST",
-                headers: {
-                    "accept": "*/*",
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify(ventaData)
-            });
-        
-            if (response.ok) {
-                alert("Venta guardada con éxito");
-            } else {
-                alert("Error al guardar la venta");
+            headers: {
+                "accept": "*/*",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(ventaData)
+        });
+
+        if (ventaResponse.ok) {
+            alert("Venta guardada con éxito");
+
+            // Obtener el ID de la venta recién creada
+            const ventaResult = await ventaResponse.json();
+            const ventaId = ventaResult.idventa;
+
+            // Guardar el detalle de la venta
+            const productosRows = document.querySelectorAll("#productos-table tbody tr");
+            for (let row of productosRows) {
+                const detalleVenta = {
+                    idventa: ventaId,
+                    codigo_producto: row.cells[0].innerText,
+                    nombre_producto: row.cells[1].innerText,
+                    precio_venta: parseFloat(row.cells[2].innerText),
+                    cantidad: parseInt(row.cells[3].innerText),
+                    impuesto: parseFloat(row.cells[4].innerText),
+                    total: parseFloat(row.cells[5].innerText)
+                };
+
+                await fetch("https://localhost:5000/api/DetalleVenta/Guardar", {
+                    method: "POST",
+                    headers: {
+                        "accept": "*/*",
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(detalleVenta)
+                });
             }
-        } catch (error) {
-        console.error("Error:", error);
-        }; 
-    });
-}),
+        } else {
+            alert("Error al guardar la venta");
+        }
+    } catch (error) {
+        console.error("Error al guardar la venta y sus detalles:", error);
+    }
+});
 
-
-
-document.querySelector(".btneliminar").addEventListener("click", async function() {
+// Eliminar último producto agregado
+document.querySelector(".btneliminar").addEventListener("click", function () {
     const row = document.querySelector("#productos-table tbody").lastChild;
     if (row) {
-        const totalproducto = parseFloat(row.cells[5].innerText); 
-        const impuestoproducto = parseFloat(row.cells[4].innerText); 
+        const totalproducto = parseFloat(row.cells[5].innerText);
+        const impuestoproducto = parseFloat(row.cells[4].innerText);
         const subtotalproducto = totalproducto - impuestoproducto;
         document.querySelector("#productos-table tbody").removeChild(row);
         calculartotal(-subtotalproducto, -impuestoproducto);
     }
-}))
+});

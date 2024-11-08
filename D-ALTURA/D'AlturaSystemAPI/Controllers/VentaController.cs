@@ -121,39 +121,60 @@ namespace D_AlturaSystemAPI.Controllers
         }
 
         [HttpPost]
-        [Route("Guardar")]
-
-        public IActionResult Guardar([FromBody] Venta objeto)
+        [Route("RegistrarVentaCompleta")]
+        public IActionResult RegistrarVentaCompleta([FromBody] VentaCompleta ventaCompleta)
         {
-
-            try
+            using (var connection = new SqlConnection(ConnectSQLThree))
             {
+                connection.Open();
+                var transaction = connection.BeginTransaction();
 
-                using (var connection = new SqlConnection(ConnectSQL))
+                try
                 {
-                    connection.Open();
-                    var cmd = new SqlCommand("pA_guardar_venta", connection);
-                    cmd.Parameters.AddWithValue("fecha", objeto.fecha);
-                    cmd.Parameters.AddWithValue("serie", objeto.serie);
-                    cmd.Parameters.AddWithValue("num_documento", objeto.num_documento);
-                    cmd.Parameters.AddWithValue("subtotal", objeto.subtotal);
-                    cmd.Parameters.AddWithValue("iva", objeto.iva);
-                    cmd.Parameters.AddWithValue("total", objeto.total);
-                    cmd.Parameters.AddWithValue("estado", objeto.estado);
-                    cmd.Parameters.AddWithValue("idusuario", objeto.idusuario);
-                    cmd.Parameters.AddWithValue("idcliente", objeto.idcliente);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    var cmdVenta = new SqlCommand("pA_guardar_venta", connection, transaction);
+                    cmdVenta.CommandType = CommandType.StoredProcedure;
+                    cmdVenta.Parameters.AddWithValue("@fecha", ventaCompleta.Venta.fecha);
+                    cmdVenta.Parameters.AddWithValue("@serie", ventaCompleta.Venta.serie);
+                    cmdVenta.Parameters.AddWithValue("@num_documento", ventaCompleta.Venta.num_documento);
+                    cmdVenta.Parameters.AddWithValue("@subtotal", ventaCompleta.Venta.subtotal);
+                    cmdVenta.Parameters.AddWithValue("@iva", ventaCompleta.Venta.iva);
+                    cmdVenta.Parameters.AddWithValue("@total", ventaCompleta.Venta.total);
+                    cmdVenta.Parameters.AddWithValue("@estado", ventaCompleta.Venta.estado);
+                    cmdVenta.Parameters.AddWithValue("@idusuario", ventaCompleta.Venta.idusuario);
+                    cmdVenta.Parameters.AddWithValue("@idcliente", ventaCompleta.Venta.idcliente);
 
-                    cmd.ExecuteNonQuery();
+                    var idVentaParam = new SqlParameter("@idventa", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmdVenta.Parameters.Add(idVentaParam);
+                    cmdVenta.ExecuteNonQuery();
+                    var idVenta = (int)idVentaParam.Value;
+
+                    foreach (var detalle in ventaCompleta.DetalleVentas)
+                    {
+                        var cmdDetalle = new SqlCommand("dbo.pA_guardar_detalleventa", connection, transaction);
+                        cmdDetalle.CommandType = CommandType.StoredProcedure;
+
+                        // No incluir el parámetro @iddetalleventa, ya que es una columna de identidad.
+                        cmdDetalle.Parameters.AddWithValue("@cantidad", detalle.cantidad);
+                        cmdDetalle.Parameters.AddWithValue("@precio", detalle.precio);
+                        cmdDetalle.Parameters.AddWithValue("@total", detalle.total);
+                        cmdDetalle.Parameters.AddWithValue("@idventa", idVenta);
+                        cmdDetalle.Parameters.AddWithValue("@idproducto", detalle.idproducto);
+
+                        cmdDetalle.ExecuteNonQuery();
+                    }
+
+
+                    transaction.Commit();
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Venta y detalles guardados con éxito" });
                 }
-
-
-                return StatusCode(StatusCodes.Status200OK, new { message = "ok" });
-
-            }
-            catch (Exception error)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message });
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+                }
             }
         }
 

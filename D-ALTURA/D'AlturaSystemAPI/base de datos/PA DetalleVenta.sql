@@ -14,18 +14,18 @@ end
 use SystemAlturaCoffee
 go
 
-create proc pA_guardar_detalleventa(
-    @iddetalleventa int,
-    @cantidad int,
-    @precio decimal(8,2),
-    @total decimal(8,2),
-    @idventa int,
-    @idproducto int
-) as 
-begin
-     insert into detalleventa(iddetalleventa, cantidad, precio, total, idventa, idproducto)
-     values (@iddetalleventa, @cantidad, @precio, @total, @idventa, @idproducto)
-end
+CREATE PROCEDURE pA_guardar_detalleventa(
+    @cantidad INT,
+    @precio DECIMAL(8, 2),
+    @total DECIMAL(8, 2),
+    @idventa INT,
+    @idproducto INT
+)
+AS 
+BEGIN
+    INSERT INTO detalleventa(cantidad, precio, total, idventa, idproducto)
+    VALUES (@cantidad, @precio, @total, @idventa, @idproducto)
+END
 
 create proc pA_editar_detalleventa(
   @iddetalleventa int,
