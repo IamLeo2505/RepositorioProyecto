@@ -10,15 +10,16 @@ END
 
 USE SystemAlturaCoffee
 GO
-
-CREATE PROCEDURE pA_guardar_detallecredito(
-    @FechaPago Date,
-    @MontoAbono DECIMAL(10,0)
+ALTER PROCEDURE pA_guardar_detallecredito(
+    @FechaPago DATE,
+    @MontoAbono DECIMAL(10,0),
+    @IdCrédito INT  -- Parametro para vincular el crédito maestro
 ) AS 
 BEGIN
-    INSERT INTO DetalleCrédito(FechaPago, MontoAbono)
-    VALUES (@FechaPago, @MontoAbono)
+    INSERT INTO DetalleCrédito (FechaPago, MontoAbono, IdCrédito)
+    VALUES (@FechaPago, @MontoAbono, @IdCrédito);
 END
+
 
 CREATE PROCEDURE pA_editar_detallecredito(
   @IdDetalleCrédito INT null,

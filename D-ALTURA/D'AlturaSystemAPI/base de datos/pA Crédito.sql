@@ -7,18 +7,17 @@ begin
 end
 
 
-create proc pA_guardar_credito(
-@IdCrédito int,
-@PlazoPago int,
-@TasaInteres int,
-@Monto decimal(10, 0),
-@FechaInicio date
-) as 
-begin
-     insert into Crédito(IdCrédito, PlazoPago, TasaInteres, Monto, FechaInicio)
-	 values (@IdCrédito, @PlazoPago, @TasaInteres, @Monto, @FechaInicio)
-end
-
+ALTER PROC pA_guardar_credito (
+    @PlazoPago INT,
+    @TasaInteres INT,
+    @Monto DECIMAL(10, 0),
+    @FechaInicio DATE
+)
+AS
+BEGIN
+    INSERT INTO Crédito (PlazoPago, TasaInteres, Monto, FechaInicio)
+    VALUES (@PlazoPago, @TasaInteres, @Monto, @FechaInicio)
+END
 
 
 create proc pA_editar_credito(

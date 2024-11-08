@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using Microsoft.AspNetCore.Cors;
+using D_AlturaSystemAPI.Modelos.D_AlturaSystemAPI.Modelos;
 
 namespace D_AlturaSystemAPI.Controllers
 {
@@ -102,41 +103,50 @@ namespace D_AlturaSystemAPI.Controllers
                     return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = crédito });
                 }
             }
-
-            [HttpPost]
-            [Route("Guardar Cambios")]
-
-            public IActionResult GuardarCrédito([FromBody] Crédito objeto)
+        [HttpPost]
+        [Route("Guardar")]
+        public IActionResult GuardarCreditoYDetalles([FromBody] CreditoCompleta creditoCompleta)
+        {
+            try
             {
-
-                try
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
+                    connection.Open();
 
-                    using (var connection = new SqlConnection(ConnectSQL))
+                    // Guardar el crédito (maestro)
+                    var cmd = new SqlCommand("pA_guardar_credito", connection);
+                    cmd.Parameters.AddWithValue("PlazoPago", creditoCompleta.Crédito.PlazoPago);
+                    cmd.Parameters.AddWithValue("TasaInteres", creditoCompleta.Crédito.TasaInteres);
+                    cmd.Parameters.AddWithValue("Monto", creditoCompleta.Crédito.Monto);
+                    cmd.Parameters.AddWithValue("FechaInicio", creditoCompleta.Crédito.FechaInicio);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Ejecutar y obtener el idcrédito generado usando SCOPE_IDENTITY
+                    var idCredito = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    // Guardar cada detalle de crédito
+                    foreach (var detalle in creditoCompleta.Detalles)
                     {
-                        connection.Open();
-                        var cmd = new SqlCommand("pA_guardar_credito", connection);
-                        cmd.Parameters.AddWithValue("IdCrédito", objeto.idcrédito);
-                        cmd.Parameters.AddWithValue("PlazoPago", objeto.PlazoPago);
-                        cmd.Parameters.AddWithValue("TasaInteres", objeto.TasaInteres);
-                        cmd.Parameters.AddWithValue("Monto", objeto.Monto);
-                        cmd.Parameters.AddWithValue("FechaInicio", objeto.FechaInicio);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        var cmdDetalle = new SqlCommand("pA_guardar_detallecredito", connection);
+                        cmdDetalle.Parameters.AddWithValue("FechaPago", detalle.FechaPago);
+                        cmdDetalle.Parameters.AddWithValue("MontoAbono", detalle.MontoAbono);
+                        cmdDetalle.Parameters.AddWithValue("IdCrédito", idCredito); // Pasamos el idcrédito generado
+                        cmdDetalle.CommandType = CommandType.StoredProcedure;
 
-                        cmd.ExecuteNonQuery();
-
+                        cmdDetalle.ExecuteNonQuery();
                     }
-
-                    return StatusCode(StatusCodes.Status200OK, new { message = "Correcto." });
-
                 }
-                catch (Exception error)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message });
-                }
+
+                return StatusCode(StatusCodes.Status200OK, new { message = "Crédito y detalles guardados con éxito." });
             }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message });
+            }
+        }
 
-            [HttpPut]
+
+        [HttpPut]
             [Route("EditarCrédito")]
 
             public IActionResult EditarCrédito([FromBody] Crédito objeto)

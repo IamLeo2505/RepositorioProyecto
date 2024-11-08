@@ -1,64 +1,72 @@
-create proc pA_lista_venta
-as
-begin
-     select 
-	 idventa, fecha, serie, num_documento, subtotal, iva, total, estado, idusuario, idcliente
-	 from venta
-end
+USE SystemAlturaCoffee
+GO
 
+-- Procedimiento para listar ventas
+CREATE PROCEDURE pA_lista_venta
+AS
+BEGIN
+    SELECT 
+        idventa, fecha, serie, num_documento, subtotal, iva, total, estado, idusuario, idcliente
+    FROM venta;
+END;
+GO
 
-use SystemAlturaCoffee
-go
+-- Procedimiento para guardar una venta (insertar)
+CREATE PROCEDURE pA_guardar_venta
+    @idventa INT OUTPUT,  
+    @fecha DATE,
+    @serie NVARCHAR(50),
+    @num_documento NVARCHAR(50),
+    @subtotal DECIMAL(18, 2),
+    @iva DECIMAL(18, 2),
+    @total DECIMAL(18, 2),
+    @estado NVARCHAR(50),
+    @idusuario INT,
+    @idcliente INT
+AS
+BEGIN
+    INSERT INTO venta (fecha, serie, num_documento, subtotal, iva, total, estado, idusuario, idcliente)
+    VALUES (@fecha, @serie, @num_documento, @subtotal, @iva, @total, @estado, @idusuario, @idcliente);
 
-create proc pA_guardar_venta(
-@idventa int,
-@fecha date,
-@serie varchar(7),
-@num_documento varchar(7),
-@subtotal decimal(8,2),
-@iva decimal(8,2),
-@total decimal(8,2),
-@estado varchar (20),
-@idusuario int,
-@idcliente int
-) as 
-begin
-     insert into venta(idventa, fecha, serie, num_documento, subtotal, iva, total, estado, idusuario, idcliente)
-	 values (@idventa, @fecha, @serie, @num_documento, @subtotal, @iva, @total, @estado, @idusuario, @idcliente)
-end
+    -- Captura el ID de la venta recién insertada
+    SET @idventa = SCOPE_IDENTITY();
+END;
+GO
 
-create proc pA_editar_venta(
-  @idventa int,
-  @fecha date,
-  @serie varchar(7),
-  @num_documento varchar(7),
-  @subtotal decimal(8,2),
-  @iva decimal(8,2),
-  @total decimal(8,2),
-  @estado varchar(20),
-  @idusuario int,
-  @idcliente int
-) as 
-begin
+-- Procedimiento para editar una venta (actualizar)
+CREATE PROCEDURE pA_editar_venta
+    @idventa INT,
+    @fecha DATE = NULL,
+    @serie NVARCHAR(50) = NULL,
+    @num_documento NVARCHAR(50) = NULL,
+    @subtotal DECIMAL(18, 2) = NULL,
+    @iva DECIMAL(18, 2) = NULL,
+    @total DECIMAL(18, 2) = NULL,
+    @estado NVARCHAR(50) = NULL,
+    @idusuario INT = NULL,
+    @idcliente INT = NULL
+AS
+BEGIN
+    UPDATE venta
+    SET
+        fecha = ISNULL(@fecha, fecha),
+        serie = ISNULL(@serie, serie),
+        num_documento = ISNULL(@num_documento, num_documento),
+        subtotal = ISNULL(@subtotal, subtotal),
+        iva = ISNULL(@iva, iva),
+        total = ISNULL(@total, total),
+        estado = ISNULL(@estado, estado),
+        idusuario = ISNULL(@idusuario, idusuario),
+        idcliente = ISNULL(@idcliente, idcliente)
+    WHERE idventa = @idventa;
+END;
+GO
 
-  update venta set
-    fecha = isnull(@fecha, fecha),
-    serie = isnull(@serie, serie),
-    num_documento = isnull(@num_documento, num_documento),
-    subtotal = isnull(@subtotal, subtotal),
-    iva = isnull(@iva, iva),
-    total = isnull(@total, total),
-    estado = isnull(@estado, estado),
-    idusuario = isnull(@idusuario, idusuario),
-    idcliente = isnull(@idcliente, idcliente)
-  where idventa = @idventa
-
-end
-
-create proc pA_eliminar_venta(
-@idventa int
-)
-as 
-begin
-delete from venta where idventa = @idventa 
-end
+-- Procedimiento para eliminar una venta (borrar)
+CREATE PROCEDURE pA_eliminar_venta
+    @idventa INT
+AS
+BEGIN
+    DELETE FROM venta WHERE idventa = @idventa;
+END;
+GO

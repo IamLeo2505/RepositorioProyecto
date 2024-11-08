@@ -13,9 +13,7 @@ END
 
 USE SystemAlturaCoffee
 GO
-
-CREATE PROCEDURE pA_guardar_detallecompra(
-    @iddetallecompra INT,
+ALTER PROCEDURE pA_guardar_detallecompra (
     @cantidad INT,
     @precio DECIMAL(8,2),
     @total DECIMAL(8,2),
@@ -23,9 +21,10 @@ CREATE PROCEDURE pA_guardar_detallecompra(
     @idproducto INT
 ) AS 
 BEGIN
-    INSERT INTO detallecompra(iddetallecompra, cantidad, precio, total, idcompra, idproducto)
-    VALUES (@iddetallecompra, @cantidad, @precio, @total, @idcompra, @idproducto)
-END
+    INSERT INTO detallecompra (cantidad, precio, total, idcompra, idproducto)
+    VALUES (@cantidad, @precio, @total, @idcompra, @idproducto);
+END;
+
 
 CREATE PROCEDURE pA_editar_detallecompra(
   @iddetallecompra INT,
