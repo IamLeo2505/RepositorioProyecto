@@ -90,6 +90,9 @@ document.getElementById("buscarproducto").addEventListener("click", function (ev
     buscarProducto();
 });
 
+// Define el IVA
+const IVA = 15;
+
 document.querySelector(".btnagregar").addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -100,25 +103,38 @@ document.querySelector(".btnagregar").addEventListener("click", function (event)
         const totalproducto = precio_venta * cantidad;
         const impuestoproducto = totalproducto * (IVA / 100);
 
+        // Crear una nueva fila en la tabla
         const tableRow = document.createElement("tr");
         tableRow.innerHTML = `
             <td>${document.getElementById("codigoProducto").value}</td>
             <td>${document.getElementById("nombreproducto").value}</td>
             <td>${precio_venta.toFixed(2)}</td>
             <td>${cantidad}</td>
-            <td>${(impuestoproducto).toFixed(2)}</td>
+            <td>${impuestoproducto.toFixed(2)}</td>
             <td>${(totalproducto + impuestoproducto).toFixed(2)}</td>
         `;
-        document.querySelector("#productos-table tbody").appendChild(tableRow);
+
+        // Agregar la fila al tbody de la tabla
+        const tbody = document.querySelector("#productos-table tbody");
+        if (tbody) {
+            tbody.appendChild(tableRow);
+        } else {
+            console.error("No se encontró el tbody de la tabla.");
+        }
+
+        // Llamar a la función para calcular el total general
         calculartotal(totalproducto, impuestoproducto);
 
+        // Limpiar los campos del formulario
         document.getElementById("codigoProducto").value = "";
         document.getElementById("nombreproducto").value = "";
         document.getElementById("cantidad").value = "";
+        document.getElementById("precioventa").value = "";
     } else {
-        alert("Por favor, completa todos los campos.");
+        alert("Por favor, completa todos los campos correctamente.");
     }
 });
+
 
 // Evento para guardar la venta
 document.getElementById('venta').addEventListener('submit', async function (event) {

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D_AlturaSystemAPI", "D_Altu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "..\View\View.csproj", "{8BE5EAB9-97CB-494A-A15A-588C9320ABFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoParaReportes", "..\..\..\..\..\source\repos\ProyectoParaReportes\ProyectoParaReportes.csproj", "{D842A22C-E9DF-44A2-84E8-2DEA46D11692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoParaReportes", "..\ProyectoParaReportes\ProyectoParaReportes.csproj", "{2C95844C-EEAE-443E-BDA6-BC994CCE3B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{8BE5EAB9-97CB-494A-A15A-588C9320ABFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BE5EAB9-97CB-494A-A15A-588C9320ABFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BE5EAB9-97CB-494A-A15A-588C9320ABFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D842A22C-E9DF-44A2-84E8-2DEA46D11692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D842A22C-E9DF-44A2-84E8-2DEA46D11692}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D842A22C-E9DF-44A2-84E8-2DEA46D11692}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D842A22C-E9DF-44A2-84E8-2DEA46D11692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C95844C-EEAE-443E-BDA6-BC994CCE3B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C95844C-EEAE-443E-BDA6-BC994CCE3B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C95844C-EEAE-443E-BDA6-BC994CCE3B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C95844C-EEAE-443E-BDA6-BC994CCE3B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

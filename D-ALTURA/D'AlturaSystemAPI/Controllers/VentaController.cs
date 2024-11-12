@@ -124,7 +124,7 @@ namespace D_AlturaSystemAPI.Controllers
         [Route("RegistrarVentaCompleta")]
         public IActionResult RegistrarVentaCompleta([FromBody] VentaCompleta ventaCompleta)
         {
-            using (var connection = new SqlConnection(ConnectSQLThree))
+            using (var connection = new SqlConnection(ConnectSQL))
             {
                 connection.Open();
                 var transaction = connection.BeginTransaction();
