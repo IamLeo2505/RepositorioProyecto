@@ -9,17 +9,62 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="dsCliente.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsCliente.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="dsCrédito.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsCrédito.xsd</DependentUpon>
+    </Compile>
     <Compile Update="dsEmpleado.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>dsEmpleado.xsd</DependentUpon>
     </Compile>
+    <Compile Update="dsMarca.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsMarca.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="dsUsuarios.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsUsuarios.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="dsVentas.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsVentas.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="dsCliente.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCliente.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="dsCrédito.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCrédito.Designer.cs</LastGenOutput>
+    </None>
     <None Update="dsEmpleado.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsEmpleado.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="dsMarca.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMarca.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="dsUsuarios.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsUsuarios.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="dsVentas.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsVentas.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

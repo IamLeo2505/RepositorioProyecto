@@ -18,6 +18,37 @@ namespace D_AlturaSystemAPI.Controllers
             serviciosBD = servicioBD;
         }
 
+        [HttpGet("ReporteClientes")]
+        public IActionResult ObtenerDatosClientes()
+        {
+            var dt = serviciosBD.ObtenerDatosdeCliente();
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Cliente.rdlc");
+
+            LocalReport report = new LocalReport(path);
+            report.AddDataSource("dsCliente", dt);
+
+            var result = report.Execute(RenderType.Pdf);
+
+            return File(result.MainStream, "application/pdf", "ReportedeClientes.pdf");
+        }
+
+        [HttpGet("ReporteCrédito")]
+        public IActionResult ObtenerDatosCrédito()
+        {
+            var dt = serviciosBD.ObtenerDatosdeCrédito();
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Crédito.rdlc");
+
+            LocalReport report = new LocalReport(path);
+            report.AddDataSource("dsCrédito", dt);
+
+            var result = report.Execute(RenderType.Pdf);
+
+            return File(result.MainStream, "application/pdf", "ReportedeCrédito.pdf");
+        }
+
+
         [HttpGet("ReporteProveedores")]
         public IActionResult ObtenerDatosProveedores()
         {
@@ -41,7 +72,7 @@ namespace D_AlturaSystemAPI.Controllers
             string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Ventas.rdlc");
 
             LocalReport reporte = new LocalReport(path);
-            reporte.AddDataSource("dtVenta", datos);
+            reporte.AddDataSource("dsVentas", datos);
 
             var result = reporte.Execute(RenderType.Pdf);
 
@@ -93,6 +124,37 @@ namespace D_AlturaSystemAPI.Controllers
             var result = reporte.Execute(RenderType.Pdf);
 
             return File(result.MainStream, "application/pdf", "ReportedeEmpleados.pdf");
+        }
+        [HttpGet("ReporteUsuarios")]
+        public IActionResult ObtenerDatosUsuarios()
+        {
+            var datos = serviciosBD.ObtenerDatosdeEmpleados();
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Usuarios.rdlc");
+
+            LocalReport reporte = new(path);
+
+            reporte.AddDataSource("dsUsuarios", datos);
+
+            var result = reporte.Execute(RenderType.Pdf);
+
+            return File(result.MainStream, "application/pdf", "ReportedeUsuarios.pdf");
+        }
+
+        [HttpGet("ReporteMarca")]
+        public IActionResult ObtenerDatosMarca()
+        {
+            var datos = serviciosBD.ObtenerDatosdeMarca();
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Marca.rdlc");
+
+            LocalReport reporte = new(path);
+
+            reporte.AddDataSource("dsMarca", datos);
+
+            var result = reporte.Execute(RenderType.Pdf);
+
+            return File(result.MainStream, "application/pdf", "ReportedeMarca.pdf");
         }
     }
 }

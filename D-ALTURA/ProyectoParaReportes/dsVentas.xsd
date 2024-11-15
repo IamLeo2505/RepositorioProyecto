@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsVentas" targetNamespace="http://tempuri.org/dsVentas.xsd" xmlns:mstns="http://tempuri.org/dsVentas.xsd" xmlns="http://tempuri.org/dsVentas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection ConnectionStringObject="Data Source=LEANDRO\SQLEXPRESS;Initial Catalog=SystemAlturaCoffee;Integrated Security=True;Encrypt=True;TrustServerCertificate=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="leandro\sqlexpress.SystemAlturaCoffee.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vVentasTableAdapter" GeneratorDataComponentClassName="vVentasTableAdapter" Name="vVentas" UserDataComponentName="vVentasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="leandro\sqlexpress.SystemAlturaCoffee.dbo" DbObjectName="SystemAlturaCoffee.dbo.vVentas" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vVentas</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="num_documento" DataSetColumn="num_documento" />
+              <Mapping SourceColumn="idventa" DataSetColumn="idventa" />
+              <Mapping SourceColumn="idcliente" DataSetColumn="idcliente" />
+              <Mapping SourceColumn="idusuario" DataSetColumn="idusuario" />
+              <Mapping SourceColumn="total" DataSetColumn="total" />
+              <Mapping SourceColumn="subtotal" DataSetColumn="subtotal" />
+              <Mapping SourceColumn="iva" DataSetColumn="iva" />
+              <Mapping SourceColumn="estado" DataSetColumn="estado" />
+              <Mapping SourceColumn="fecha" DataSetColumn="fecha" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="apellidos" DataSetColumn="apellidos" />
+              <Mapping SourceColumn="NombredelProducto" DataSetColumn="NombredelProducto" />
+              <Mapping SourceColumn="precio_venta" DataSetColumn="precio_venta" />
+              <Mapping SourceColumn="cantidad" DataSetColumn="cantidad" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsVentas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsVentas" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsVentas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vVentas" msprop:Generator_RowClassName="vVentasRow" msprop:Generator_RowEvHandlerName="vVentasRowChangeEventHandler" msprop:Generator_RowDeletedName="vVentasRowDeleted" msprop:Generator_RowDeletingName="vVentasRowDeleting" msprop:Generator_RowEvArgName="vVentasRowChangeEvent" msprop:Generator_TablePropName="vVentas" msprop:Generator_RowChangedName="vVentasRowChanged" msprop:Generator_UserTableName="vVentas" msprop:Generator_RowChangingName="vVentasRowChanging" msprop:Generator_TableClassName="vVentasDataTable" msprop:Generator_TableVarName="tablevVentas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="num_documento" msprop:Generator_UserColumnName="num_documento" msprop:Generator_ColumnPropNameInTable="num_documentoColumn" msprop:Generator_ColumnPropNameInRow="num_documento" msprop:Generator_ColumnVarNameInTable="columnnum_documento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idventa" msprop:Generator_UserColumnName="idventa" msprop:Generator_ColumnPropNameInTable="idventaColumn" msprop:Generator_ColumnPropNameInRow="idventa" msprop:Generator_ColumnVarNameInTable="columnidventa" type="xs:int" />
+              <xs:element name="idcliente" msprop:Generator_UserColumnName="idcliente" msprop:Generator_ColumnPropNameInTable="idclienteColumn" msprop:Generator_ColumnPropNameInRow="idcliente" msprop:Generator_ColumnVarNameInTable="columnidcliente" type="xs:int" minOccurs="0" />
+              <xs:element name="idusuario" msprop:Generator_UserColumnName="idusuario" msprop:Generator_ColumnPropNameInTable="idusuarioColumn" msprop:Generator_ColumnPropNameInRow="idusuario" msprop:Generator_ColumnVarNameInTable="columnidusuario" type="xs:int" minOccurs="0" />
+              <xs:element name="total" msprop:Generator_UserColumnName="total" msprop:Generator_ColumnPropNameInTable="totalColumn" msprop:Generator_ColumnPropNameInRow="total" msprop:Generator_ColumnVarNameInTable="columntotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="subtotal" msprop:Generator_UserColumnName="subtotal" msprop:Generator_ColumnPropNameInTable="subtotalColumn" msprop:Generator_ColumnPropNameInRow="subtotal" msprop:Generator_ColumnVarNameInTable="columnsubtotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="iva" msprop:Generator_UserColumnName="iva" msprop:Generator_ColumnPropNameInTable="ivaColumn" msprop:Generator_ColumnPropNameInRow="iva" msprop:Generator_ColumnVarNameInTable="columniva" type="xs:decimal" minOccurs="0" />
+              <xs:element name="estado" msprop:Generator_UserColumnName="estado" msprop:Generator_ColumnPropNameInTable="estadoColumn" msprop:Generator_ColumnPropNameInRow="estado" msprop:Generator_ColumnVarNameInTable="columnestado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fecha" msprop:Generator_UserColumnName="fecha" msprop:Generator_ColumnPropNameInTable="fechaColumn" msprop:Generator_ColumnPropNameInRow="fecha" msprop:Generator_ColumnVarNameInTable="columnfecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="nombre" msprop:Generator_UserColumnName="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellidos" msprop:Generator_UserColumnName="apellidos" msprop:Generator_ColumnPropNameInTable="apellidosColumn" msprop:Generator_ColumnPropNameInRow="apellidos" msprop:Generator_ColumnVarNameInTable="columnapellidos" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NombredelProducto" msprop:Generator_UserColumnName="NombredelProducto" msprop:Generator_ColumnPropNameInTable="NombredelProductoColumn" msprop:Generator_ColumnPropNameInRow="NombredelProducto" msprop:Generator_ColumnVarNameInTable="columnNombredelProducto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="precio_venta" msprop:Generator_UserColumnName="precio_venta" msprop:Generator_ColumnPropNameInTable="precio_ventaColumn" msprop:Generator_ColumnPropNameInRow="precio_venta" msprop:Generator_ColumnVarNameInTable="columnprecio_venta" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cantidad" msprop:Generator_ColumnPropNameInRow="cantidad" msprop:Generator_ColumnPropNameInTable="cantidadColumn" msprop:Generator_ColumnVarNameInTable="columncantidad" msprop:Generator_UserColumnName="cantidad" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

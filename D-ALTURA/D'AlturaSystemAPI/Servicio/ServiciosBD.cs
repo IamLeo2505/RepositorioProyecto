@@ -104,5 +104,81 @@ namespace D_AlturaSystemAPI.Servicio
             }
             return datos;
         }
+
+        public DataTable ObtenerDatosdeUsuarios()
+        {
+            DataTable datos = new();
+
+            string query = "select * from vUsuarios";
+
+            string connect = confi.GetConnectionString("ConnectSQL");
+
+            using (SqlConnection conn = new(connect))
+            {
+                using SqlCommand cmd = new(new(query), conn);
+                conn.Open();
+
+                using SqlDataAdapter dato = new(cmd);
+                dato.Fill(datos);
+            }
+            return datos;
+        }
+
+        public DataTable ObtenerDatosdeMarca()
+        {
+            DataTable datos = new();
+
+            string query = "select * from vMarca";
+
+            string connect = confi.GetConnectionString("ConnectSQL");
+
+            using (SqlConnection conn = new(connect))
+            {
+                using SqlCommand cmd = new(new(query), conn);
+                conn.Open();
+
+                using SqlDataAdapter dato = new(cmd);
+                dato.Fill(datos);
+            }
+            return datos;
+        }
+
+        public DataTable ObtenerDatosdeCliente()
+        {
+            DataTable datos = new();
+
+            string query = "select * from vCliente";
+
+            string connect = confi.GetConnectionString("ConnectSQL");
+
+            using (SqlConnection conn = new(connect))
+            {
+                using SqlCommand cmd = new(new(query), conn);
+                conn.Open();
+
+                using SqlDataAdapter dato = new(cmd);
+                dato.Fill(datos);
+            }
+            return datos;
+        }
+
+        public DataTable ObtenerDatosdeCrédito()
+        {
+            DataTable datos = new();
+
+            string query = "select * from vCrédito";
+
+            string connect = confi.GetConnectionString("ConnectSQL");
+
+            using (SqlConnection conn = new(connect))
+            {
+                using SqlCommand cmd = new(new(query), conn);
+                conn.Open();
+
+                using SqlDataAdapter dato = new(cmd);
+                dato.Fill(datos);
+            }
+            return datos;
+        }
     }
 }
