@@ -52,7 +52,6 @@ header {
     background-color: #2e8b57;
     color: white;
     padding: 0;
-    border-right: 3px solid #1c5d3f; /* Línea de separación entre la barra lateral y la barra de navegación */
 }
 
 .sidebar ul {
