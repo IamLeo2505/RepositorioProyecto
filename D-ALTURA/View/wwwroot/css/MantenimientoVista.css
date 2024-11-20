@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color:  #2e8b57;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar a:hover {
+    background-color: #2e8b57;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2e8b57;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #13d413;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-image: url('../IMG/Fondo_CSSA_optimizado.jpg');
+}
+
+main .soporte {
+    text-align: center;
+    padding: 5% 20%;
+}
+
+.soporte h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Estilo general para los iconos */
+.botones .btn i {
+    font-size: 5rem; /* Tamaño del ícono */
+    transition: transform 0.3s, color 0.3s; /* Transición suave para hover */
+}
+
+/* Estilo para el botón "guardar" */
+.botones .guardar i {
+    color: #ffffff; /* Verde para el ícono "subir" */
+}
+
+/* Estilo para el botón "cargar" */
+.botones .cargar i {
+    color: #2196f3; /* Azul para el ícono "bajar" */
+}
+
+/* Efecto al pasar el cursor por encima */
+.botones .btn:hover i {
+    transform: scale(1.2); /* Agranda el ícono */
+}
+
+.botones .guardar:hover i {
+    color: #b5b5b5; /* Cambia el color al pasar el mouse */
+}
+
+.botones .cargar:hover i {
+    color: #1e81d2; /* Cambia el color al pasar el mouse */
+}
+
+.btn {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #1d5e3a;
+    transform: scale(1.1);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #2e8b57;
+    color: white;
+}

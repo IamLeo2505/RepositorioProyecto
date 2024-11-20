@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: none;
+    background-color:  #2e8b57;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
