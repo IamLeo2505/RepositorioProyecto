@@ -108,63 +108,35 @@ namespace D_AlturaSystemAPI.Controllers
         }
 
         [HttpPost]
-        [Route("RegistrarCompraCompleta")]
-        public IActionResult RegistrarCompraCompleta([FromBody] CompraCompleta compraCompleta)
+        [Route("Guardar")]
+        public IActionResult Guardar([FromBody] Compra objeto)
         {
-            using (var connection = new SqlConnection(ConnectSQLThree))
+            try
             {
-                connection.Open();
-                var transaction = connection.BeginTransaction();
-
-                try
+                using (var connection = new SqlConnection(ConnectSQL))
                 {
-                    // 1. Guardar la Compra y obtener idcompra
-                    var cmdCompra = new SqlCommand("pA_guardar_compra", connection, transaction);
-                    cmdCompra.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    var cmd = new SqlCommand("pA_guardar_compra", connection);
+                    cmd.Parameters.AddWithValue("idcompra", objeto.idcompra);
+                    cmd.Parameters.AddWithValue("fecha", objeto.fecha);
+                    cmd.Parameters.AddWithValue("num_documento", objeto.num_documento);
+                    cmd.Parameters.AddWithValue("subtotal", objeto.subtotal);
+                    cmd.Parameters.AddWithValue("iva", objeto.iva);
+                    cmd.Parameters.AddWithValue("total", objeto.total);
+                    cmd.Parameters.AddWithValue("estado", objeto.estado);
+                    cmd.Parameters.AddWithValue("idusuario", objeto.idusuario);
+                    cmd.Parameters.AddWithValue("idproveedor", objeto.idproveedor);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmdCompra.Parameters.AddWithValue("@fecha", compraCompleta.Compra.fecha);
-                    cmdCompra.Parameters.AddWithValue("@num_documento", compraCompleta.Compra.num_documento);
-                    cmdCompra.Parameters.AddWithValue("@subtotal", compraCompleta.Compra.subtotal);
-                    cmdCompra.Parameters.AddWithValue("@iva", compraCompleta.Compra.iva);
-                    cmdCompra.Parameters.AddWithValue("@total", compraCompleta.Compra.total);
-                    cmdCompra.Parameters.AddWithValue("@estado", compraCompleta.Compra.estado);
-                    cmdCompra.Parameters.AddWithValue("@idusuario", compraCompleta.Compra.idusuario);
-                    cmdCompra.Parameters.AddWithValue("@idproveedor", compraCompleta.Compra.idproveedor);
-
-                    var idCompraParam = new SqlParameter("@idcompra", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                    cmdCompra.Parameters.Add(idCompraParam);
-
-                    cmdCompra.ExecuteNonQuery();
-                    var idCompra = (int)idCompraParam.Value;
-
-                    // 2. Guardar cada Detalle de la Compra
-                    foreach (var detalle in compraCompleta.DetalleCompras)
-                    {
-                        var cmdDetalle = new SqlCommand("pA_guardar_detallecompra", connection, transaction);
-                        cmdDetalle.CommandType = CommandType.StoredProcedure;
-
-                        cmdDetalle.Parameters.AddWithValue("@cantidad", detalle.cantidad);
-                        cmdDetalle.Parameters.AddWithValue("@precio", detalle.precio);
-                        cmdDetalle.Parameters.AddWithValue("@total", detalle.total);
-                        cmdDetalle.Parameters.AddWithValue("@idcompra", idCompra);
-                        cmdDetalle.Parameters.AddWithValue("@idproducto", detalle.idproducto);
-
-                        cmdDetalle.ExecuteNonQuery();
-                    }
-
-                    // Confirmar la transacción
-                    transaction.Commit();
-                    return StatusCode(StatusCodes.Status200OK, new { message = "Compra y detalles guardados con éxito" });
+                    cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-                    // Revertir la transacción en caso de error
-                    transaction.Rollback();
-                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
-                }
+                return StatusCode(StatusCodes.Status200OK, new { message = "ok" });
+            }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message });
             }
         }
-
 
         [HttpPut]
         [Route("Editar")]

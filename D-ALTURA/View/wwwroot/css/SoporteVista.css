@@ -1,0 +1,176 @@
+/* soporte.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-image: url('../IMG/Fondo_CSSA_optimizado.jpg');
+}
+
+header {
+    background-color:  #2e8b57;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo img {
+    height: 60px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar a:hover {
+    background-color: #2e8b57;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2e8b57;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #13d413;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+main .soporte {
+    text-align: center;
+    padding: 20px 20px;
+    border-radius: 20px;
+}
+
+.soporte {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    max-width: 600px; /* Limita el ancho del contenedor */
+    width: 90%; /* Asegura que el contenedor sea responsivo */
+    text-align: center;
+}
+
+.soporte h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Añade espacio consistente entre los elementos */
+    align-items: stretch; /* Asegura que los elementos se estiren uniformemente */
+}
+
+.prioridad {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los radios se acomoden si no hay suficiente espacio */
+    justify-content: space-around; /* Espaciado uniforme entre los radios */
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.prioridad label {
+    display: inline-block;
+    margin-left: 5px; /* Espaciado entre el radio y su texto */
+}
+
+textarea {
+    resize: vertical; /* Permite ajustar la altura del textarea pero no el ancho */
+}
+
+.btn-reportar,
+.btn-manual-usuario {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-reportar:hover,
+.btn-manual-usuario:hover {
+    background-color: #1d5e3a;
+}
+
+.btn:hover {
+    background-color: #1d5e3a;
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+}
+
+#categoria {
+    width: 200px; /* Ajusta el ancho según tus preferencias */
+    padding: 5px;
+    font-size: 1rem; /* Mantén un tamaño de fuente adecuado */
+    border-radius: 5px; /* Opcional, para esquinas redondeadas */
+    border: 1px solid #ccc; /* Añade un borde más sutil */
+}
+
+.campo {
+    display: flex;
+    align-items: center; /* Alinea verticalmente */
+    justify-content: center; /* Alinea horizontalmente si deseas centrar todo */
+    gap: 10px; /* Espaciado entre el label y el select */
+    margin-bottom: 20px; /* Espaciado con otros elementos */
+}
+
+label {
+    font-size: 1rem;
+    color: #333;
+}

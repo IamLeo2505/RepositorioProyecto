@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="AspNetCore.ReportingServices" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="dsClienteID.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsClienteID.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="dsEmpleado.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsEmpleado.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="dsVentaID.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsVentaID.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="dsClienteID.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsClienteID.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="dsEmpleado.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEmpleado.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="dsVentaID.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsVentaID.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

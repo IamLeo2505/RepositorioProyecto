@@ -26,18 +26,6 @@
             <TablixColumn>
               <Width>2.5cm</Width>
             </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
@@ -52,7 +40,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ID</Value>
+                              <Value>IdCliente</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -82,7 +70,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Código</Value>
+                              <Value>Nombre</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -112,7 +100,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Nombre</Value>
+                              <Value>Apellidos</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -142,7 +130,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Descripción</Value>
+                              <Value>Cédula</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -172,7 +160,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Ingreso</Value>
+                              <Value>RUC</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -202,7 +190,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Vencimiento</Value>
+                              <Value>Teléfono</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -232,7 +220,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Precio Compra</Value>
+                              <Value>Estado</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -253,126 +241,6 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox16">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Precio Venta</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox16</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox18">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Stock</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox18</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox20">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Estado</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox20</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox22">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>ID Categoría</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox22</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
             <TablixRow>
@@ -380,51 +248,21 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="idproducto">
+                    <Textbox Name="idcliente">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!idproducto.Value</Value>
+                              <Value>=Fields!idcliente.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>idproducto</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="codigo">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!codigo.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>codigo</rd:DefaultName>
+                      <rd:DefaultName>idcliente</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -470,21 +308,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="descripcion">
+                    <Textbox Name="apellidos">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!descripcion.Value</Value>
+                              <Value>=Fields!apellidos.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>descripcion</rd:DefaultName>
+                      <rd:DefaultName>apellidos</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -500,21 +338,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="f_ingreso">
+                    <Textbox Name="dni">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!f_ingreso.Value</Value>
+                              <Value>=Fields!dni.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>f_ingreso</rd:DefaultName>
+                      <rd:DefaultName>dni</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -530,21 +368,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="f_vencimiento">
+                    <Textbox Name="ruc">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!f_vencimiento.Value</Value>
+                              <Value>=Fields!ruc.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>f_vencimiento</rd:DefaultName>
+                      <rd:DefaultName>ruc</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -560,21 +398,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="precio_compra">
+                    <Textbox Name="telefono">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precio_compra.Value</Value>
+                              <Value>=Fields!telefono.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>precio_compra</rd:DefaultName>
+                      <rd:DefaultName>telefono</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -590,111 +428,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="precio_venta">
+                    <Textbox Name="activo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!precio_venta.Value</Value>
+                              <Value>=Fields!activo.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>precio_venta</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="stock">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!stock.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>stock</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="estado">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!estado.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>estado</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="idcategoria">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!idcategoria.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>idcategoria</rd:DefaultName>
+                      <rd:DefaultName>activo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -721,10 +469,6 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -737,11 +481,11 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>dtProductos</DataSetName>
-        <Top>1.22033cm</Top>
-        <Left>0.4572cm</Left>
+        <DataSetName>dsCliente</DataSetName>
+        <Top>1.32503cm</Top>
+        <Left>0.3937cm</Left>
         <Height>1.2cm</Height>
-        <Width>27.5cm</Width>
+        <Width>17.5cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -749,13 +493,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.225in</Height>
+    <Height>2in</Height>
     <Style />
   </Body>
-  <Width>11.02993in</Width>
+  <Width>7.96051in</Width>
   <Page>
     <PageHeader>
-      <Height>2.6447cm</Height>
+      <Height>2.54cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -766,7 +510,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Reporte de Productos</Value>
+                  <Value>Reporte de Clientes</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -774,10 +518,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.35842cm</Top>
-          <Left>11.47553cm</Left>
+          <Top>1.62137cm</Top>
+          <Left>7.0612cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.98167cm</Width>
+          <Width>3.81233cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -792,8 +536,8 @@
           <Source>Embedded</Source>
           <Value>LogoCafédeAltura</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.35842cm</Top>
-          <Left>0.81201cm</Left>
+          <Top>0.393cm</Top>
+          <Left>0.68151cm</Left>
           <Height>1.5cm</Height>
           <Width>1.5cm</Width>
           <ZIndex>1</ZIndex>
@@ -821,73 +565,57 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="dtProductos">
+    <DataSource Name="dsCliente">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>cc888708-8b0a-4e65-8525-0843d7e13ef3</rd:DataSourceID>
+      <rd:DataSourceID>6cac19d2-dc1a-42fe-936a-b49b0527ec35</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dtProductos">
+    <DataSet Name="dsCliente">
       <Query>
-        <DataSourceName>dtProductos</DataSourceName>
+        <DataSourceName>dsCliente</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="idproducto">
-          <DataField>idproducto</DataField>
+        <Field Name="idcliente">
+          <DataField>idcliente</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="codigo">
-          <DataField>codigo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nombre">
           <DataField>nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="descripcion">
-          <DataField>descripcion</DataField>
+        <Field Name="apellidos">
+          <DataField>apellidos</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="f_ingreso">
-          <DataField>f_ingreso</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="f_vencimiento">
-          <DataField>f_vencimiento</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="precio_compra">
-          <DataField>precio_compra</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="precio_venta">
-          <DataField>precio_venta</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="stock">
-          <DataField>stock</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="estado">
-          <DataField>estado</DataField>
+        <Field Name="dni">
+          <DataField>dni</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="idcategoria">
-          <DataField>idcategoria</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="ruc">
+          <DataField>ruc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="telefono">
+          <DataField>telefono</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="activo">
+          <DataField>activo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>dtProductos</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Usuario\source\repos\ProyectoParaReportes\dtProductos.xsd</rd:SchemaPath>
-        <rd:TableName>vProductos</rd:TableName>
+        <rd:DataSetName>dsCliente</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Usuario\Documents\WEB\RepositorioProyecto\D-ALTURA\ProyectoParaReportes\dsCliente.xsd</rd:SchemaPath>
+        <rd:TableName>vCliente</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>vProductosTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>vClienteTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -964,5 +692,5 @@ Q9wqcvITisYwhSlUOWkmMOos5dyK3V55whKEphezIWYiFTbKTNSihbinaAY6qCIxI+BNQ4v6zOYd2FCH
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>f66e231c-346a-498c-a2db-59ce27834560</rd:ReportID>
+  <rd:ReportID>d1550260-2476-4e6d-a4bc-d42e9664e32e</rd:ReportID>
 </Report>

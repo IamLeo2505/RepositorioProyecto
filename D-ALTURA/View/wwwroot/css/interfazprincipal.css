@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: #2e8b57;
+    background-color:  #2e8b57;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -67,14 +67,14 @@ header {
 .hero {
     text-align: center;
     padding: 50px;
-    background-image: url('../IMG/FondoInterfazPrincipal.jpg'); /* Cambia la ruta a la imagen correcta */
+    background-image: url('../IMG/Fondo_CSSA_optimizado.jpg'); /* Cambia la ruta a la imagen correcta */
     background-size: cover;
     color: white;
-    height: 110vh; 
+    height: 110vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 
 

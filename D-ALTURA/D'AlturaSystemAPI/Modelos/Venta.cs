@@ -4,7 +4,6 @@ namespace D_AlturaSystemAPI.Modelos
     {
         public int idventa { get; set; }
         public DateTime fecha { get; set; }
-        public string serie { get; set; }
         public string num_documento { get; set; }
         public decimal subtotal { get; set; }
         public decimal iva { get; set; }

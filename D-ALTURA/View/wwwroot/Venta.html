@@ -3,92 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Nueva Venta</title>
-    <link rel="stylesheet" href="CSS/Venta.css">
+    <title>Gestión de Facturación</title>
+    <link rel="stylesheet" href="css/Venta.css">
 </head>
 <body>
-    <form id="venta">
-        <h1 class="titulo">Registrar Nueva Venta</h1>
-            <div class="container">
-            <div class="left-panel"> 
-                <label for="tipo-comprobante">Tipo de Comprobante</label>
-                    <select id="tipo-comprobante">
-                        <option value="">Seleccionar...</option>
-                        <option value="boleta">Boleta</option>
-                        <option value="factura">Factura</option>
-                    </select>
-    
-                <label for="serie">Serie</label>
-                <input type="text" id="serie">
-    
-                <label for="n-comprobante">N° de Comprobante</label>
-                <input type="text" id="n-comprobante">
-    
-                <label for="fecha-venta">Fecha Venta</label>
-                <input type="date" id="fecha-venta" value="2024-01-01">
-    
-                <label for="cliente">Cliente</label>
-                <input type="text" id="ClienteID" placeholder="ID">
-                <button id="buscarcliente">Buscar</button>
-                <input type="text" id="nombre" placeholder="Nombre del Cliente" readonly>
-                <input type="text" id="apellidos" placeholder="Apellidos del Cliente" readonly>
-    
-                <div class="totals">
-                <label>Sub Total: <span id="subtotal">0.00</span></label>
-                <label>Impuesto: <span id="impuesto">0.00</span></label>
-                <label>Total a Pagar: <span id="total">0.00</span></label>
+    <div class="container">
+        <div class="formulario izquierda">
+            <h2>Datos de Facturación</h2>
+            <form>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="fecha-factura">Fecha:</label>
+                        <input type="date" id="fecha-factura" name="fecha-factura">
+                    </div>
+                    <div class="input-field">
+                        <label for="num-factura">No. de Factura:</label>
+                        <input type="text" id="num-factura" name="num-factura">
+                    </div>
                 </div>
-    
-                <button type="button" class="btn guardar">Guardar</button>
-                <button type="button" class="btn cancelar">Cancelar</button>
-            </div>
-    
-        <div class="right-section">
-            <div class="middle-panel">
-                <label for="codigo">Código</label>
-                <input type="text" id="codigoProducto" required>
-                <button id="buscarproducto">Buscar</button>
 
-                <label for="producto">Producto</label>
-                <input type="text" id="nombreproducto" readonly>
-    
-                <label for="stock">Stocks</label>
-                <input type="text" id="stock" readonly>
-    
-                <label for="precio-venta">Precio Venta</label>
-                <input type="text" id="precioventa" min="0" step="0.1" required>
-                
-    
-                <label for="cantidad">Cantidad</label>
-                <input type="number" id="cantidad" min="1" required>
-    
-                <label for="igv">IVA</label>
-                <input type="text" id="IVA" readonly>
-    
-                <button type="button" class="btnagregar">Agregar</button>
-                <button type="button" class="btneliminar">Eliminar</button>
-            </div>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="id-usuario">ID Usuario:</label>
+                        <input type="text" id="id-usuario" name="id-usuario">
+                    </div>
+                    <div class="input-field2">
+                        <button type="button" id="buscar-usuario">Buscar Usuario</button>
+                    </div>
+                </div>
 
-            <div class="right-panel">
-                <table id="productos-table">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>IVA</th>
-                            <th>Subtotal</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="usuario">Nombre Usuario:</label>
+                        <input type="text" id="usuario" name="usuario" readonly>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="id-cliente">ID Cliente:</label>
+                        <input type="text" id="id-cliente" name="id-cliente">
+                    </div>
+                    <div class="input-field2">
+                        <button type="button" id="buscar-cliente">Buscar Cliente</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="cliente">Cliente:</label>
+                        <input type="text" id="cliente" name="cliente" readonly>
+                    </div>
+                </div>
+
+                <div class="input-field2">
+                    <button type="button" class="nuevo-cliente">Agregar Nuevo Cliente</button>
+                </div>
+                <div class="botones">
+                    <button type="button">Continuar</button>
+                    <button type="button">Nueva Factura</button>
+                </div>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí irán los registros de la factura -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="derecha">
+            <div class="formulario detalles">
+                <h2>Detalles de Factura</h2>
+                <form>
+                    <label for="producto-articulo">Producto:</label>
+                    <input type="text" id="producto-articulo" name="producto-articulo">
+                    
+                    <label for="categoria-articulo">Categoría:</label>
+                    <input type="text" id="categoria-articulo" name="categoria-articulo">
+
+                    <div class="input-group1">
+                        <div class="input-field">
+                            <label for="stock-articulo">Stock:</label>
+                            <input type="number" id="stock-articulo" name="stock-articulo">
+                        </div>
+                        <div class="input-field">
+                            <label for="cantidad-articulo">Cantidad:</label>
+                            <input type="number" id="cantidad-articulo" name="cantidad-articulo">
+                        </div>
+                    </div>
+                    
+                    <label for="precio-articulo">Precio:</label>
+                    <input type="number" id="precio-articulo" name="precio-articulo">
+                    
+                    <div class="botones">
+                        <button type="button">Limpiar Campos</button>
+                        <button type="button">Agregar</button>
+                        <button type="button">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="formulario total">
+                <h2>Datos de Pago</h2>
+                <form>
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="subtotal-factura">Subtotal:</label>
+                            <input type="text" id="subtotal-factura" name="subtotal-factura" readonly>
+                        </div>
+                        <div class="input-field">
+                            <label for="iva-factura">IVA:</label>
+                            <input type="text" id="iva-factura" name="iva-factura" readonly>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="total-factura">Total a Pagar:</label>
+                            <input type="text" id="total-factura" name="total-factura" readonly>
+                        </div>
+                    </div>                
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" placeholder="Estado de la venta" />
+                    <div class="botones">
+                        <button id="registrar-venta" type="button">Facturar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Seleccionar el botón de agregar y la tabla
+            const agregarBtn = document.querySelector(".derecha .botones button:nth-child(2)");
+            const tabla = document.querySelector("table tbody");
+    
+            // Función para manejar el evento click en el botón Agregar
+            agregarBtn.addEventListener("click", () => {
+                // Obtener valores de los campos
+                const producto = document.getElementById("producto-articulo").value.trim();
+                const categoria = document.getElementById("categoria-articulo").value.trim();
+                const stock = document.getElementById("stock-articulo").value.trim();
+                const cantidad = document.getElementById("cantidad-articulo").value.trim();
+                const precio = document.getElementById("precio-articulo").value.trim();
+    
+                // Validar que los campos requeridos no estén vacíos
+                if (!producto || !categoria || !cantidad || !precio) {
+                    alert("Por favor, completa todos los campos necesarios.");
+                    return;
+                }
+    
+                // Validar que la cantidad no exceda el stock disponible
+                if (parseInt(cantidad) > parseInt(stock)) {
+                    alert("La cantidad no puede exceder el stock disponible.");
+                    return;
+                }
+    
+                // Calcular subtotal
+                const subtotal = (parseFloat(cantidad) * parseFloat(precio)).toFixed(2);
+    
+                // Crear una nueva fila para la tabla
+                const nuevaFila = document.createElement("tr");
+                nuevaFila.innerHTML = `
+                    <td>${producto}</td>
+                    <td>${categoria}</td>
+                    <td>${cantidad}</td>
+                    <td>${precio}</td>
+                    <td>${subtotal}</td>
+                `;
+    
+                // Añadir la fila a la tabla
+                tabla.appendChild(nuevaFila);
+    
+                // Limpiar los campos de entrada
+                document.getElementById("producto-articulo").value = "";
+                document.getElementById("categoria-articulo").value = "";
+                document.getElementById("stock-articulo").value = "";
+                document.getElementById("cantidad-articulo").value = "";
+                document.getElementById("precio-articulo").value = "";
+    
+                // Opcional: Actualizar el subtotal general, IVA y total
+                actualizarTotales();
+            });
+    
+            // Función para actualizar subtotales, IVA y total
+            function actualizarTotales() {
+                const filas = tabla.querySelectorAll("tr");
+                let subtotalGeneral = 0;
+    
+                filas.forEach(fila => {
+                    const subtotal = parseFloat(fila.children[4].textContent);
+                    subtotalGeneral += subtotal;
+                });
+    
+                // Calcular IVA (15% como ejemplo)
+                const iva = (subtotalGeneral * 0.15).toFixed(2);
+    
+                // Calcular total general
+                const total = (subtotalGeneral + parseFloat(iva)).toFixed(2);
+    
+                // Actualizar campos en la sección de datos de pago
+                document.getElementById("subtotal-factura").value = subtotalGeneral.toFixed(2);
+                document.getElementById("iva-factura").value = iva;
+                document.getElementById("total-factura").value = total;
+            }
+        });
+    </script>
     <script src="js/Venta.js"></script>
+    
 </body>
-</html>    
+</html>

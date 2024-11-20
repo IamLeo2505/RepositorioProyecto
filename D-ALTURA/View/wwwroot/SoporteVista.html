@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/SoporteVista.css">
+    <title>Soporte - Café de Altura</title>
+</head>
+<header>
+    <div class="logo">
+        <img src="IMG/Logo - Café de Altura.png" alt="Café de Altura">
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Servicios</a>
+                <div class="dropdown-content">
+                    <a href="Venta.html">Facturación</a>
+                    <a href="#">Adquisición</a>
+                    <a href="#">Crédito</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Recursos Humanos</a>
+                <div class="dropdown-content">
+                    <a href="pages/RegistrarCliente.html">Clientes</a>
+                    <a href="#">Proveedores</a>
+                    <a href="#">Inventario</a>
+                    <a href="RegistrarEmpleado.html">Empleados</a>
+                    <a href="registrarmarca.html">Marca</a>
+                    <a href="pages/usuarios.html">Usuarios</a>
+                    <a href="RegistrarCategoria.html">Categoría</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Ayuda</a>
+                <div class="dropdown-content">
+                    <a href="MantenimientoVisra.html">Mantenimiento</a>
+                    <a href="ReporteVista.html">Reportes</a>
+                    <a href="SoporteVista.html">Soporte</a>
+                </div>
+            </li>
+            <li><a href="#">Acerca de</a></li>     
+        </ul>
+    </nav>
+</header>
+<body>
+    <main class="content">
+        <section class="hero">
+            <section class="soporte">
+                <h1>Soporte Técnico</h1>
+                <form class="formulario">
+                    <div class="campo">
+                        <label for="categoria">Categoría del problema:</label>
+                        <select id="categoria" name="categoria">
+                            <option value="hardware">Hardware</option>
+                            <option value="software">Software</option>
+                            <option value="red">Red</option>
+                        </select>
+                    </div>
+                    <label for="prioridad">Prioridad del problema:</label>
+                    <div class="prioridad">
+                        <input type="radio" id="maxima" name="prioridad" value="maxima">
+                        <label for="maxima" class="maxima">Máxima</label>
+    
+                        <input type="radio" id="alta" name="prioridad" value="alta">
+                        <label for="alta" class="alta">Alta</label>
+    
+                        <input type="radio" id="media" name="prioridad" value="media">
+                        <label for="media" class="media">Media</label>
+    
+                        <input type="radio" id="baja" name="prioridad" value="baja">
+                        <label for="baja" class="baja">Baja</label>
+                    </div>
+                    <label for="descripcion">Proporcione una breve descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                    <button type="submit" class="btn-reportar">Reportar</button>
+                </form>
+    
+                <div class="manual">
+                    <p>Para descargar el manual de usuario, toque el botón de descarga o haga clic en el siguiente enlace:</p>
+                    <button type="submit" class="btn-manual-usuario">Manual de Usuario</button>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 - 2024 Café de Altura</p>
+    </footer>
+</body>
+</html>

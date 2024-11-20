@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/interfazprincipal.css">
-    <title>Café de Altura</title>
+    <title>Café de Altura - Reporte</title>
+    <link rel="stylesheet" href="CSS/ReporteVista.css">
 </head>
 <body>
     <header>
@@ -18,6 +19,7 @@
                     <div class="dropdown-content">
                         <a href="Venta.html">Facturación</a>
                         <a href="#">Adquisición</a>
+                        <a href="#">Inventario</a>
                         <a href="#">Crédito</a>
                     </div>
                 </li>
@@ -26,7 +28,6 @@
                     <div class="dropdown-content">
                         <a href="pages/RegistrarCliente.html">Clientes</a>
                         <a href="#">Proveedores</a>
-                        <a href="#">Inventario</a>
                         <a href="RegistrarEmpleado.html">Empleados</a>
                         <a href="registrarmarca.html">Marca</a>
                         <a href="pages/usuarios.html">Usuarios</a>
@@ -45,16 +46,32 @@
             </ul>
         </nav>
     </header>
-    
-    <main>
-        <section class="hero">
-        </section>
-    </main>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#">Reporte de Clientes</a></li>
+                <li><a href="#">Reporte de Empleados</a></li>
+                <li><a href="#">Reporte de Usuarios</a></li>
+                <li><a href="#">Reporte de Proveedores</a></li>
+                <li><a href="#">Reporte de Compras de Productos</a></li>
+                <li><a href="#">Reporte de Ventas</a></li>
+                <li><a href="#">Reporte de Inventario</a></li>
+                <li><a href="#">Reporte de Credito</a></li>
+                <li><a href="#">Reporte de Marca</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="reporte-contenedor">
+                <h1>Reporte</h1>
+                <p>Aquí se mostrará el reporte seleccionado.</p>
+            </div>
+        </main>
+    </div>
 
     <footer>
         <p>&copy; 2023 - 2024 Café de Altura</p>
     </footer>
-
-    <script src=""></script>
 </body>
 </html>

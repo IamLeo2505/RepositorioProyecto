@@ -112,6 +112,55 @@ namespace D_AlturaSystemAPI.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("BuscarUsuario/{idusuario:int}")]
+
+        public IActionResult ObtenerUsuarioForVenta(int idusuario)
+        {
+            Usuario usuario = null;  // Cliente será nulo hasta que se asigne un valor encontrado en la base de datos
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectSQL))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand("pA_BuscarUsuario", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetro para buscar al cliente específico
+                    cmd.Parameters.AddWithValue("@idusuario", idusuario);
+
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        // Leer los resultados, esperando un único registro
+                        if (rd.Read())
+                        {
+                            usuario = new Usuario()
+                            {
+                                idusuario = Convert.ToInt32(rd["idusuario"]),
+                                usuario = rd["usuario"].ToString(),
+                                
+                            };
+                        }
+                    }
+                }
+
+                if (usuario != null)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = usuario });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "Empleado no encontrado.", response = usuario });
+                }
+            }
+            catch (Exception error)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = error.Message, response = usuario });
+            }
+        }
+
         [HttpPost]
         [Route("GuardarCambios")]
 

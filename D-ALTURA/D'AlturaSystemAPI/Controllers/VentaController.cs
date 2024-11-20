@@ -45,7 +45,6 @@ namespace D_AlturaSystemAPI.Controllers
                             {
                                 idventa = Convert.ToInt32(rd["idventa"]),
                                 fecha = Convert.ToDateTime(rd["fecha"]),
-                                serie = rd["serie"].ToString(),
                                 num_documento = rd["num_documento"].ToString(),
                                 subtotal = Convert.ToDecimal(rd["subtotal"]),
                                 iva = Convert.ToDecimal(rd["iva"]),
@@ -97,7 +96,6 @@ namespace D_AlturaSystemAPI.Controllers
                             {
                                 idventa = Convert.ToInt32(rd["idventa"]),
                                 fecha = Convert.ToDateTime(rd["fecha"]),
-                                serie = rd["serie"].ToString(),
                                 num_documento = rd["num_documento"].ToString(),
                                 subtotal = Convert.ToDecimal(rd["subtotal"]),
                                 iva = Convert.ToDecimal(rd["iva"]),
@@ -124,7 +122,7 @@ namespace D_AlturaSystemAPI.Controllers
         [Route("RegistrarVentaCompleta")]
         public IActionResult RegistrarVentaCompleta([FromBody] VentaCompleta ventaCompleta)
         {
-            using (var connection = new SqlConnection(ConnectSQLThree))
+            using (var connection = new SqlConnection(ConnectSQL))
             {
                 connection.Open();
                 var transaction = connection.BeginTransaction();
@@ -134,7 +132,6 @@ namespace D_AlturaSystemAPI.Controllers
                     var cmdVenta = new SqlCommand("pA_guardar_venta", connection, transaction);
                     cmdVenta.CommandType = CommandType.StoredProcedure;
                     cmdVenta.Parameters.AddWithValue("@fecha", ventaCompleta.Venta.fecha);
-                    cmdVenta.Parameters.AddWithValue("@serie", ventaCompleta.Venta.serie);
                     cmdVenta.Parameters.AddWithValue("@num_documento", ventaCompleta.Venta.num_documento);
                     cmdVenta.Parameters.AddWithValue("@subtotal", ventaCompleta.Venta.subtotal);
                     cmdVenta.Parameters.AddWithValue("@iva", ventaCompleta.Venta.iva);
@@ -193,7 +190,6 @@ namespace D_AlturaSystemAPI.Controllers
                     var cmd = new SqlCommand("pA_editar_venta", connection); 
                     cmd.Parameters.AddWithValue("idventa", objeto.idventa == 0 ? DBNull.Value : objeto.idventa);
                     cmd.Parameters.AddWithValue("fecha", objeto.fecha == DateTime.MinValue ? DBNull.Value : objeto.fecha);
-                    cmd.Parameters.AddWithValue("serie", objeto.serie is null ? DBNull.Value : objeto.serie);
                     cmd.Parameters.AddWithValue("num_documento", objeto.num_documento is null ? DBNull.Value : objeto.num_documento);
                     cmd.Parameters.AddWithValue("subtotal", objeto.subtotal == 0 ? DBNull.Value : objeto.subtotal);
                     cmd.Parameters.AddWithValue("iva", objeto.iva == 0 ? DBNull.Value : objeto.iva);

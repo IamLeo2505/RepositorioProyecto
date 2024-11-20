@@ -1,207 +1,168 @@
-// Función para calcular el total
-function calculartotal(subtotalproducto, impuestoproducto) {
-    const subtotal = parseFloat(document.getElementById("subtotal").innerText) + subtotalproducto;
-    const impuesto = parseFloat(document.getElementById("impuesto").innerText) + impuestoproducto;
-    const total = subtotal + impuesto;
+document.addEventListener("DOMContentLoaded", () => {
+    const buscarClienteBtn = document.getElementById("buscar-cliente");
 
-    document.getElementById("subtotal").innerText = subtotal.toFixed(2);
-    document.getElementById("impuesto").innerText = impuesto.toFixed(2);
-    document.getElementById("total").innerText = total.toFixed(2);
-}
+    buscarClienteBtn.addEventListener("click", async () => {
+        const idcliente = document.getElementById("id-cliente").value.trim();
 
-// Función para buscar cliente
-async function buscarCliente() {
-    const idcliente = document.getElementById("ClienteID").value;
-    const token = sessionStorage.getItem("token");
+        // Validar que se haya ingresado un ID
+        if (!idcliente) {
+            alert("Por favor, ingresa un ID de cliente.");
+            return;
+        }
 
-    if (!token) {
-        alert("Usuario no autenticado");
-        return;
-    }
+        try {
+            // Llamada a la API (ajusta la URL según tu entorno)
+            const response = await fetch(`https://localhost:5000/api/Cliente/BuscarCliente/${idcliente}`);
+            
+            if (!response.ok) {
+                throw new Error("Cliente no encontrado.");
+            }
 
-    try {
-        const response = await fetch(`https://localhost:5000/api/Cliente/BuscarCliente/${idcliente}`, {
-            headers: { "Authorization": `Bearer ${token}` }
+            // Obtener datos de la API
+            const data = await response.json();
+
+            // Verificar si existe el objeto 'response' en los datos
+            if (!data.response) {
+                throw new Error("Estructura de respuesta inesperada.");
+            }
+
+            // Obtener los datos del cliente
+            const cliente = data.response;
+
+            // Validar que los campos existen
+            const nombre = cliente.nombre || "No disponible";
+            const apellidos = cliente.apellidos || "No disponible";
+
+            // Combinar nombre y apellidos
+            const nombreCompleto = `${nombre} ${apellidos}`;
+
+            // Asignar el nombre completo al campo de texto
+            document.getElementById("cliente").value = nombreCompleto;
+
+        } catch (error) {
+            alert(error.message);
+            // Limpiar el campo si ocurre un error
+            document.getElementById("cliente").value = "";
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buscarUsuarioBtn = document.getElementById("buscar-usuario");
+
+    buscarUsuarioBtn.addEventListener("click", async () => {
+        const idusuario = document.getElementById("id-usuario").value.trim();
+
+        // Validar que se haya ingresado un ID
+        if (!idusuario) {
+            alert("Por favor, ingresa un ID de usuario.");
+            return;
+        }
+
+        try {
+            // Llamada a la API (ajusta la URL según tu entorno)
+            const response = await fetch(`https://localhost:5000/api/Usuarios/BuscarUsuario/${idusuario}`);
+            
+            if (!response.ok) {
+                throw new Error("Usuario no encontrado.");
+            }
+
+            // Obtener datos de la API
+            const data = await response.json();
+
+            // Verificar si existe el objeto 'response' en los datos
+            if (!data.response) {
+                throw new Error("Estructura de respuesta inesperada.");
+            }
+
+            // Obtener los datos del usuario
+            const miusuario = data.response;
+
+            // Validar que el campo 'usuario' existe
+            const usuario = miusuario.usuario || "No disponible";
+
+            // Asignar el usuario al campo de texto
+            document.getElementById("usuario").value = usuario;
+
+        } catch (error) {
+            alert(error.message);
+            // Limpiar el campo si ocurre un error
+            document.getElementById("usuario").value = "";
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const registrarVentaBtn = document.getElementById("registrar-venta");
+
+    registrarVentaBtn.addEventListener("click", async () => {
+        // Capturar datos del formulario
+        const fecha = document.getElementById("fecha-factura").value.trim();
+        const numDocumento = document.getElementById("num-factura").value.trim();
+        const subtotal = parseFloat(document.getElementById("subtotal-factura").value.trim());
+        const iva = parseFloat(document.getElementById("iva-factura").value.trim());
+        const total = parseFloat(document.getElementById("total-factura").value.trim());
+        const estado = document.getElementById("estado").value.trim();
+        const idusuario = parseInt(document.getElementById("id-usuario").value.trim());
+        const idcliente = parseInt(document.getElementById("id-cliente").value.trim());
+
+        // Capturar detalles de la venta (de una tabla o lista)
+        const detalleVentaRows = document.querySelectorAll("#detalle-ventas tbody tr");
+        const detalleVentas = Array.from(detalleVentaRows).map(row => {
+            const cantidad = parseInt(row.querySelector(".cantidad").textContent.trim());
+            const precio = parseFloat(row.querySelector(".precio").textContent.trim());
+            const totalDetalle = parseFloat(row.querySelector(".total").textContent.trim());
+            const idproducto = parseInt(row.querySelector(".id-producto").textContent.trim());
+
+            return {
+                iddetalleventa: 0, // Se genera en el backend
+                cantidad,
+                precio,
+                total: totalDetalle,
+                idventa: 0, // Se genera en el backend
+                idproducto
+            };
         });
 
-        if (response.ok) {
-            const cliente = await response.json();
-            if (cliente.response && cliente.response.nombre && cliente.response.apellidos) {
-                document.getElementById("nombre").value = cliente.response.nombre;
-                document.getElementById("apellidos").value = cliente.response.apellidos;
-            } else {
-                alert("Datos del cliente no encontrados.");
-            }
-        } else {
-            alert("Cliente no encontrado");
-        }
-    } catch (error) {
-        console.error("Error al buscar el cliente:", error);
-    }
-}
-
-// Función para buscar producto
-async function buscarProducto() {
-    const codigo = document.getElementById("codigoProducto").value;
-    const token = sessionStorage.getItem("token");
-
-    if (!token) {
-        alert("Usuario no autenticado");
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://localhost:5000/api/Producto/BuscarProducto/${codigo}`);
-        if (response.ok) {
-            const producto = await response.json();
-            if (producto.response) {
-                document.getElementById("nombreproducto").value = producto.response.nombre;
-                document.getElementById("stock").value = producto.response.stock;
-                document.getElementById("precioventa").value = producto.response.precio_venta;
-            } else {
-                alert("Datos del producto no encontrados.");
-            }
-        } else {
-            alert("Producto no encontrado.");
-        }
-    } catch (error) {
-        console.error("Error al buscar el producto:", error);
-    }
-}
-
-// Función para decodificar el token JWT
-function parseJwt(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-}
-
-// Eventos
-document.getElementById("buscarcliente").addEventListener("click", function (event) {
-    event.preventDefault();
-    buscarCliente();
-});
-
-document.getElementById("buscarproducto").addEventListener("click", function (event) {
-    event.preventDefault();
-    buscarProducto();
-});
-
-document.querySelector(".btnagregar").addEventListener("click", function (event) {
-    event.preventDefault();
-
-    const precio_venta = parseFloat(document.getElementById("precioventa").value);
-    const cantidad = parseInt(document.getElementById("cantidad").value);
-
-    if (!isNaN(precio_venta) && cantidad > 0) {
-        const totalproducto = precio_venta * cantidad;
-        const impuestoproducto = totalproducto * (IVA / 100);
-
-        const tableRow = document.createElement("tr");
-        tableRow.innerHTML = `
-            <td>${document.getElementById("codigoProducto").value}</td>
-            <td>${document.getElementById("nombreproducto").value}</td>
-            <td>${precio_venta.toFixed(2)}</td>
-            <td>${cantidad}</td>
-            <td>${(impuestoproducto).toFixed(2)}</td>
-            <td>${(totalproducto + impuestoproducto).toFixed(2)}</td>
-        `;
-        document.querySelector("#productos-table tbody").appendChild(tableRow);
-        calculartotal(totalproducto, impuestoproducto);
-
-        document.getElementById("codigoProducto").value = "";
-        document.getElementById("nombreproducto").value = "";
-        document.getElementById("cantidad").value = "";
-    } else {
-        alert("Por favor, completa todos los campos.");
-    }
-});
-
-// Evento para guardar la venta
-document.getElementById('venta').addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    const token = sessionStorage.getItem("token");
-    if (!token) {
-        alert("Usuario no autenticado");
-        return;
-    }
-
-    const decodedToken = parseJwt(token);
-    const idusuario = decodedToken.idusuario;
-
-    const ventaData = {
-        fecha: document.getElementById("fecha-venta").value,
-        serie: document.getElementById("serie").value,
-        num_documento: document.getElementById("n-comprobante").value,
-        subtotal: parseFloat(document.getElementById("subtotal").innerText),
-        iva: parseFloat(document.getElementById("impuesto").innerText),
-        total: parseFloat(document.getElementById("total").innerText),
-        estado: "activo",
-        idusuario: idusuario,
-        idcliente: document.getElementById("ClienteID").value
-    };
-
-    try {
-        const ventaResponse = await fetch("https://localhost:5000/api/Venta/Guardar", {
-            method: "POST",
-            headers: {
-                "accept": "*/*",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+        // Construir el cuerpo del request
+        const ventaCompleta = {
+            venta: {
+                idventa: 0, // Se genera en el backend
+                fecha,
+                num_documento: numDocumento,
+                subtotal,
+                iva,
+                total,
+                estado,
+                idusuario,
+                idcliente
             },
-            body: JSON.stringify(ventaData)
-        });
+            detalleVentas
+        };
 
-        if (ventaResponse.ok) {
-            alert("Venta guardada con éxito");
+        try {
+            // Llamada a la API para registrar la venta
+            const response = await fetch("https://localhost:5000/api/Venta/RegistrarVentaCompleta", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(ventaCompleta)
+            });
 
-            // Obtener el ID de la venta recién creada
-            const ventaResult = await ventaResponse.json();
-            const ventaId = ventaResult.idventa;
-
-            // Guardar el detalle de la venta
-            const productosRows = document.querySelectorAll("#productos-table tbody tr");
-            for (let row of productosRows) {
-                const detalleVenta = {
-                    idventa: ventaId,
-                    codigo_producto: row.cells[0].innerText,
-                    nombre_producto: row.cells[1].innerText,
-                    precio_venta: parseFloat(row.cells[2].innerText),
-                    cantidad: parseInt(row.cells[3].innerText),
-                    impuesto: parseFloat(row.cells[4].innerText),
-                    total: parseFloat(row.cells[5].innerText)
-                };
-
-                await fetch("https://localhost:5000/api/DetalleVenta/Guardar", {
-                    method: "POST",
-                    headers: {
-                        "accept": "*/*",
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify(detalleVenta)
-                });
+            if (!response.ok) {
+                throw new Error("Error al registrar la venta.");
             }
-        } else {
-            alert("Error al guardar la venta");
-        }
-    } catch (error) {
-        console.error("Error al guardar la venta y sus detalles:", error);
-    }
-});
 
-// Eliminar último producto agregado
-document.querySelector(".btneliminar").addEventListener("click", function () {
-    const row = document.querySelector("#productos-table tbody").lastChild;
-    if (row) {
-        const totalproducto = parseFloat(row.cells[5].innerText);
-        const impuestoproducto = parseFloat(row.cells[4].innerText);
-        const subtotalproducto = totalproducto - impuestoproducto;
-        document.querySelector("#productos-table tbody").removeChild(row);
-        calculartotal(-subtotalproducto, -impuestoproducto);
-    }
+            const data = await response.json();
+            alert("Venta registrada correctamente.");
+            console.log(data);
+
+            // Limpiar el formulario o realizar otras acciones
+        } catch (error) {
+            alert(`Ocurrió un error: ${error.message}`);
+        }
+    });
 });
