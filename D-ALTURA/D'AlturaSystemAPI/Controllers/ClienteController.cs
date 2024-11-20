@@ -247,7 +247,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 }
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "Cliente marcado como inactivo." });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Cliente eliminado." });
 
             }
             catch (Exception error)
