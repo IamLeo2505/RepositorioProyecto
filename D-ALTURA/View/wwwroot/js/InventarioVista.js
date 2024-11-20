@@ -92,7 +92,7 @@ function eliminarCliente(id) {
 
     isDeleting = true; // Marcamos que estamos en proceso de eliminación
 
-    fetch(`https://localhost:5000/api/Cliente/eliminar/${id}`, {
+    fetch(`https://localhost:5000/api/Producto/Eliminar/{idproducto}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -212,13 +212,13 @@ function editarProducto(id) {
     celdas[0].innerHTML = `<input type="text" value="${celdas[0].innerText}" />`; // Codigo
     celdas[1].innerHTML = `<input type="text" value="${celdas[1].innerText}" />`; // Nombre
     celdas[2].innerHTML = `<input type="text" value="${celdas[2].innerText}" />`; // Descripcion
-    celdas[3].innerHTML = `<input type="text" value="${celdas[3].innerText}" />`; // Fecha Ing
-    celdas[4].innerHTML = `<input type="text" value="${celdas[4].innerText}" />`; // Fecha Ven
+    celdas[3].innerHTML = `<input type="datetime-local" value="${celdas[3].innerText}" />`; // Fecha Ing
+    celdas[4].innerHTML = `<input type="datetime-local" value="${celdas[4].innerText}" />`; // Fecha Ven
     celdas[5].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // Stock
-    celdas[6].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // Precio Com
-    celdas[7].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // Precio Vent
-    celdas[8].innerHTML = `<input type="text" value="${celdas[5].innerText}" />`; // Estado
-    celdas[9].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // IDCategoria
+    celdas[6].innerHTML = `<input type="number" value="${celdas[6].innerText}" />`; // Precio Com
+    celdas[7].innerHTML = `<input type="number" value="${celdas[7].innerText}" />`; // Precio Vent
+    celdas[8].innerHTML = `<input type="text" value="${celdas[8].innerText}" />`; // Estado
+    celdas[9].innerHTML = `<input type="number" value="${celdas[9].innerText}" />`; // IDCategoria
 
     // Cambiar el botón de "Editar" a "Guardar"
     const botones = celdas[10].querySelectorAll('button');
@@ -272,15 +272,13 @@ async function guardarEdicion(id) {
         botonGuardar.classList.add('btn-guardar-verde');
 
         // Enviar los datos al servidor para editar el cliente
-        const response = await fetch('https://localhost:5000/api/Cliente/EditarDatos', {
+        const response = await fetch('https://localhost:5000/api/Producto/Editar', {
             method: 'PUT', // Usamos el método PUT para actualizar los datos
             headers: { 
                 'Content-Type': 'application/json' // Especificamos que el cuerpo está en formato JSON
             },
-            body: JSON.stringify(clienteData)  // Convertimos el objeto a JSON
+            body: JSON.stringify(productoData)  // Convertimos el objeto a JSON
         });
-
-        //////////Yoandri quedo aqui!!!!!!!!!!!!!!
 
         // Verificar el estado de la respuesta
         console.log('Estado de la respuesta:', response.status);
@@ -292,20 +290,24 @@ async function guardarEdicion(id) {
 
         // Respuesta exitosa
         const data = await response.json();
-        console.log('Cliente editado correctamente:', data);
-        alert('Cliente editado correctamente.');
+        console.log('Producto editado correctamente:', data);
+        alert('Producto editado correctamente.');
 
         // Actualizar los valores en la tabla
-        celdas[0].innerText = nombre;
-        celdas[1].innerText = apellidos;
-        celdas[2].innerText = ruc;
-        celdas[3].innerText = dni;
-        celdas[4].innerText = telefono;
-        celdas[5].innerText = estado;
+        celdas[0].innerText = codigo;
+        celdas[1].innerText = nombre;
+        celdas[2].innerText = descripcion;
+        celdas[3].innerText = f_ingreso;
+        celdas[4].innerText = f_vencimiento;
+        celdas[5].innerText = stock;
+        celdas[6].innerText = precio_compra;
+        celdas[7].innerText = precio_venta;
+        celdas[8].innerText = estado;
+        celdas[9].innerText = idcategoria
 
         // Cambiar el botón de "Guardar" de vuelta a "Editar"
-        celdas[6].querySelector('button').innerHTML = 'Editar';
-        celdas[6].querySelector('button').setAttribute('onclick', editarCliente(${id}));
+        celdas[10].querySelector('button').innerHTML = 'Editar';
+        celdas[10].querySelector('button').setAttribute('onclick', `editarProducto(${id})`);
 
         // Opcional: remover la clase después de un breve tiempo para que el color verde desaparezca
         setTimeout(() => {
@@ -313,7 +315,7 @@ async function guardarEdicion(id) {
         }, 2000); // Remover el verde después de 2 segundos (ajusta según lo que necesites)
 
     } catch (error) {
-        console.error('Error al editar el cliente:', error);
+        console.error('Error al editar el producto:', error);
         alert('La edición fue realizada con éxito.');
     }
 }
@@ -324,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearIcon = document.querySelector(".clear-icon");
     const buscarBtn = document.querySelector(".btn.buscar");
     const radioButtons = document.querySelectorAll("input[name='search']");
-    const tablaCliente = document.getElementById("tablaCliente");
+    const tablaCliente = document.getElementById("tablaProducto");
 
     // Mostrar el ícono cuando el usuario escribe
     searchBox.addEventListener("input", () => {
@@ -356,47 +358,52 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        buscarCliente(criterio, busqueda);
+        buscarProducto(criterio, busqueda);
     });
 
-    function buscarCliente(criterio, valor) {
-        const url = https://localhost:5000/api/Cliente/BuscarCliente?busqueda=${encodeURIComponent(valor)}&criterio=${criterio};
+    function buscarProducto(criterio, valor) {
+        const url = `https://localhost:5000/api/Producto/BuscarProducto/?busqueda=${encodeURIComponent(valor)}&criterio=${encodeURIComponent(criterio)}`;
         
         fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Error al buscar clientes.");
+                    throw new Error("Error al buscar producto.");
                 }
                 return response.json();
             })
             .then(data => {
-                const clientes = data.response;
-                tablaCliente.innerHTML = "";
-
-                if (clientes.length === 0) {
+                const productos = data.response; // Asume que la API devuelve un objeto con "response" como clave.
+                tablaProducto.innerHTML = "";
+    
+                if (productos.length === 0) {
                     const fila = document.createElement("tr");
-                    fila.innerHTML = <td colspan="7">No se encontraron resultados.</td>;
-                    tablaCliente.appendChild(fila);
+                    fila.innerHTML = `<td colspan="11">No se encontraron resultados.</td>`;
+                    tablaProducto.appendChild(fila);
                 } else {
-                    clientes.forEach(cliente => {
+                    productos.forEach(producto => {
                         const fila = document.createElement("tr");
                         fila.innerHTML = `
-                            <td>${cliente.nombre}</td>
-                            <td>${cliente.apellidos}</td>
-                            <td>${cliente.ruc}</td>
-                            <td>${cliente.dni}</td>
-                            <td>${cliente.telefono}</td>
-                            <td>${cliente.estado}</td>
+                            <td>${producto.codigo}</td>
+                            <td>${producto.nombre}</td>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.f_ingreso}</td>
+                            <td>${producto.f_vencimiento}</td>
+                            <td>${producto.stock}</td>
+                            <td>${producto.precio_compra}</td>
+                            <td>${producto.precio_venta}</td>
+                            <td>${producto.estado}</td>
+                            <td>${producto.idcategoria}</td>
                             <td>
-                                <button class="btn-editar" onclick="editarCliente(${cliente.idcliente})">
+                                <button class="btn-editar" onclick="editarProducto(${producto.idproducto})">
                                     <i class="fa fa-edit"></i>
                                 </button>
-                                <button class="btn-eliminar" onclick="eliminarCliente(${cliente.idcliente})">
+                                <button class="btn-eliminar" onclick="eliminarProducto(${producto.idproducto})">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
                         `;
-                        tablaCliente.appendChild(fila);
+                        f_ingreso
+                        tablaProducto.appendChild(fila);
                     });
                 }
             })
@@ -404,5 +411,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Error al realizar la búsqueda:", error);
                 alert("Ocurrió un error al realizar la búsqueda.");
             });
-    }
+    }    
 });
