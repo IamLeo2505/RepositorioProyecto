@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="leandro\sqlexpress.SystemAlturaCoffee.dbo" DbObjectName="SystemAlturaCoffee.dbo.vCliente" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT * FROM vCliente</CommandText>
+                    <CommandText>Select * from vCliente</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
