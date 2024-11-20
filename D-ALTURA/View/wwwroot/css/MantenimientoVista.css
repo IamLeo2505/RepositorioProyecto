@@ -1,4 +1,3 @@
-/* soporte.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -70,7 +69,7 @@ header {
 
 main .soporte {
     text-align: center;
-    padding: 50px 20px;
+    padding: 5% 20%;
 }
 
 .soporte h1 {
@@ -87,7 +86,7 @@ main .soporte {
 
 /* Estilo general para los iconos */
 .botones .btn i {
-    font-size: 2rem; /* Tamaño del ícono */
+    font-size: 5rem; /* Tamaño del ícono */
     transition: transform 0.3s, color 0.3s; /* Transición suave para hover */
 }
 
@@ -141,5 +140,4 @@ footer {
     padding: 10px;
     background-color: #2e8b57;
     color: white;
-    width: 100%;
 }
