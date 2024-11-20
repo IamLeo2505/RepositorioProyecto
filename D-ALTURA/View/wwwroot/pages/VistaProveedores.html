@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proveedores</title>
+    <link rel="stylesheet" href="../css/VistaProveedor.css">
+    <link rel="stylesheet" href="../CSS/interfazprincipal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../IMG/Logo - Café de Altura.png" alt="Café de Altura">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="Venta.html">Facturación</a>
+                        <a href="#">Adquisición</a>
+                        <a href="#">Crédito</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Recursos Humanos</a>
+                    <div class="dropdown-content">
+                        <a href="gestionarProveedores.html">Proveedores</a>
+                        <a href="#">Inventario</a>
+                        <a href="RegistrarEmpleado.html">Empleados</a>
+                        <a href="registrarmarca.html">Marca</a>
+                        <a href="pages/usuarios.html">Usuarios</a>
+                        <a href="RegistrarCategoria.html">Categoría</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Ayuda</a>
+                    <div class="dropdown-content">
+                        <a href="#">Mantenimiento</a>
+                        <a href="#">Reportes</a>
+                        <a href="#">Soporte</a>
+                    </div>
+                </li>
+                <li><a href="#">Acerca de</a></li>     
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <img src="../IMG/Background.jpeg" alt="fondo" class="fondo">
+        <div class="background">
+            <div class="listado">
+                <form class="form-listado">
+                    <div>
+                        <h1>GESTIÓN DE PROVEEDORES</h1>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-criterio">
+                            <div class="container-criterio">
+                                <label>Criterio de Búsqueda:</label>
+                                <div class="container-radio">
+                                    <label><input type="radio" name="search" value="nombre"> Razón Social</label>
+                                    <label><input type="radio" name="search" value="dni"> DNI</label>
+                                    <label><input type="radio" name="search" value="ruc"> RUC</label>
+                                </div>
+                            </div>
+                            <div class="search-container">
+                                <input type="text" class="search-box" placeholder="Ingrese el criterio de búsqueda">
+                                <i class="fas fa-times clear-icon" style="display: none;"></i>
+                                <button class="btn buscar" type="button">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="listado-proveedores">
+                        <div class="listado-content">
+                            <table class="tabla-proveedores">
+                                <thead>
+                                    <tr>
+                                        <th>Razón Social</th>
+                                        <th>DNI</th>
+                                        <th>RUC</th>
+                                        <th>Teléfono</th>
+                                        <th>Dirección</th>
+                                        <th>Estado</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaProveedor">
+                                    <!-- Aquí se mostrarán los proveedores -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="options-section">
+                        <button class="btn-nuevo" type="button">Nuevo</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="registro">
+                <h1 class="titulo">Registrar Nuevo Proveedor</h1>
+                <div class="form-registro">
+                    <form id="form-proveedor">
+                        <div class="input-field">
+                            <label for="razonsocial">Ingrese Razón Social:</label>
+                            <input type="text" id="razonsocial" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="dni">Ingrese DNI:</label>
+                            <input type="text" id="dni" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="ruc">Ingrese RUC:</label>
+                            <input type="text" id="ruc" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="telefono">Ingrese Teléfono:</label>
+                            <input type="text" id="telefono" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="direccion">Ingrese Dirección:</label>
+                            <input type="text" id="direccion" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="estado">Seleccione Estado:</label>
+                            <div id="estado" class="radio">
+                                <label><input type="radio" name="estado" value="activo" required> Activo</label>
+                                <label><input type="radio" name="estado" value="inactivo" required> Inactivo</label>
+                            </div>
+                        </div>
+                        <div class="botones">
+                            <button type="submit" id="guardar" class="button"><b>Guardar</b></button>
+                            <button type="reset" class="button" id="cancelarBtn"><b>Cancelar</b></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 - 2024 Café de Altura</p>
+    </footer>
+
+<script src="../js/Proveedor.js"></script>
+</body>
+</html>

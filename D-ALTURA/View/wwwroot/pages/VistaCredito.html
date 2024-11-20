@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Créditos</title>
+    <link rel="stylesheet" href="../css/VistaCredito.css">
+    <link rel="stylesheet" href="../CSS/interfazprincipal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../IMG/Logo - Café de Altura.png" alt="Café de Altura">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="Venta.html">Facturación</a>
+                        <a href="#">Adquisición</a>
+                        <a href="Credito.html">Crédito</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Recursos Humanos</a>
+                    <div class="dropdown-content">
+                        <a href="#">Proveedores</a>
+                        <a href="#">Inventario</a>
+                        <a href="RegistrarEmpleado.html">Empleados</a>
+                        <a href="registrarmarca.html">Marca</a>
+                        <a href="pages/usuarios.html">Usuarios</a>
+                        <a href="RegistrarCategoria.html">Categoría</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Ayuda</a>
+                    <div class="dropdown-content">
+                        <a href="#">Mantenimiento</a>
+                        <a href="#">Reportes</a>
+                        <a href="#">Soporte</a>
+                    </div>
+                </li>
+                <li><a href="#">Acerca de</a></li>     
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <img src="../IMG/Background.jpeg" alt="fondo" class="fondo">
+        <div class="background">
+            <div class="listado">
+                <form class="form-listado">
+                    <div>
+                        <h1>LISTADO DE CRÉDITOS</h1>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-criterio">
+                            <div class="container-criterio">
+                                <label>Criterio de Búsqueda:</label>
+                                <div class="container-radio">
+                                    <label><input type="radio" name="search" value="usuario"> Usuario</label>
+                                    <label><input type="radio" name="search" value="plazo"> Plazo de Pago</label>
+                                </div>
+                            </div>
+                            <div class="search-container">
+                                <input type="text" class="search-box" placeholder="Ingrese el criterio de búsqueda">
+                                <i class="fas fa-times clear-icon" style="display: none;"></i>
+                                <button class="btn buscar" type="button">Buscar</button>
+                            </div>
+                        </div>                                            
+                    </div>
+
+                    <div class="listado-credito">
+                        <div class="listado-content">
+                            <table class="tabla-credito">
+                                <thead>
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Monto</th>
+                                        <th>Plazo Pago</th>
+                                        <th>Tasa Interés</th>
+                                        <th>Estado</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaCredito">
+                                    <!-- Los datos se insertarán aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="options-section">
+                        <button class="btn-nuevo" type="button">Nuevo Crédito</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 - 2024 Café de Altura</p>
+    </footer>
+<script src="../js/Credito.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Venta</title>
+    <link rel="stylesheet" href="CSS/buscarventa.css">
+</head>
+<body>
+    <!-- Encabezado con Logo y Menú Desplegable -->
+    <header id="header-A">
+        <div class="logo">
+            <img src="IMG/Logo - Café de Altura.png" alt="Café de Altura">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="#">Facturación</a>
+                        <a href="#">Adquisición</a>
+                        <a href="#">Crédito</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Recursos Humanos</a>
+                    <div class="dropdown-content">
+                        <a href="#">Proveedores</a>
+                        <a href="#">Inventario</a>
+                        <a href="#">Empleados</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Ayuda</a>
+                    <div class="dropdown-content">
+                        <a href="#">Mantenimiento</a>
+                        <a href="#">Reportes</a>
+                        <a href="#">Soporte</a>
+                    </div>
+                </li>
+                <li><a href="#">Acerca de</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Formulario de Búsqueda de Ventas -->
+    <h1 class="titulo">Búsqueda de Ventas</h1>
+    <form id="form-buscarventa" class="buscar-container">
+        
+        <div class="date-search">
+            <div class="date-field">
+                <label for="fecha-inicio">Fecha de Inicio</label>
+                <input type="date" id="fecha-inicio" value="2024-01-01">
+            </div>
+            <div class="date-field">
+                <label for="fecha-fin">Fecha de Fin</label>
+                <input type="date" id="fecha-fin" value="2024-09-15">
+            </div>
+            <button id="buscar" class="btn-buscar">Buscar</button>
+        </div>
+
+        <!-- Contenedor de Resultados -->
+        <div class="results-table">
+            <!-- Aquí se cargarán los resultados de búsqueda -->
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="action-buttons">
+            <button class="btn nuevo">Nuevo</button>
+            <button class="btn ver-detalle">Ver Detalle</button>
+            <button class="btn anular">Anular</button>
+            <button class="btn reporte">Reporte</button>
+            <button class="btn salir">Salir</button>
+        </div>
+    </form>
+
+    <script src=""></script>
+</body>
+</html>
