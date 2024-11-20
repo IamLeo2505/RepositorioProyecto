@@ -16,7 +16,7 @@ function listarClientes() {
 
             productos.forEach(item => {
                 const fila = document.createElement('tr');
-                fila.id = producto-${item.idproducto}; // Agregar un ID único a la fila
+                fila.id = `producto-${item.idproducto}`; // Agregar un ID único a la fila
                 fila.innerHTML = `
                     <td>${item.codigo}</td>
                     <td>${item.nombre}</td>
@@ -49,24 +49,24 @@ function listarClientes() {
 // Función para obtener un cliente por ID
 async function obtenerProducto(id) {
     try {
-        const response = await fetch('https://localhost:5000/api/Producto/Obtener/{idproducto}');
+        const response = await fetch(`https://localhost:5000/api/Producto/Obtener/${id}`);
         if (!response.ok) throw new Error('Error al obtener el Producto');
 
         const data = await response.json();
         const producto = data.response;
 
         alert(`
-            ID: ${item.idproducto}
-            Codigo: ${item.codigo}
-            Nombre: ${item.nombre}
-            Descripcion: ${item.descripcion}
-            FechaIngreso: ${item.f_ingreso}
-            FechaVencimiento: ${item.f_vencimiento}
-            Stocks: ${item.stock}
-            PrecioCompra: ${item.precio_compra}
-            PrecioVenta: ${item.precio_venta}
-            Estado: ${item.estado}
-            IDCategoria: ${item.idcategoria}
+            ID: ${producto.idproducto}
+            Codigo: ${producto.codigo}
+            Nombre: ${producto.nombre}
+            Descripcion: ${producto.descripcion}
+            FechaIngreso: ${producto.f_ingreso}
+            FechaVencimiento: ${producto.f_vencimiento}
+            Stocks: ${producto.stock}
+            PrecioCompra: ${producto.precio_compra}
+            PrecioVenta: ${producto.precio_venta}
+            Estado: ${producto.estado}
+            IDCategoria: ${producto.idcategoria}
         `);
     } catch (error) {
         console.error('Error al obtener el cliente:', error);
@@ -78,21 +78,21 @@ async function obtenerProducto(id) {
 let isDeleting = false;
 
 function eliminarCliente(id) {
-    console.log(Intentando eliminar cliente con ID: ${id});
+    console.log(`Intentando eliminar cliente con ID: ${id}`);
 
     if (isDeleting) {
         console.log('Ya se está procesando una solicitud de eliminación. Por favor, espera.');
         return;
     }
 
-    if (!confirm('¿Estás seguro de eliminar este cliente?')) {
+    if (!confirm('¿Estás seguro de eliminar este Producto?')) {
         console.log('Eliminación cancelada por el usuario.');
         return;
     }
 
     isDeleting = true; // Marcamos que estamos en proceso de eliminación
 
-    fetch(https://localhost:5000/api/Cliente/eliminar/${id}, {
+    fetch(`https://localhost:5000/api/Cliente/eliminar/${id}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -102,18 +102,18 @@ function eliminarCliente(id) {
         .then(response => {
             console.log('Estado de la respuesta:', response.status);
             if (!response.ok) {
-                throw new Error(Error ${response.status}: ${response.statusText});
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
             }
             return response.json();
         })
         .then(data => {
             console.log('Respuesta del servidor:', data);
-            alert(data.mensaje || 'Cliente eliminado correctamente.');
-            setTimeout(listarClientes, 500); // Refrescamos la lista después de eliminar
+            alert(data.mensaje || 'Producto eliminado correctamente.');
+            setTimeout(listarProductos, 500); // Refrescamos la lista después de eliminar
         })
         .catch(error => {
-            console.error('Error al eliminar el cliente:', error.message);
-            alert('Ocurrió un error al intentar eliminar el cliente.');
+            console.error('Error al eliminar el producto:', error.message);
+            alert('Ocurrió un error al intentar eliminar el producto.');
         })
         .finally(() => {
             isDeleting = false; // Liberamos el estado para permitir nuevas solicitudes
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Lista los clientes al cargar la página
-    listarClientes();
+    listarProductos();
 });
 
 // Evento para cancelar el registro
@@ -144,122 +144,143 @@ document.getElementById('cancelarBtn').addEventListener("click", function () {
 });
 
 // Evento para guardar un cliente
-document.getElementById('form-cliente').addEventListener('submit', async function (event) {
+document.getElementById('form-producto').addEventListener('submit', async function (event) {
     event.preventDefault();
-
+    const codigo = document.getElementById('codigo').value.trim();
     const nombre = document.getElementById('nombre').value.trim();
-    const apellidos = document.getElementById('apellidos').value.trim();
-    const RUC = document.getElementById('RUC').value.trim();
-    const documento = document.getElementById('Documento').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+    const f_ingreso = document.getElementById('f_ingreso').value.trim();
+    const f_vencimiento = document.getElementById('f_vencimiento').value.trim();
+    const stock = document.getElementById('stock').value.trim();
+    const precio_compra = document.getElementById('precio_compra').value.trim();
+    const precio_venta = document.getElementById('precio_venta').value.trim();
     const estado = document.querySelector('input[name="estado"]:checked')?.value;
+    const idcategoria = document.getElementById('idcategoria').value.trim();
 
     // Validar campos
-    if (!nombre || !apellidos || !RUC || !documento || !telefono || !estado) {
+    if (!codigo || !nombre || !descripcion || !f_ingreso || !f_vencimiento || !stock || !precio_compra || !precio_venta || !estado || !idcategoria) {
         alert('Por favor, complete todos los campos.');
         return;
     }
 
     try {
-        const response = await fetch('https://localhost:5000/api/Cliente/GuardarCambios', {
+        const response = await fetch('https://localhost:5000/api/Proveedor/Guardar Cambios', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nombre, apellidos, ruc: RUC, dni: documento, telefono, estado })
+            body: JSON.stringify({ codigo, nombre, descripcion, f_ingreso, f_vencimiento, stock, precio_compra, precio_venta, estado, idcategoria })
         });
 
         if (!response.ok) throw new Error('Error al guardar los datos.');
 
         const data = await response.json();
-        alert('Cliente guardado exitosamente.');
+        alert('Producto guardado exitosamente.');
         console.log(data);
 
         // Vaciar los campos del formulario
+        document.getElementById('codigo').value = '';
         document.getElementById('nombre').value = '';
-        document.getElementById('apellidos').value = '';
-        document.getElementById('RUC').value = '';
-        document.getElementById('Documento').value = '';
-        document.getElementById('telefono').value = '';
+        document.getElementById('descripcion').value = '';
+        document.getElementById('f_ingreso').value = '';
+        document.getElementById('f_vencimiento').value = '';
+        document.getElementById('stock').value = '';
+        document.getElementById('precio_compra').value = '';
+        document.getElementById('precio_venta').value = '';
         document.querySelector('input[name="estado"]:checked').checked = false;
+        document.getElementById('idcategoria').value = '';
 
         // Mensaje en la consola
         console.log("Hola mundo");
 
-        listarClientes(); // Refresca la lista
+        listarProductos(); // Refresca la lista
     } catch (error) {
-        console.error('Error al guardar el cliente:', error);
-        alert('No se pudo guardar el cliente.');
+        console.error('Error al guardar el producto:', error);
+        alert('No se pudo guardar el producto.');
     }
 });
 
 
 // Función para editar un cliente
-function editarCliente(id) {
+function editarProducto(id) {
     // Prevenir la recarga de página accidental si el botón está dentro de un formulario
     event.preventDefault();  // Añadido para evitar recarga
 
     // Obtener la fila correspondiente al cliente
-    const fila = document.querySelector(#cliente-${id});
+    const fila = document.querySelector(`#producto-${id}`);
     const celdas = fila.querySelectorAll('td');
 
     // Convertir las celdas en inputs para permitir la edición
-    celdas[0].innerHTML = <input type="text" value="${celdas[0].innerText}" />; // Nombre
-    celdas[1].innerHTML = <input type="text" value="${celdas[1].innerText}" />; // Apellidos
-    celdas[2].innerHTML = <input type="text" value="${celdas[2].innerText}" />; // RUC
-    celdas[3].innerHTML = <input type="text" value="${celdas[3].innerText}" />; // DNI
-    celdas[4].innerHTML = <input type="text" value="${celdas[4].innerText}" />; // Teléfono
-    celdas[5].innerHTML = <input type="text" value="${celdas[5].innerText}" />; // Estado
+    celdas[0].innerHTML = `<input type="text" value="${celdas[0].innerText}" />`; // Codigo
+    celdas[1].innerHTML = `<input type="text" value="${celdas[1].innerText}" />`; // Nombre
+    celdas[2].innerHTML = `<input type="text" value="${celdas[2].innerText}" />`; // Descripcion
+    celdas[3].innerHTML = `<input type="text" value="${celdas[3].innerText}" />`; // Fecha Ing
+    celdas[4].innerHTML = `<input type="text" value="${celdas[4].innerText}" />`; // Fecha Ven
+    celdas[5].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // Stock
+    celdas[6].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // Precio Com
+    celdas[7].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // Precio Vent
+    celdas[8].innerHTML = `<input type="text" value="${celdas[5].innerText}" />`; // Estado
+    celdas[9].innerHTML = `<input type="number" value="${celdas[5].innerText}" />`; // IDCategoria
 
     // Cambiar el botón de "Editar" a "Guardar"
-    const botones = celdas[6].querySelectorAll('button');
+    const botones = celdas[10].querySelectorAll('button');
     botones[0].innerHTML = '<i class="fa fa-save"></i>';  // Cambiar a icono de guardar
-    botones[0].setAttribute('onclick', guardarEdicion(${id}));
+    botones[0].setAttribute('onclick', `guardarEdicion(${id})`);
 }
+
 
 async function guardarEdicion(id) {
     // Obtener la fila correspondiente al cliente
-    const fila = document.querySelector(#cliente-${id});
+    const fila = document.querySelector(`#producto-${id}`);
     const celdas = fila.querySelectorAll('td');
 
     // Obtener los valores de los campos editados
-    const nombre = celdas[0].querySelector('input').value.trim();
-    const apellidos = celdas[1].querySelector('input').value.trim();
-    const ruc = celdas[2].querySelector('input').value.trim();
-    const dni = celdas[3].querySelector('input').value.trim();
-    const telefono = celdas[4].querySelector('input').value.trim();
-    const estado = celdas[5].querySelector('input').value.trim();
+    const codigo = celdas[0].querySelector('input').value.trim();
+    const nombre = celdas[1].querySelector('input').value.trim();
+    const descripcion = celdas[2].querySelector('input').value.trim();
+    const f_ingreso = celdas[3].querySelector('input').value.trim();
+    const f_vencimiento = celdas[4].querySelector('input').value.trim();
+    const stock = celdas[5].querySelector('input').value.trim();
+    const precio_compra = celdas[6].querySelector('input').value.trim();
+    const precio_venta = celdas[7].querySelector('input').value.trim();
+    const estado = celdas[8].querySelector('input').value.trim();
+    const idcategoria = celdas[9].querySelector('input').value.trim();
 
     // Validar campos
-    if (!nombre || !apellidos || !ruc || !dni || !telefono || !estado) {
+    if (!codigo || !nombre || !descripcion || !f_ingreso || !f_vencimiento || !stock || !precio_compra || !precio_venta || !estado || !idcategoria) {
         alert('Por favor, complete todos los campos.');
         return;
     }
 
     // Objeto que vamos a enviar al backend
-    const clienteData = {
-        idcliente: id,
+    const productoData = {
+        codigo: codigo,
         nombre: nombre,
-        apellidos: apellidos,
-        ruc: ruc,
-        dni: dni,
-        telefono: telefono,
-        estado: estado
+        descripcion: descripcion,
+        f_ingreso: f_ingreso,
+        f_vencimiento: f_vencimiento,
+        stock: stock,
+        precio_compra: precio_compra,
+        precio_venta: precio_venta,
+        estado: estado,
+        idcategoria: idcategoria
     };
 
-    console.log('Datos a enviar:', clienteData);
+    console.log('Datos a enviar:', productoData);
 
     try {
         // Cambiar el color del botón a verde mientras se guarda
-        const botonGuardar = celdas[6].querySelector('button');
+        const botonGuardar = celdas[10].querySelector('button');
         botonGuardar.classList.add('btn-guardar-verde');
 
         // Enviar los datos al servidor para editar el cliente
-        const response = await fetch(https://localhost:5000/api/Cliente/EditarDatos, {
+        const response = await fetch('https://localhost:5000/api/Cliente/EditarDatos', {
             method: 'PUT', // Usamos el método PUT para actualizar los datos
             headers: { 
                 'Content-Type': 'application/json' // Especificamos que el cuerpo está en formato JSON
             },
             body: JSON.stringify(clienteData)  // Convertimos el objeto a JSON
         });
+
+        //////////Yoandri quedo aqui!!!!!!!!!!!!!!
 
         // Verificar el estado de la respuesta
         console.log('Estado de la respuesta:', response.status);
