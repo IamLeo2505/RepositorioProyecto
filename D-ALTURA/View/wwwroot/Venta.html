@@ -7,7 +7,46 @@
     <link rel="stylesheet" href="css/Venta.css">
 </head>
 <body>
-    <div class="container">
+    <header>
+        <div class="logo">
+            <img src="IMG/Logo - Café de Altura.png" alt="Café de Altura">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="/Venta.html">Facturación</a>
+                        <a href="#">Adquisición</a>
+                        <a href="#">Inventario</a>
+                        <a href="#">Crédito</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Recursos Humanos</a>
+                    <div class="dropdown-content">
+                        <a href="pages/RegistrarCliente.html">Clientes</a>
+                        <a href="#">Proveedores</a>
+                        <a href="RegistrarEmpleado.html">Empleados</a>
+                        <a href="registrarmarca.html">Marca</a>
+                        <a href="pages/usuarios.html">Usuarios</a>
+                        <a href="RegistrarCategoria.html">Categoría</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Ayuda</a>
+                    <div class="dropdown-content">
+                        <a href="MantenimientoVista.html">Mantenimiento</a>
+                        <a href="ReporteVista.html">Reportes</a>
+                        <a href="SoporteVista.html">Soporte</a>
+                    </div>
+                </li>
+                <li><a href="#">Acerca de</a></li>     
+            </ul>
+        </nav>
+    </header>
+        </aside>
+    <div class="containerfactura">
         <div class="formulario izquierda">
             <h2>Datos de Facturación</h2>
             <form>
@@ -55,14 +94,6 @@
                         <input type="text" id="cliente" name="cliente" readonly>
                     </div>
                 </div>
-
-                <div class="input-field2">
-                    <button type="button" class="nuevo-cliente">Agregar Nuevo Cliente</button>
-                </div>
-                <div class="botones">
-                    <button type="button">Continuar</button>
-                    <button type="button">Nueva Factura</button>
-                </div>
             </form>
             <table>
                 <thead>
@@ -82,30 +113,32 @@
         
         <div class="derecha">
             <div class="formulario detalles">
-                <h2>Detalles de Factura</h2>
+                <h2>Detalles del Producto</h2>
                 <form>
+                    <label for="id-producto">ID Producto:</label>
+                    <input type="number" id="id-producto" placeholder="ID del Producto" />
+                    <button type="button" id="buscar-producto">Buscar Producto</button>
                     <label for="producto-articulo">Producto:</label>
-                    <input type="text" id="producto-articulo" name="producto-articulo">
+                    <input type="text" id="producto-nombre" name="producto-articulo">
                     
                     <label for="categoria-articulo">Categoría:</label>
-                    <input type="text" id="categoria-articulo" name="categoria-articulo">
+                    <input type="text" id="categoria-producto" name="categoria-articulo">
 
                     <div class="input-group1">
                         <div class="input-field">
                             <label for="stock-articulo">Stock:</label>
-                            <input type="number" id="stock-articulo" name="stock-articulo">
+                            <input type="number" id="stock-producto" name="stock-articulo">
                         </div>
                         <div class="input-field">
                             <label for="cantidad-articulo">Cantidad:</label>
-                            <input type="number" id="cantidad-articulo" name="cantidad-articulo">
+                            <input type="number" id="cantidad-producto" name="cantidad-articulo">
                         </div>
                     </div>
                     
                     <label for="precio-articulo">Precio:</label>
-                    <input type="number" id="precio-articulo" name="precio-articulo">
+                    <input type="number" id="precio-producto" name="precio-articulo">
                     
                     <div class="botones">
-                        <button type="button">Limpiar Campos</button>
                         <button type="button">Agregar</button>
                         <button type="button">Cancelar</button>
                     </div>
@@ -134,7 +167,7 @@
                     <label for="estado">Estado:</label>
                     <input type="text" id="estado" placeholder="Estado de la venta" />
                     <div class="botones">
-                        <button id="registrar-venta" type="button">Facturar</button>
+                        <button id="registrar-venta" type="button">Guardar Venta</button>
                     </div>
                 </form>
             </div>
@@ -143,17 +176,17 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Seleccionar el botón de agregar y la tabla
-            const agregarBtn = document.querySelector(".derecha .botones button:nth-child(2)");
+            const agregarBtn = document.querySelector(".derecha .botones");
             const tabla = document.querySelector("table tbody");
     
             // Función para manejar el evento click en el botón Agregar
             agregarBtn.addEventListener("click", () => {
                 // Obtener valores de los campos
-                const producto = document.getElementById("producto-articulo").value.trim();
-                const categoria = document.getElementById("categoria-articulo").value.trim();
-                const stock = document.getElementById("stock-articulo").value.trim();
-                const cantidad = document.getElementById("cantidad-articulo").value.trim();
-                const precio = document.getElementById("precio-articulo").value.trim();
+                const producto = document.getElementById("producto-nombre").value.trim();
+                const categoria = document.getElementById("categoria-producto").value.trim();
+                const stock = document.getElementById("stock-producto").value.trim();
+                const cantidad = document.getElementById("cantidad-producto").value.trim();
+                const precio = document.getElementById("precio-producto").value.trim();
     
                 // Validar que los campos requeridos no estén vacíos
                 if (!producto || !categoria || !cantidad || !precio) {
@@ -184,11 +217,11 @@
                 tabla.appendChild(nuevaFila);
     
                 // Limpiar los campos de entrada
-                document.getElementById("producto-articulo").value = "";
-                document.getElementById("categoria-articulo").value = "";
-                document.getElementById("stock-articulo").value = "";
-                document.getElementById("cantidad-articulo").value = "";
-                document.getElementById("precio-articulo").value = "";
+                document.getElementById("producto-nombre").value = "";
+                document.getElementById("categoria-producto").value = "";
+                document.getElementById("stock-producto").value = "";
+                document.getElementById("cantidad-producto").value = "";
+                document.getElementById("precio-producto").value = "";
     
                 // Opcional: Actualizar el subtotal general, IVA y total
                 actualizarTotales();

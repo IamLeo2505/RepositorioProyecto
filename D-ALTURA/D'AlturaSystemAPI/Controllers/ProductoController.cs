@@ -126,9 +126,9 @@ namespace D_AlturaSystemAPI.Controllers
         }
 
         [HttpGet]
-        [Route("BuscarProducto/{codigo}")]
+        [Route("BuscarProducto/{idproducto:int}")]
 
-        public IActionResult BuscarProductoParaVenta(int codigo)
+        public IActionResult BuscarProductoParaVenta(int idproducto)
         {
             Producto producto = null;  // Producto será nulo hasta que se asigne un valor encontrado en la base de datos
 
@@ -141,7 +141,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Agregar parámetro para buscar al producto específico
-                    cmd.Parameters.AddWithValue("@codigo", codigo);
+                    cmd.Parameters.AddWithValue("@idproducto", idproducto);
 
                     using (var rd = cmd.ExecuteReader())
                     {
@@ -150,10 +150,11 @@ namespace D_AlturaSystemAPI.Controllers
                         {
                             producto = new Producto()
                             {
-                                codigo = rd["codigo"].ToString(),
+                                idproducto = Convert.ToInt32(rd["idproducto"]),
                                 nombre = rd["nombre"].ToString(),
                                 stock = Convert.ToInt32(rd["stock"].ToString()),
-                                precio_venta = Convert.ToDecimal(rd["precio_venta"].ToString())
+                                precio_venta = Convert.ToDecimal(rd["precio_venta"].ToString()),
+                                idcategoria = Convert.ToInt32(rd["idcategoria"])
                             };
                         }
                     }

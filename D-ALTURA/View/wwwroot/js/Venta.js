@@ -166,3 +166,50 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const buscarProductoBtn = document.getElementById("buscar-producto");
+
+    buscarProductoBtn.addEventListener("click", async () => {
+        const idProducto = document.getElementById("id-producto").value.trim();
+
+        // Validar que se haya ingresado un ID
+        if (!idProducto) {
+            alert("Por favor, ingresa un ID de producto.");
+            return;
+        }
+
+        try {
+            // Llamada a la API (ajusta la URL según tu entorno)
+            const response = await fetch(`https://localhost:5000/api/Producto/BuscarProducto/${idProducto}`);
+            
+            if (!response.ok) {
+                throw new Error("Producto no encontrado.");
+            }
+
+            // Obtener datos de la API
+            const data = await response.json();
+
+            // Verificar si existe el objeto 'response' en los datos
+            if (!data.response) {
+                throw new Error("Estructura de respuesta inesperada.");
+            }
+
+            // Obtener los datos del producto
+            const producto = data.response;
+
+            // Validar campos y asignar valores a los inputs
+            document.getElementById("producto-nombre").value = producto.nombre || "No disponible";
+            document.getElementById("stock-producto").value = producto.stock || 0;
+            document.getElementById("categoria-producto").value = producto.idcategoria || "No disponible";
+            document.getElementById("precio-producto").value = producto.precio_venta || 0;
+
+        } catch (error) {
+            alert(error.message);
+            // Limpiar los campos si ocurre un error
+            document.getElementById("producto-nombre").value = "";
+            document.getElementById("stock-producto").value = "";
+            document.getElementById("categoria-producto").value = "";
+            document.getElementById("precio-producto").value = "";
+        }
+    });
+});

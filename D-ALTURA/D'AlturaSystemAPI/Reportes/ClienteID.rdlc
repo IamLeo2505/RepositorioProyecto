@@ -6,27 +6,27 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.4365cm</Width>
+              <Width>2.09078cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.47367cm</Width>
+              <Width>3.12795cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.00283cm</Width>
+              <Width>3.65711cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.15428cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.15428cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.37816cm</Width>
+              <Width>1.32877cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.72982cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -211,7 +211,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.72982cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -418,10 +418,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsClienteID</DataSetName>
-        <Top>0.43603cm</Top>
-        <Left>0.20087cm</Left>
-        <Height>1.2cm</Height>
-        <Width>16.29117cm</Width>
+        <Top>0.17639cm</Top>
+        <Left>1.09926cm</Left>
+        <Height>1.45964cm</Height>
+        <Width>14.51316cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
