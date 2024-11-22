@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gothic';
+}
+
+/* Asegurando que el body ocupa todo el viewport */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Gothic';
+}
+
+main {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la altura del viewport */
+    background-image: url('../IMG/Background.jpeg'); /* Ruta de la imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el espacio */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que se repita */
+    overflow: hidden; /* Previene desbordamientos */
+}
+
+/* Imagen de fondo que cubre todo */
+.fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen al contenedor */
+    z-index: -1; /* Envía la imagen detrás del contenido */
+}
+
+/* Contenedor principal */
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1; /* Asegura que quede sobre la imagen */
+}
+
+/* Resto del contenido */
+.listado,
+.registro {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* Más alto que la imagen */
+}
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.search-criterio {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.container-criterio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.container-criterio label {
+    font-size: 16px;
+    color: #381f07;
+    font-weight: bold;
+}
+
+.container-radio {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.container-radio label {
+    font-size: 14px;
+    color: #381f07;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 570px;
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    padding-right: 30px; /* Espacio para el ícono */
+}
+
+.clear-icon {
+    position: absolute;
+    right: 90px; /* Ajustar según el botón Buscar */
+    cursor: pointer;
+    color: #aaa;
+    font-size: 1rem;
+}
+
+.clear-icon:hover {
+    color: #000;
+}
+
+.search-box {
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    padding: 0 15px;
+    padding-right: 90px; 
+    background: rgba(153, 145, 145, 0.322);
+    color: #381f07;
+}
+
+.btn.buscar {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 35px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #381f07;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn.buscar:hover {
+    background-color: #5d3200;
+}
+
+.listado-clientes {
+    background-color: white;
+    padding:  0;
+    width: 100%;
+    max-width: 950px; 
+    max-height: 380px; 
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow-y: auto; 
+    box-sizing: border-box; 
+}
+
+/* Tabla de usuarios */
+.tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse; 
+    table-layout: fixed; 
+}
+
+.tabla-usuarios th,
+.tabla-usuarios td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #381f07;
+}
+
+.tabla-usuarios th {
+    background-color: #381f07;
+    color: white;
+    font-weight: bold;
+    position: sticky; 
+    top: 0; 
+    z-index: 1;
+}
+
+.tabla-usuarios tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.tabla-usuarios td {
+    background-color: #f9f9f9;
+    position: sticky; 
+}
+
+.tabla-usuarios td,
+.tabla-usuarios th {
+    border-radius: 10px;
+}
+
+.listado {
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+}
+
+.btn-editar,
+.btn-eliminar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #381f07;
+    margin: 0 5px;
+}
+
+.btn-editar:hover {
+    color: #d1e709; /* Verde */
+}
+
+.btn-eliminar:hover {
+    color: #dc3545; /* Rojo */
+}
+
+/* Formulario de registro */
+.registro {
+    display: none;
+}
+
+h1 {
+    color: #381f07;
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+}
+
+form {
+    width: 100%;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+}
+.input-field label {
+    font-size: 14px;
+    color: #381f07;
+    margin-bottom: 5px;
+}
+
+.input-field input {
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #381f07;
+    padding: 0 15px;
+    background: rgba(153, 145, 145, 0.322);
+}
+
+.radio {
+    display: flex;
+    gap: 20px;
+}
+
+.radio label {
+    display: flex;
+    align-items: center; 
+    gap: 5px; 
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button {
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    background: #381f07;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 30%;
+}
+
+.button:hover {
+    background-color: #5d3200;
+}
+
+.cancel {
+    background: #381f07;
+}
+
+
+.options-section{
+    display: flex;
+    justify-content: end;
+}
+
+.btn-nuevo {
+    justify-content: end;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    background: #381f07;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 120px;
+}

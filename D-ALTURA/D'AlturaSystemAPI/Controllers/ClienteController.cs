@@ -30,7 +30,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQL))
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_lista_clientes", connection);
@@ -48,7 +48,7 @@ namespace D_AlturaSystemAPI.Controllers
                                 ruc = rd["ruc"].ToString(),
                                 telefono = rd["telefono"].ToString(),
                                 apellidos = rd["apellidos"].ToString(),
-                                activo = Convert.ToInt32(rd["activo"]),
+                                estado = Convert.ToInt32(rd["estado"]),
 
                             });
                         }
@@ -74,7 +74,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQL))
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_lista_clientes", connection);
@@ -92,7 +92,7 @@ namespace D_AlturaSystemAPI.Controllers
                                 ruc = rd["ruc"].ToString(),
                                 telefono = rd["telefono"].ToString(),
                                 nombre = rd["nombre"].ToString(),
-                                activo = Convert.ToInt32(rd["estado"].ToString())
+                                estado = Convert.ToInt32(rd["estado"].ToString())
 
                             });
                         }
@@ -118,7 +118,7 @@ namespace D_AlturaSystemAPI.Controllers
 
             try
             {
-                using (var connection = new SqlConnection(ConnectSQL))
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_BuscarCliente", connection);
@@ -167,7 +167,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQL))
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_guardar_cliente", connection);
@@ -176,7 +176,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.Parameters.AddWithValue("dni", objeto.dni);
                     cmd.Parameters.AddWithValue("ruc", objeto.ruc);
                     cmd.Parameters.AddWithValue("telefono", objeto.telefono);
-                    cmd.Parameters.AddWithValue("activo", objeto.activo);
+                    cmd.Parameters.AddWithValue("estado", objeto.estado);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
@@ -201,7 +201,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQL))
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_editar_cliente", connection);
@@ -211,7 +211,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.Parameters.AddWithValue("dni", objeto.dni is null ? DBNull.Value : objeto.dni);
                     cmd.Parameters.AddWithValue("ruc", objeto.ruc is null ? DBNull.Value : objeto.ruc);
                     cmd.Parameters.AddWithValue("telefono", objeto.telefono is null ? DBNull.Value : objeto.telefono);
-                    cmd.Parameters.AddWithValue("activo", objeto.activo == 0 ? DBNull.Value : objeto.activo);
+                    cmd.Parameters.AddWithValue("estado", objeto.estado == 0 ? DBNull.Value : objeto.activo);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
@@ -236,7 +236,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQL))
+                using (var connection = new SqlConnection(ConnectSQLThree))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_eliminar_cliente", connection);

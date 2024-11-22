@@ -8,6 +8,6 @@
         public string dni { get; set; }
         public string telefono { get; set; }
         public string ruc { get; set; }
-        public int activo { get; set; }
+        public int estado { get; set; }
     }
 }

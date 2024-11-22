@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\CreditoController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
     <PackageReference Include="AspNetCore.ReportingServices" Version="2.1.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
