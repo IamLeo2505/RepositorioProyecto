@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Empleados</title>
+    <link rel="stylesheet" href="../css/VistaEmpleado.css">
+    <link rel="stylesheet" href="../CSS/interfazprincipal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../IMG/Logo - Café de Altura.png" alt="Café de Altura">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="Venta.html">Facturación</a>
+                        <a href="#">Adquisición</a>
+                        <a href="#">Crédito</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Recursos Humanos</a>
+                    <div class="dropdown-content">
+                        <a href="#">Proveedores</a>
+                        <a href="#">Inventario</a>
+                        <a href="RegistrarEmpleado.html">Empleados</a>
+                        <a href="registrarmarca.html">Marca</a>
+                        <a href="pages/usuarios.html">Usuarios</a>
+                        <a href="RegistrarCategoria.html">Categoría</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Ayuda</a>
+                    <div class="dropdown-content">
+                        <a href="#">Mantenimiento</a>
+                        <a href="#">Reportes</a>
+                        <a href="#">Soporte</a>
+                    </div>
+                </li>
+                <li><a href="#">Acerca de</a></li>     
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <img src="../IMG/Background.jpeg" alt="fondo" class="fondo">
+        <div class="background">
+            <div class="listado">
+                <form class="form-listado">
+                    <div>
+                        <h1>GESTIÓN DE EMPLEADOS</h1>
+                    </div>
+
+                    <!-- Sección de búsqueda -->
+                    <div class="search-section">
+                        <div class="search-criterio">
+                            <div class="container-criterio">
+                                <label>Criterio de Búsqueda:</label>
+                                <div class="container-radio">
+                                    <label><input type="radio" name="search" value="nombre"> Nombre</label>
+                                    <label><input type="radio" name="search" value="dni"> DNI</label>
+                                </div>
+                            </div>
+                            <div class="search-container">
+                                <input type="text" class="search-box" placeholder="Ingrese el criterio de búsqueda">
+                                <i class="fas fa-times clear-icon" style="display: none;"></i>
+                                <button class="btn buscar" type="button">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla para mostrar empleados -->
+                    <div class="listado-clientes">
+                        <div class="listado-content">
+                            <table class="tabla-clientes">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Cédula</th>
+                                        <th>Teléfono</th>
+                                        <th>Dirección</th>
+                                        <th>Estado</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaEmpleado">
+                                    <!-- Aquí se mostrarán los empleados -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>    
+
+                    <!-- Botón para agregar un nuevo empleado -->
+                    <div class="options-section">
+                        <button class="btn-nuevo" type="button">Nuevo</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Formulario para registrar nuevo empleado -->
+            <div class="registro">
+                <h1 class="titulo">Registrar Nuevo Empleado</h1>
+                <div class="form-registro">
+                    <form id="form-empleado">
+                        <!-- Campos del formulario de registro -->
+                        <div class="input-field">
+                            <label for="nombre">Ingrese Nombre:</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="apellido">Ingrese Apellido:</label>
+                            <input type="text" id="apellidos" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="dni">Ingrese Cédula:</label>
+                            <input type="text" id="dni" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="telefono">Ingrese Teléfono:</label>
+                            <input type="text" id="telefono" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="direccion">Ingrese Dirección:</label>
+                            <input type="text" id="direccion" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="estado">Seleccione Estado:</label>
+                            <div id="estado" class="radio">
+                                <label><input type="radio" name="estado" value="activo" required> Activo</label>
+                                <label><input type="radio" name="estado" value="inactivo" required> Inactivo</label>
+                            </div>
+                        </div>
+                        <!-- Botones para guardar o cancelar -->
+                        <div class="botones">
+                            <button type="submit" id="guardar" class="button"><b>Guardar</b></button>
+                            <button type="reset" class="button" id="cancelarBtn"><b>Cancelar</b></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 - 2024 Café de Altura</p>
+    </footer>
+    <script src="../js/Empleado.js"></script>
+</body>
+</html>
