@@ -22,7 +22,7 @@ namespace D_AlturaSystemAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Listado de Clientes")]
+        [Route("ListadodeClientes")]
         public IActionResult Listado()
         {
             List<Cliente> listado = new List<Cliente>();
@@ -30,7 +30,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQLThree))
+                using (var connection = new SqlConnection(ConnectSQL))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_lista_clientes", connection);
@@ -48,7 +48,7 @@ namespace D_AlturaSystemAPI.Controllers
                                 ruc = rd["ruc"].ToString(),
                                 telefono = rd["telefono"].ToString(),
                                 apellidos = rd["apellidos"].ToString(),
-                                estado = Convert.ToInt32(rd["estado"]),
+                                estado = rd["estado"].ToString(),
 
                             });
                         }
@@ -92,7 +92,7 @@ namespace D_AlturaSystemAPI.Controllers
                                 ruc = rd["ruc"].ToString(),
                                 telefono = rd["telefono"].ToString(),
                                 nombre = rd["nombre"].ToString(),
-                                estado = Convert.ToInt32(rd["estado"].ToString())
+                                estado = rd["estado"].ToString()
 
                             });
                         }
@@ -110,6 +110,57 @@ namespace D_AlturaSystemAPI.Controllers
         }
 
         [HttpGet]
+        [Route("BuscarCliente")]
+        public IActionResult BuscarCliente(string busqueda, string criterio)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectSQL))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand("pA_BusquedaCliente", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar los parámetros para el criterio y el valor de búsqueda
+                    cmd.Parameters.AddWithValue("@Busqueda", busqueda ?? string.Empty);
+             
+
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            clientes.Add(new Cliente()
+                            {
+                                idcliente = Convert.ToInt32(rd["idcliente"]),
+                                nombre = rd["nombre"].ToString(),
+                                apellidos = rd["apellidos"].ToString(),
+                                dni = rd["dni"].ToString(),
+                                ruc = rd["ruc"].ToString(),
+                                telefono = rd["telefono"].ToString(),
+                                estado = rd["estado"].ToString()
+                            });
+                        }
+                    }
+                }
+
+                if (clientes.Any())
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Clientes encontrados.", response = clientes });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "No se encontraron clientes.", response = clientes });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message, response = clientes });
+            }
+        }
+
+        [HttpGet]
         [Route("BuscarCliente/{idcliente:int}")]
 
         public IActionResult ObtenerClienteForVenta(int idcliente)
@@ -118,7 +169,7 @@ namespace D_AlturaSystemAPI.Controllers
 
             try
             {
-                using (var connection = new SqlConnection(ConnectSQLThree))
+                using (var connection = new SqlConnection(ConnectSQL))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_BuscarCliente", connection);
@@ -167,7 +218,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQLThree))
+                using (var connection = new SqlConnection(ConnectSQL))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_guardar_cliente", connection);
@@ -201,7 +252,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQLThree))
+                using (var connection = new SqlConnection(ConnectSQL))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_editar_cliente", connection);
@@ -211,7 +262,7 @@ namespace D_AlturaSystemAPI.Controllers
                     cmd.Parameters.AddWithValue("dni", objeto.dni is null ? DBNull.Value : objeto.dni);
                     cmd.Parameters.AddWithValue("ruc", objeto.ruc is null ? DBNull.Value : objeto.ruc);
                     cmd.Parameters.AddWithValue("telefono", objeto.telefono is null ? DBNull.Value : objeto.telefono);
-                    cmd.Parameters.AddWithValue("estado", objeto.estado == 0 ? DBNull.Value : objeto.activo);
+                    cmd.Parameters.AddWithValue("estado", objeto.estado is null ? DBNull.Value : objeto.estado);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
@@ -236,7 +287,7 @@ namespace D_AlturaSystemAPI.Controllers
             try
             {
 
-                using (var connection = new SqlConnection(ConnectSQLThree))
+                using (var connection = new SqlConnection(ConnectSQL))
                 {
                     connection.Open();
                     var cmd = new SqlCommand("pA_eliminar_cliente", connection);

@@ -19,6 +19,13 @@ builder.Services.AddCors(option => option.AddPolicy(name: MisReglasCors,
 ));
 
 
+var respaldosPath = Path.Combine(Directory.GetCurrentDirectory(), "Respaldos");
+if (!Directory.Exists(respaldosPath))
+{
+    Directory.CreateDirectory(respaldosPath);
+}
+
+
 builder.Services.AddControllers()
 .AddJsonOptions(options =>
 {

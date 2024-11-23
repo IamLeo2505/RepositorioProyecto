@@ -43,9 +43,9 @@ function listarClientes() {
 }
 
 // Función para obtener un cliente por ID
-async function obtenerCliente(id) {
+async function obtenerCliente(idcliente) {
     try {
-        const response = await fetch(`https://localhost:5000/api/Cliente/Obtener/${id}`);
+        const response = await fetch(`https://localhost:5000/api/Cliente/Obtener/${idcliente}`);
         if (!response.ok) throw new Error('Error al obtener el cliente');
 
         const data = await response.json();
@@ -69,8 +69,8 @@ async function obtenerCliente(id) {
 // Función para eliminar un cliente
 let isDeleting = false;
 
-function eliminarCliente(id) {
-    console.log(`Intentando eliminar cliente con ID: ${id}`);
+function eliminarCliente(idcliente) {
+    console.log(`Intentando eliminar cliente con ID: ${idcliente}`);
 
     if (isDeleting) {
         console.log('Ya se está procesando una solicitud de eliminación. Por favor, espera.');
@@ -84,7 +84,7 @@ function eliminarCliente(id) {
 
     isDeleting = true; // Marcamos que estamos en proceso de eliminación
 
-    fetch(`https://localhost:5000/api/Cliente/eliminar/${id}`, {
+    fetch(`https://localhost:5000/api/Cliente/EliminarDatos/${idcliente}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -185,12 +185,12 @@ document.getElementById('form-cliente').addEventListener('submit', async functio
 
 
 // Función para editar un cliente
-function editarCliente(id) {
+function editarCliente(idcliente) {
     // Prevenir la recarga de página accidental si el botón está dentro de un formulario
     event.preventDefault();  // Añadido para evitar recarga
 
     // Obtener la fila correspondiente al cliente
-    const fila = document.querySelector(`#cliente-${id}`);
+    const fila = document.querySelector(`#cliente-${idcliente}`);
     const celdas = fila.querySelectorAll('td');
 
     // Convertir las celdas en inputs para permitir la edición
@@ -204,12 +204,12 @@ function editarCliente(id) {
     // Cambiar el botón de "Editar" a "Guardar"
     const botones = celdas[6].querySelectorAll('button');
     botones[0].innerHTML = '<i class="fa fa-save"></i>';  // Cambiar a icono de guardar
-    botones[0].setAttribute('onclick', `guardarEdicion(${id})`);
+    botones[0].setAttribute('onclick', `guardarEdicion(${idcliente})`);
 }
 
-async function guardarEdicion(id) {
+async function guardarEdicion(idcliente) {
     // Obtener la fila correspondiente al cliente
-    const fila = document.querySelector(`#cliente-${id}`);
+    const fila = document.querySelector(`#cliente-${idcliente}`);
     const celdas = fila.querySelectorAll('td');
 
     // Obtener los valores de los campos editados
@@ -228,7 +228,7 @@ async function guardarEdicion(id) {
 
     // Objeto que vamos a enviar al backend
     const clienteData = {
-        idcliente: id,
+        idcliente: idcliente,
         nombre: nombre,
         apellidos: apellidos,
         ruc: ruc,
@@ -267,16 +267,16 @@ async function guardarEdicion(id) {
         alert('Cliente editado correctamente.');
 
         // Actualizar los valores en la tabla
-        celdas[0].innerText = nombre;
-        celdas[1].innerText = apellidos;
-        celdas[2].innerText = ruc;
-        celdas[3].innerText = dni;
-        celdas[4].innerText = telefono;
-        celdas[5].innerText = estado;
+        celdas[1].innerText = nombre;
+        celdas[2].innerText = apellidos;
+        celdas[3].innerText = ruc;
+        celdas[4].innerText = dni;
+        celdas[5].innerText = telefono;
+        celdas[6].innerText = estado;
 
         // Cambiar el botón de "Guardar" de vuelta a "Editar"
         celdas[6].querySelector('button').innerHTML = 'Editar';
-        celdas[6].querySelector('button').setAttribute('onclick', `editarCliente(${id})`);
+        celdas[6].querySelector('button').setAttribute('onclick', `editarCliente(${idcliente})`);
 
         // Opcional: remover la clase después de un breve tiempo para que el color verde desaparezca
         setTimeout(() => {
