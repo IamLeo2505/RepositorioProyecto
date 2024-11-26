@@ -309,6 +309,12 @@ namespace ProyectoParaReportes {
             
             private global::System.Data.DataColumn columncantidad;
             
+            private global::System.Data.DataColumn columnusuario;
+            
+            private global::System.Data.DataColumn columnnombrecliente;
+            
+            private global::System.Data.DataColumn columnnombreproducto;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public vVentasDataTable() {
@@ -458,6 +464,30 @@ namespace ProyectoParaReportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn usuarioColumn {
+                get {
+                    return this.columnusuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn nombreclienteColumn {
+                get {
+                    return this.columnnombrecliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn nombreproductoColumn {
+                get {
+                    return this.columnnombreproducto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -493,7 +523,24 @@ namespace ProyectoParaReportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public vVentasRow AddvVentasRow(string num_documento, int idventa, int idcliente, int idusuario, decimal total, decimal subtotal, decimal iva, string estado, System.DateTime fecha, string nombre, string apellidos, string NombredelProducto, decimal precio_venta, int cantidad) {
+            public vVentasRow AddvVentasRow(
+                        string num_documento, 
+                        int idventa, 
+                        int idcliente, 
+                        int idusuario, 
+                        decimal total, 
+                        decimal subtotal, 
+                        decimal iva, 
+                        string estado, 
+                        System.DateTime fecha, 
+                        string nombre, 
+                        string apellidos, 
+                        string NombredelProducto, 
+                        decimal precio_venta, 
+                        int cantidad, 
+                        string usuario, 
+                        string nombrecliente, 
+                        string nombreproducto) {
                 vVentasRow rowvVentasRow = ((vVentasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         num_documento,
@@ -509,7 +556,10 @@ namespace ProyectoParaReportes {
                         apellidos,
                         NombredelProducto,
                         precio_venta,
-                        cantidad};
+                        cantidad,
+                        usuario,
+                        nombrecliente,
+                        nombreproducto};
                 rowvVentasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowvVentasRow);
                 return rowvVentasRow;
@@ -546,6 +596,9 @@ namespace ProyectoParaReportes {
                 this.columnNombredelProducto = base.Columns["NombredelProducto"];
                 this.columnprecio_venta = base.Columns["precio_venta"];
                 this.columncantidad = base.Columns["cantidad"];
+                this.columnusuario = base.Columns["usuario"];
+                this.columnnombrecliente = base.Columns["nombrecliente"];
+                this.columnnombreproducto = base.Columns["nombreproducto"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -579,12 +632,23 @@ namespace ProyectoParaReportes {
                 base.Columns.Add(this.columnprecio_venta);
                 this.columncantidad = new global::System.Data.DataColumn("cantidad", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncantidad);
+                this.columnusuario = new global::System.Data.DataColumn("usuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusuario);
+                this.columnnombrecliente = new global::System.Data.DataColumn("nombrecliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnombrecliente);
+                this.columnnombreproducto = new global::System.Data.DataColumn("nombreproducto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnombreproducto);
                 this.columnnum_documento.MaxLength = 7;
                 this.columnidventa.AllowDBNull = false;
+                this.columnidcliente.AllowDBNull = false;
+                this.columnidusuario.AllowDBNull = false;
                 this.columnestado.MaxLength = 20;
                 this.columnnombre.MaxLength = 50;
                 this.columnapellidos.MaxLength = 50;
                 this.columnNombredelProducto.MaxLength = 50;
+                this.columnusuario.MaxLength = 20;
+                this.columnnombrecliente.MaxLength = 50;
+                this.columnnombreproducto.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -756,12 +820,7 @@ namespace ProyectoParaReportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int idcliente {
                 get {
-                    try {
-                        return ((int)(this[this.tablevVentas.idclienteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'idcliente\' de la tabla \'vVentas\' es DBNull.", e);
-                    }
+                    return ((int)(this[this.tablevVentas.idclienteColumn]));
                 }
                 set {
                     this[this.tablevVentas.idclienteColumn] = value;
@@ -772,12 +831,7 @@ namespace ProyectoParaReportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int idusuario {
                 get {
-                    try {
-                        return ((int)(this[this.tablevVentas.idusuarioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'idusuario\' de la tabla \'vVentas\' es DBNull.", e);
-                    }
+                    return ((int)(this[this.tablevVentas.idusuarioColumn]));
                 }
                 set {
                     this[this.tablevVentas.idusuarioColumn] = value;
@@ -946,6 +1000,54 @@ namespace ProyectoParaReportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string usuario {
+                get {
+                    try {
+                        return ((string)(this[this.tablevVentas.usuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'usuario\' de la tabla \'vVentas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevVentas.usuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string nombrecliente {
+                get {
+                    try {
+                        return ((string)(this[this.tablevVentas.nombreclienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombrecliente\' de la tabla \'vVentas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevVentas.nombreclienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string nombreproducto {
+                get {
+                    try {
+                        return ((string)(this[this.tablevVentas.nombreproductoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombreproducto\' de la tabla \'vVentas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevVentas.nombreproductoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool Isnum_documentoNull() {
                 return this.IsNull(this.tablevVentas.num_documentoColumn);
             }
@@ -954,30 +1056,6 @@ namespace ProyectoParaReportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void Setnum_documentoNull() {
                 this[this.tablevVentas.num_documentoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsidclienteNull() {
-                return this.IsNull(this.tablevVentas.idclienteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetidclienteNull() {
-                this[this.tablevVentas.idclienteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsidusuarioNull() {
-                return this.IsNull(this.tablevVentas.idusuarioColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetidusuarioNull() {
-                this[this.tablevVentas.idusuarioColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1098,6 +1176,42 @@ namespace ProyectoParaReportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetcantidadNull() {
                 this[this.tablevVentas.cantidadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsusuarioNull() {
+                return this.IsNull(this.tablevVentas.usuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetusuarioNull() {
+                this[this.tablevVentas.usuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsnombreclienteNull() {
+                return this.IsNull(this.tablevVentas.nombreclienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetnombreclienteNull() {
+                this[this.tablevVentas.nombreclienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsnombreproductoNull() {
+                return this.IsNull(this.tablevVentas.nombreproductoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetnombreproductoNull() {
+                this[this.tablevVentas.nombreproductoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1274,6 +1388,9 @@ namespace ProyectoParaReportes.dsVentaIDTableAdapters {
             tableMapping.ColumnMappings.Add("NombredelProducto", "NombredelProducto");
             tableMapping.ColumnMappings.Add("precio_venta", "precio_venta");
             tableMapping.ColumnMappings.Add("cantidad", "cantidad");
+            tableMapping.ColumnMappings.Add("usuario", "usuario");
+            tableMapping.ColumnMappings.Add("nombrecliente", "nombrecliente");
+            tableMapping.ColumnMappings.Add("nombreproducto", "nombreproducto");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

@@ -318,15 +318,15 @@ namespace D_AlturaSystemAPI.Controllers
 
             if (datos.Rows.Count == 0)
             {
-                return NotFound("No se encontró la factura con el ID proporcionado.");
+                return NotFound("No se encontró la venta con el ID proporcionado.");
             }
 
             // Ruta al archivo RDLC en el proyecto Reportes2
-            string pathRDLC = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Ventas.rdlc");
+            string pathRDLC = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "VentaID.rdlc");
 
             // Configurar LocalReport usando AspNetCore.Reporting
             LocalReport report = new LocalReport(pathRDLC);
-            report.AddDataSource("dsVentas", datos);  // Nombre del DataSet en el archivo RDLC
+            report.AddDataSource("dsVentaID", datos);  // Nombre del DataSet en el archivo RDLC
 
             // Renderizar el reporte en formato PDF
             var result = report.Execute(RenderType.Pdf, 1);
@@ -362,7 +362,7 @@ namespace D_AlturaSystemAPI.Controllers
             }
 
             // Ruta al archivo RDLC en el proyecto Reportes
-            string pathRDLC = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "Compras.rdlc");
+            string pathRDLC = Path.Combine(Directory.GetCurrentDirectory(), "Reportes", "ComprasID.rdlc");
 
             // Configurar LocalReport usando AspNetCore.Reporting
             LocalReport report = new LocalReport(pathRDLC);

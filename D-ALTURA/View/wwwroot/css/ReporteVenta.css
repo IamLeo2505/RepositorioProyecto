@@ -16,7 +16,7 @@ header {
     align-items: center;
 }
 
-.filtro-categoria {
+.filtro-venta {
     margin: 20px 0;
     display: flex;
     align-items: center;
@@ -24,7 +24,7 @@ header {
     
 }
 
-#idcategoria {
+#idventa {
     padding: 5px;
     font-size: 15px;
     width: 200px;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/interfazprincipal.css">
     <title>Café de Altura - Reporte</title>
-    <link rel="stylesheet" href="/css/ReporteProveedores.css">
+    <link rel="stylesheet" href="/css/ReporteCrédito.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -56,7 +56,6 @@
                 <li><a href="ReporteCompra.html">Reporte de Compras de Productos</a></li>
                 <li><a href="ReporteCrédito.html">Reporte de Crédito</a></li>
                 <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
-                <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
                 <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
                 <li><a href="ReporteProductos.html">Reporte de Productos</a></li>
                 <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
@@ -67,17 +66,16 @@
 
         <main class="content">
             <div class="reporte-contenedor">
-                <h1>Reporte de Usuarios</h1>
+                <h1>Reporte de Crédito</h1>
                 <button id="reportegeneralbtn" class="btn-accion">Ver Reporte General</button>
 
-                <div class="filtro-usuario">
-                    <label for="idusuario">ID del Usuario:</label>
-                    <input type="text" id="idusuario" placeholder="Ingrese el ID del Empleado">
-                    <button id="reporteUsuarioBtn" class="btn-accion">Ver Reporte Por Usuario</button>
+                <div class="filtro-crédito">
+                    <label for="idusuario">ID del Crédito:</label>
+                    <input type="text" id="idcredito" placeholder="Ingrese el ID del Crédito">
+                    <button id="reporteCreditoBtn" class="btn-accion">Ver Reporte Por ID</button>
                 </div>
 
                 <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
-                <button id="descargarreporte" type="button">Descargar Reporte</button>
             </div>
         </main>
     </div>
@@ -90,11 +88,10 @@
         const descargarReporteBtn = document.getElementById('descargarreporte');
         const visorReporte = document.getElementById('visorReporte');
         const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
-        const reporteUsuarioBtn = document.getElementById('reporteUsuarioBtn'); // Botón para buscar por empleado
-        const UsuarioIdInput = document.getElementById('idusuario'); // Campo de ID del empleado
+        const reporteCreditoBtn = document.getElementById('reporteCreditoBtn'); 
+        const CreditoIdInput = document.getElementById('idcredito'); 
         
-        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteUsuarios'; // URL general para reportes de empleados
-        const apiUsuarioUrl = 'https://localhost:5000/api/Reportes/ReporteUsuarios'; // URL para reporte por ID de empleado
+        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteCrédito'; 
 
         function mostrarAlertaCargando(mensaje) {
             Swal.fire({
@@ -139,9 +136,9 @@
             });
         }
 
-        function visualizarReportePorUsuario(usuarioId) {
-            mostrarAlertaCargando("Generando reporte del empleado...");
-            fetch(`${apiUsuarioUrl}/${usuarioId}`, {
+        function visualizarReportePorCredito(idcredito) {
+            mostrarAlertaCargando("Generando reporte del crédito...");
+            fetch(`${apiBaseUrl}/${idcredito}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -150,7 +147,7 @@
             .then(response => {
                 cerrarAlerta();
                 if (!response.ok) {
-                    throw new Error('Error al cargar el reporte del empleado');
+                    throw new Error('Error al cargar el reporte del crédito');
                 }
                 return response.blob();
             })
@@ -161,62 +158,24 @@
             .catch(error => {
                 cerrarAlerta();
                 console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al cargar el reporte del empleado.', 'error');
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del Crédito.', 'error');
             });
         }
 
-        function descargarReporte(endpoint, nombreArchivo) {
-            mostrarAlertaCargando("Descargando reporte...");
-            fetch(endpoint, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => {
-                cerrarAlerta();
-                if (!response.ok) {
-                    throw new Error('Error al descargar el reporte');
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = nombreArchivo;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            })
-            .catch(error => {
-                cerrarAlerta();
-                console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
-            });
-        }
+        
 
         // Event Listeners
         reporteGeneralBtn.addEventListener('click', () => {
             visualizarReporteGeneral();
         });
 
-        reporteUsuarioBtn.addEventListener('click', () => {
-            const usuarioId = UsuarioIdInput.value.trim();
-            if (!usuarioId) {
-                Swal.fire('Advertencia', 'Por favor, ingrese un ID de empleado.', 'warning');
+        reporteCreditoBtn.addEventListener('click', () => {
+            const idcredito = CreditoIdInput.value.trim();
+            if (!idcredito) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un ID de Crédito.', 'warning');
                 return;
             }
-            visualizarReportePorUsuario(usuarioId);
-        });
-
-        descargarReporteBtn.addEventListener('click', () => {
-            const usuarioId = UsuarioIdInput.value.trim();
-            if (usuarioId) {
-                descargarReporte(`${apiUsuarioUrl}/${usuarioId}`, `ReporteEmpleado_${usuarioId}.pdf`);
-            } else {
-                descargarReporte(apiBaseUrl, 'ReporteUsuarios.pdf');
-            }
+            visualizarReportePorCredito(idcredito);
         });
     });
     </script>

@@ -24,6 +24,13 @@ header {
     
 }
 
+#nombrecliente {
+    padding: 5px;
+    font-size: 15px;
+    width: 220px;
+    border-radius: 10px;
+}
+
 #idcliente {
     padding: 5px;
     font-size: 15px;

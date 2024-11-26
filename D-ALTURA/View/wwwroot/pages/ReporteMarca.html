@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/interfazprincipal.css">
     <title>Café de Altura - Reporte</title>
-    <link rel="stylesheet" href="/css/ReporteProveedores.css">
+    <link rel="stylesheet" href="/css/ReporteMarca.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -56,7 +56,6 @@
                 <li><a href="ReporteCompra.html">Reporte de Compras de Productos</a></li>
                 <li><a href="ReporteCrédito.html">Reporte de Crédito</a></li>
                 <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
-                <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
                 <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
                 <li><a href="ReporteProductos.html">Reporte de Productos</a></li>
                 <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
@@ -70,14 +69,17 @@
                 <h1>Reporte de Marca</h1>
                 <button id="reportegeneralbtn" class="btn-accion">Ver Reporte General</button>
 
-                <div class="filtro-usuario">
+                <div class="filtro-marca">
                     <label for="idmarca">ID de la Marca:</label>
                     <input type="text" id="idmarca" placeholder="Ingrese el ID de la Marca">
                     <button id="reporteMarcaBtn" class="btn-accion">Ver Reporte Por Marca</button>
+
+                    <label for="nombremarca">Nombre de la Marca:</label>
+                    <input type="text" id="nombremarca" placeholder="Ingrese el nombre de la Marca">
+                    <button id="reporteNomMarcaBtn" class="btn-accion">Ver Reporte Por Nombre</button>
                 </div>
 
                 <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
-                <button id="descargarreporte" type="button">Descargar Reporte</button>
             </div>
         </main>
     </div>
@@ -90,11 +92,12 @@
         const descargarReporteBtn = document.getElementById('descargarreporte');
         const visorReporte = document.getElementById('visorReporte');
         const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
-        const reporteUsuarioBtn = document.getElementById('reporteUsuarioBtn'); // Botón para buscar por empleado
-        const UsuarioIdInput = document.getElementById('idusuario'); // Campo de ID del empleado
+        const reporteMarcaBtn = document.getElementById('reporteMarcaBtn'); 
+        const MarcaIdInput = document.getElementById('idmarca');
+        const NombreMarcaInput = document.getElementById('nombremarca');
+        const reporteNomMarcaBtn = document.getElementById('reporteNomMarcaBtn');
         
-        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteUsuarios'; // URL general para reportes de empleados
-        const apiUsuarioUrl = 'https://localhost:5000/api/Reportes/ReporteUsuarios'; // URL para reporte por ID de empleado
+        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteMarca'; // URL general para reportes de empleados
 
         function mostrarAlertaCargando(mensaje) {
             Swal.fire({
@@ -139,9 +142,9 @@
             });
         }
 
-        function visualizarReportePorUsuario(usuarioId) {
-            mostrarAlertaCargando("Generando reporte del empleado...");
-            fetch(`${apiUsuarioUrl}/${usuarioId}`, {
+        function visualizarReportePorID(idmarca) {
+            mostrarAlertaCargando("Generando reporte de la Marca...");
+            fetch(`${apiBaseUrl}/${idmarca}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -150,7 +153,7 @@
             .then(response => {
                 cerrarAlerta();
                 if (!response.ok) {
-                    throw new Error('Error al cargar el reporte del empleado');
+                    throw new Error('Error al cargar el reporte de la marca');
                 }
                 return response.blob();
             })
@@ -161,38 +164,34 @@
             .catch(error => {
                 cerrarAlerta();
                 console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al cargar el reporte del empleado.', 'error');
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte de la Marca.', 'error');
             });
         }
 
-        function descargarReporte(endpoint, nombreArchivo) {
-            mostrarAlertaCargando("Descargando reporte...");
-            fetch(endpoint, {
+
+        function visualizarReportePorNombre(nombremarca) {
+            mostrarAlertaCargando("Generando reporte de la Marca...");
+            fetch(`${apiBaseUrl}/${nombremarca}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => {
                 cerrarAlerta();
                 if (!response.ok) {
-                    throw new Error('Error al descargar el reporte');
+                    throw new Error('Error al cargar el reporte de la marca');
                 }
                 return response.blob();
             })
             .then(blob => {
                 const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = nombreArchivo;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
+                visorReporte.src = url;
             })
             .catch(error => {
                 cerrarAlerta();
                 console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte de la Marca.', 'error');
             });
         }
 
@@ -201,23 +200,25 @@
             visualizarReporteGeneral();
         });
 
-        reporteUsuarioBtn.addEventListener('click', () => {
-            const usuarioId = UsuarioIdInput.value.trim();
-            if (!usuarioId) {
-                Swal.fire('Advertencia', 'Por favor, ingrese un ID de empleado.', 'warning');
+        reporteMarcaBtn.addEventListener('click', () => {
+            const idmarca = MarcaIdInput.value.trim();
+            if (!idmarca) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un ID de una Marca.', 'warning');
                 return;
             }
-            visualizarReportePorUsuario(usuarioId);
+            visualizarReportePorID(idmarca);
         });
 
-        descargarReporteBtn.addEventListener('click', () => {
-            const usuarioId = UsuarioIdInput.value.trim();
-            if (usuarioId) {
-                descargarReporte(`${apiUsuarioUrl}/${usuarioId}`, `ReporteEmpleado_${usuarioId}.pdf`);
-            } else {
-                descargarReporte(apiBaseUrl, 'ReporteUsuarios.pdf');
+        reporteNomMarcaBtn.addEventListener('click', () => {
+            const nombremarca= NombreMarcaInput.value.trim();
+            if (!nombremarca) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un nombre de una Marca.', 'warning');
+                return;
             }
+            visualizarReportePorNombre(nombremarca);
         });
+
+    
     });
     </script>
 </body>

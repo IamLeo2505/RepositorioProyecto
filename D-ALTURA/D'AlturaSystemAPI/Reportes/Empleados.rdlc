@@ -101,7 +101,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -599,6 +598,21 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
+            <Image Name="Logo">
+              <Source>Embedded</Source>
+              <Value>LogoCafédeAltura</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.393cm</Top>
+              <Left>0.52365cm</Left>
+              <Height>1.5cm</Height>
+              <Width>1.5cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
           </ReportItems>
           <KeepTogether>true</KeepTogether>
           <Left>0.7747cm</Left>
@@ -611,21 +625,6 @@
             <BackgroundColor>SeaGreen</BackgroundColor>
           </Style>
         </Rectangle>
-        <Image Name="Logo">
-          <Source>Embedded</Source>
-          <Value>LogoCafédeAltura</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.393cm</Top>
-          <Left>1.29835cm</Left>
-          <Height>1.5cm</Height>
-          <Width>1.5cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
       </ReportItems>
       <Style>
         <Border>

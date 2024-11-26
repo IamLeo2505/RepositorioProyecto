@@ -16,16 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="dsClienteID.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>dsClienteID.xsd</DependentUpon>
-    </Compile>
-    <Compile Update="dsEmpleado.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>dsEmpleado.xsd</DependentUpon>
-    </Compile>
     <Compile Update="dsVentaID.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -34,14 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="dsClienteID.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsClienteID.Designer.cs</LastGenOutput>
-    </None>
-    <None Update="dsEmpleado.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsEmpleado.Designer.cs</LastGenOutput>
-    </None>
     <None Update="dsVentaID.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsVentaID.Designer.cs</LastGenOutput>

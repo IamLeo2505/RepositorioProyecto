@@ -56,7 +56,6 @@
                 <li><a href="ReporteCompra.html">Reporte de Compras de Productos</a></li>
                 <li><a href="ReporteCrédito.html">Reporte de Crédito</a></li>
                 <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
-                <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
                 <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
                 <li><a href="ReporteProductos.html">Reporte de Productos</a></li>
                 <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
@@ -74,10 +73,13 @@
                     <label for="idcliente">ID del Cliente:</label>
                     <input type="text" id="idcliente" placeholder="Ingrese el ID del cliente">
                     <button id="reporteClienteBtn" class="btn-accion">Ver Reporte Por Cliente</button>
+
+                    <label for="nombrecliente">Nombre del Cliente:</label>
+                    <input type="text" id="nombrecliente" placeholder="Ingrese el nombre del cliente">
+                    <button id="reporteNombreClienteBtn" class="btn-accion">Ver Reporte Por Nombre</button>
                 </div>
 
                 <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
-                <button id="descargarreporte" type="button">Descargar Reporte</button>
             </div>
         </main>
     </div>
@@ -90,8 +92,10 @@
         const descargarReporteBtn = document.getElementById('descargarreporte');
         const visorReporte = document.getElementById('visorReporte');
         const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
-        const reporteEmpleadoBtn = document.getElementById('reporteClienteBtn'); // Botón para buscar por empleado
+        const reporteClienteBtn= document.getElementById('reporteClienteBtn'); // Botón para buscar por empleado
         const clienteIdInput = document.getElementById('idcliente'); // Campo de ID del empleado
+        const nombreClienteInput = document.getElementById('nombrecliente');
+        const reporteNombreClienteBtn = document.getElementById('reporteNombreClienteBtn');
         
         const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteClientes'; // URL general para reportes de empleados
         const apiClienteUrl = 'https://localhost:5000/api/Reportes/ReporteCliente'; // URL para reporte por ID de empleado
@@ -165,6 +169,32 @@
             });
         }
 
+        function visualizarReportePorNombre(nombrecliente) {
+            mostrarAlertaCargando("Generando reporte del cliente...");
+            fetch(`${apiClienteUrl}/${nombrecliente}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte del cliente');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del cliente.', 'error');
+            });
+        }
+
         function descargarReporte(endpoint, nombreArchivo) {
             mostrarAlertaCargando("Descargando reporte...");
             fetch(endpoint, {
@@ -201,7 +231,7 @@
             visualizarReporteGeneral();
         });
 
-        reporteEmpleadoBtn.addEventListener('click', () => {
+        reporteClienteBtn.addEventListener('click', () => {
             const clienteId = clienteIdInput.value.trim();
             if (!clienteId) {
                 Swal.fire('Advertencia', 'Por favor, ingrese un ID de Cliente.', 'warning');
@@ -210,13 +240,13 @@
             visualizarReportePorCliente(clienteId);
         });
 
-        descargarReporteBtn.addEventListener('click', () => {
-            const clienteId = clienteIdInput.value.trim();
-            if (clienteId) {
-                descargarReporte(`${apiClienteUrl}/${clienteId}`, `ReporteCliente_${clienteId}.pdf`);
-            } else {
-                descargarReporte(apiBaseUrl, 'ReporteClientes.pdf');
+        reporteNombreClienteBtn.addEventListener('click', () => {
+            const nombrecliente = nombreClienteInput.value.trim();
+            if (!nombrecliente) {
+                Swal.fire('Advertencia', 'Por favor, ingrese el nombre de un Cliente.', 'warning');
+                return;
             }
+            visualizarReportePorNombre(nombrecliente);
         });
     });
     </script>
