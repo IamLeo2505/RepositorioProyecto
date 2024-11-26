@@ -58,6 +58,7 @@
                 <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
                 <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
                 <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
+                <li><a href="ReporteProductos.html">Reporte de Productos</a></li>
                 <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
                 <li><a href="ReporteUsuarios.html">Reporte de Usuarios</a></li>
                 <li><a href="ReporteVenta.html">Reporte de Ventas</a></li>  
@@ -68,15 +69,17 @@
             <div class="reporte-contenedor">
                 <h1>Reporte de Usuarios</h1>
                 <button id="reportegeneralbtn" class="btn-accion">Ver Reporte General</button>
-
                 <div class="filtro-usuario">
                     <label for="idusuario">ID del Usuario:</label>
-                    <input type="text" id="idusuario" placeholder="Ingrese el ID del Empleado">
+                    <input type="text" id="idusuario" placeholder="Ingrese el ID del Usuario">
                     <button id="reporteUsuarioBtn" class="btn-accion">Ver Reporte Por Usuario</button>
                 </div>
-
+                <div class="filtro-usuario">
+                    <label for="NombreEmpleado">Nombre del Empleado:</label>
+                    <input type="text" id="NombreEmpleado" placeholder="Ingrese el nombre del Empleado">
+                    <button id="reporteNombEmplBtn" class="btn-accion">Ver Reporte Por Empleado</button>
+                </div>
                 <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
-                <button id="descargarreporte" type="button">Descargar Reporte</button>
             </div>
         </main>
     </div>
@@ -91,6 +94,8 @@
         const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
         const reporteUsuarioBtn = document.getElementById('reporteUsuarioBtn'); // Botón para buscar por empleado
         const UsuarioIdInput = document.getElementById('idusuario'); // Campo de ID del empleado
+        const reporteNombEmplBtn = document.getElementById('reporteNombEmplBtn');
+        const empleadoNombreInput = document.getElementById('NombreEmpleado');
         
         const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteUsuarios'; // URL general para reportes de empleados
         const apiUsuarioUrl = 'https://localhost:5000/api/Reportes/ReporteUsuarios'; // URL para reporte por ID de empleado
@@ -139,8 +144,34 @@
         }
 
         function visualizarReportePorUsuario(usuarioId) {
-            mostrarAlertaCargando("Generando reporte del empleado...");
+            mostrarAlertaCargando("Generando reporte del usuario del empleado...");
             fetch(`${apiUsuarioUrl}/${usuarioId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte del empleado');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del empleado.', 'error');
+            });
+        }
+
+        function visualizarReportePorEmpleado(nombreempleado) {
+            mostrarAlertaCargando("Generando reporte del empleado...");
+            fetch(`${apiUsuarioUrl}/${nombreempleado}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -209,13 +240,14 @@
             visualizarReportePorUsuario(usuarioId);
         });
 
-        descargarReporteBtn.addEventListener('click', () => {
-            const usuarioId = UsuarioIdInput.value.trim();
-            if (usuarioId) {
-                descargarReporte(`${apiUsuarioUrl}/${usuarioId}`, `ReporteEmpleado_${usuarioId}.pdf`);
-            } else {
-                descargarReporte(apiBaseUrl, 'ReporteUsuarios.pdf');
+
+        reporteNombEmplBtn.addEventListener('click', () => {
+            const nombreempleado= empleadoNombreInput.value.trim();
+            if (!nombreempleado) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un nombre de empleado.', 'warning');
+                return;
             }
+            visualizarReportePorEmpleado(nombreempleado);
         });
     });
     </script>

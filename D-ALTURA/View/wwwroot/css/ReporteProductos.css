@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    
     box-sizing: border-box;
 }
 
@@ -17,7 +16,7 @@ header {
     align-items: center;
 }
 
-.filtro-usuario {
+.filtro-productos {
     margin: 20px 0;
     display: flex;
     align-items: center;
@@ -25,17 +24,17 @@ header {
     
 }
 
-#idusuario {
+#idproducto {
     padding: 5px;
     font-size: 15px;
-    width: 200px;
+    width: 210px;
     border-radius: 10px;
 }
 
-#NombreEmpleado {
+#VencimientoProducto{
     padding: 5px;
     font-size: 15px;
-    width: 240px;
+    width: 250px;
     border-radius: 10px;
 }
 

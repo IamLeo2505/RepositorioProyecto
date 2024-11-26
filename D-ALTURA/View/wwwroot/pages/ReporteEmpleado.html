@@ -58,6 +58,7 @@
                 <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
                 <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
                 <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
+                <li><a href="ReporteProductos.html">Reporte de Productos</a></li>
                 <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
                 <li><a href="ReporteUsuarios.html">Reporte de Usuarios</a></li>
                 <li><a href="ReporteVenta.html">Reporte de Ventas</a></li>  
@@ -72,11 +73,19 @@
                 <div class="filtro-empleado">
                     <label for="idempleado">ID del Empleado:</label>
                     <input type="text" id="idempleado" placeholder="Ingrese el ID del Empleado">
-                    <button id="reporteClienteBtn" class="btn-accion">Ver Reporte Por Empleado</button>
+                    <button id="reporteEmpleadoBtn" class="btn-accion">Ver Reporte Por ID</button>
+                    <label for="estadoEmpleado">Estado del Empleado:</label>
+                    <input type="text" id="estadoEmpleado" placeholder="Ingrese el estado del Empleado">
+                    <button id="reporteEstadoEmBtn" class="btn-accion">Ver Reporte Por Estado</button>
+                </div>
+                <div class="filtro-empleado">
+                    <label for="nombreEmpleado">Nombre del Empleado:</label>
+                    <input type="text" id="nombreEmpleado" placeholder="Ingrese el nombre del Empleado">
+                    <button id="reporteNombreEmBtn" class="btn-accion">Ver Reporte Por Nombre</button>
                 </div>
 
                 <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
-                <button id="descargarreporte" type="button">Descargar Reporte</button>
+                
             </div>
         </main>
     </div>
@@ -89,11 +98,17 @@
         const descargarReporteBtn = document.getElementById('descargarreporte');
         const visorReporte = document.getElementById('visorReporte');
         const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
-        const reporteEmpleadoBtn = document.getElementById('reporteClienteBtn'); // Botón para buscar por empleado
+        const reporteEmpleadoBtn = document.getElementById('reporteEmpleadoBtn'); // Botón para buscar por empleado
+        const reporteNombreEmpleadoBtn = document.getElementById('reporteNombreEmBtn')
         const empleadoIdInput = document.getElementById('idempleado'); // Campo de ID del empleado
+        const empleadoNombreInput = document.getElementById('nombreEmpleado');
+        const reporteEstadoEmBtn = document.getElementById('reporteEstadoEmBtn');
+        const empleadoEstadoInput = document.getElementById('estadoEmpleado');
         
         const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReportedeEmpleados'; // URL general para reportes de empleados
         const apiEmpleadoUrl = 'https://localhost:5000/api/Reportes/ReporteEmpleado'; // URL para reporte por ID de empleado
+        const apiNombreEmpleadoUrl = 'https:localhost:5000/api/Reportes/ReporteEmpleado';
+        const apiEstadoEmpleado = 'https:localhost:5000/api/Reportes/ReporteEmpleadoPor';
 
         function mostrarAlertaCargando(mensaje) {
             Swal.fire({
@@ -138,6 +153,58 @@
             });
         }
 
+        function visualizarReportePorEstado(estadoEmpleado) {
+            mostrarAlertaCargando("Generando reporte del estado del empleado...");
+            fetch(`${apiEstadoEmpleado}/${estadoEmpleado}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte del empleado');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del empleado.', 'error');
+            });
+        }
+
+        function visualizarReportePorNombreEmpleado(nombreEmpleado) {
+            mostrarAlertaCargando("Generando reporte del empleado...");
+            fetch(`${apiNombreEmpleadoUrl}/${nombreEmpleado}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte del empleado');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del empleado.', 'error');
+            });
+        }
+
         function visualizarReportePorEmpleado(empleadoId) {
             mostrarAlertaCargando("Generando reporte del empleado...");
             fetch(`${apiEmpleadoUrl}/${empleadoId}`, {
@@ -164,36 +231,6 @@
             });
         }
 
-        function descargarReporte(endpoint, nombreArchivo) {
-            mostrarAlertaCargando("Descargando reporte...");
-            fetch(endpoint, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => {
-                cerrarAlerta();
-                if (!response.ok) {
-                    throw new Error('Error al descargar el reporte');
-                }
-                return response.blob();
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = nombreArchivo;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            })
-            .catch(error => {
-                cerrarAlerta();
-                console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
-            });
-        }
 
         // Event Listeners
         reporteGeneralBtn.addEventListener('click', () => {
@@ -209,13 +246,22 @@
             visualizarReportePorEmpleado(empleadoId);
         });
 
-        descargarReporteBtn.addEventListener('click', () => {
-            const empleadoId = empleadoIdInput.value.trim();
-            if (empleadoId) {
-                descargarReporte(`${apiEmpleadoUrl}/${empleadoId}`, `ReporteEmpleado_${empleadoId}.pdf`);
-            } else {
-                descargarReporte(apiBaseUrl, 'ReporteEmpleados.pdf');
+        reporteNombreEmpleadoBtn.addEventListener('click', () => {
+            const nombreEmpleado= empleadoNombreInput.value.trim();
+            if (!nombreEmpleado) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un nombre de empleado.', 'warning');
+                return;
             }
+            visualizarReportePorNombreEmpleado(nombreEmpleado);
+        });
+
+        reporteEstadoEmBtn.addEventListener('click', () => {
+            const estadoEmpleado = empleadoEstadoInput.value.trim();
+            if (!estadoEmpleado) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un estado de empleado.', 'warning');
+                return;
+            }
+            visualizarReportePorEstado(estadoEmpleado);
         });
     });
     </script>

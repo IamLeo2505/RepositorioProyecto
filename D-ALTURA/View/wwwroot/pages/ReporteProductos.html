@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/interfazprincipal.css">
     <title>Café de Altura - Reporte</title>
-    <link rel="stylesheet" href="/css/ReporteProveedores.css">
+    <link rel="stylesheet" href="/css/ReporteProductos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -67,17 +67,19 @@
 
         <main class="content">
             <div class="reporte-contenedor">
-                <h1>Reporte de Proveedores</h1>
+                <h1>Reporte de Productos</h1>
                 <button id="reportegeneralbtn" class="btn-accion">Ver Reporte General</button>
 
-                <div class="filtro-proveedor">
-                    <label for="idusuario">ID del Proveedor:</label>
-                    <input type="text" id="idproveedor" placeholder="Ingrese el ID del Proveedor">
-                    <button id="reporteProveedorBtn" class="btn-accion">Ver Reporte Por Proveedor</button>
+                <div class="filtro-productos">
+                    <label for="idproducto">ID del Producto:</label>
+                    <input type="text" id="idproducto" placeholder="Ingrese el ID del Producto">
+                    <button id="reporteProductoIdBtn" class="btn-accion">Ver Reporte Por ID</button>
+                    <label for="VencimientoProducto">Fecha de Vencimiento del Producto:</label>
+                    <input type="date" id="VencimientoProducto">
+                    <button id="reporteVenProBtn" class="btn-accion">Ver Reporte Por Vencimiento</button>
                 </div>
-
                 <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
-                <button id="descargarreporte" type="button">Descargar Reporte</button>
+                
             </div>
         </main>
     </div>
@@ -90,11 +92,17 @@
         const descargarReporteBtn = document.getElementById('descargarreporte');
         const visorReporte = document.getElementById('visorReporte');
         const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
-        const reporteProveedorBtn = document.getElementById('reporteProveedorBtn'); // Botón para buscar por empleado
-        const ProveedorIdInput = document.getElementById('idproveedor'); // Campo de ID del empleado
+        const reporteProductoIdBtn = document.getElementById('reporteProductoIdBtn'); // Botón para buscar por empleado
+        const reporteVenProBtn = document.getElementById('reporteVenProBtn');
+
+        const productoIdInput = document.getElementById('idproducto'); // Campo de ID del empleado
+        const productoVenInput = document.getElementById('VencimientoProducto');
         
-        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteProveedores'; // URL general para reportes de empleados
-        const apiProveedorUrl = 'https://localhost:5000/api/Reportes/ReporteProveedor'; // URL para reporte por ID de empleado
+        
+        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteProductos'; // URL general para reportes de Productos
+        const apiProductoUrl = 'https://localhost:5000/api/Reportes/ReporteProducto'; // URL para reporte por ID y Vencimiento de producto
+       
+        
 
         function mostrarAlertaCargando(mensaje) {
             Swal.fire({
@@ -139,9 +147,9 @@
             });
         }
 
-        function visualizarReportePorProveedor(proveedorId) {
-            mostrarAlertaCargando("Generando reporte del proveedor...");
-            fetch(`${apiProveedorUrl}/${proveedorId}`, {
+        function visualizarReportePorID(idproducto) {
+            mostrarAlertaCargando("Generando reporte por ID del producto...");
+            fetch(`${apiProductoUrl}/${idproducto}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -150,7 +158,7 @@
             .then(response => {
                 cerrarAlerta();
                 if (!response.ok) {
-                    throw new Error('Error al cargar el reporte del proveedor');
+                    throw new Error('Error al cargar el reporte del producto');
                 }
                 return response.blob();
             })
@@ -161,63 +169,87 @@
             .catch(error => {
                 cerrarAlerta();
                 console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al cargar el reporte del proveedor.', 'error');
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del producto.', 'error');
             });
         }
 
-        function descargarReporte(endpoint, nombreArchivo) {
-            mostrarAlertaCargando("Descargando reporte...");
-            fetch(endpoint, {
+        function visualizarReportePorVenProd(VencimientoProducto) {
+            mostrarAlertaCargando("Generando reporte del producto...");
+            fetch(`${apiProductoUrl}/${VencimientoProducto}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => {
                 cerrarAlerta();
                 if (!response.ok) {
-                    throw new Error('Error al descargar el reporte');
+                    throw new Error('Error al cargar el reporte del producto');
                 }
                 return response.blob();
             })
             .then(blob => {
                 const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = nombreArchivo;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
+                visorReporte.src = url;
             })
             .catch(error => {
                 cerrarAlerta();
                 console.error('Error:', error);
-                Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del producto.', 'error');
             });
         }
+
+        function visualizarReportePorProducto(idproducto) {
+            mostrarAlertaCargando("Generando reporte del producto...");
+            fetch(`${apiProductoUrl}/${idproducto}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte del producto');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del producto.', 'error');
+            });
+        }
+
 
         // Event Listeners
         reporteGeneralBtn.addEventListener('click', () => {
             visualizarReporteGeneral();
         });
 
-        reporteProveedorBtn.addEventListener('click', () => {
-            const proveedorId = ProveedorIdInput.value.trim();
-            if (!proveedorId) {
-                Swal.fire('Advertencia', 'Por favor, ingrese un ID de proveedor.', 'warning');
+        reporteProductoIdBtn.addEventListener('click', () => {
+            const productoid = productoIdInput.value.trim();
+            if (!productoid) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un ID de producto.', 'warning');
                 return;
             }
-            visualizarReportePorProveedor(proveedorId);
+            visualizarReportePorProducto(productoid);
         });
 
-        descargarReporteBtn.addEventListener('click', () => {
-            const proveedorId = ProveedorIdInput.value.trim();
-            if (proveedorId) {
-                descargarReporte(`${apiProveedorUrl}/${proveedorId}`, `ReporteProveedor${proveedorId}.pdf`);
-            } else {
-                descargarReporte(apiBaseUrl, 'ReporteProveedores.pdf');
+        
+        reporteVenProBtn.addEventListener('click', () => {
+            const venproducto = productoVenInput.value.trim();
+            if (!venproducto) {
+                Swal.fire('Advertencia', 'Por favor, ingrese una fecha de vencimiento del producto.', 'warning');
+                return;
             }
+            visualizarReportePorVenProd(venproducto);
         });
+
     });
     </script>
 </body>

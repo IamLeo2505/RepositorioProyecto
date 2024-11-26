@@ -31,6 +31,22 @@ header {
     border-radius: 10px;
 }
 
+#estadoEmpleado{
+    padding: 5px;
+    font-size: 15px;
+    width: 240px;
+    border-radius: 10px;
+}
+
+#nombreEmpleado {
+    padding: 5px;
+    font-size: 15px;
+    width: 240px;
+    border-radius: 10px;
+}
+
+
+
 .btn-accion {
     background-color: #2e8b57;
     color: white;
