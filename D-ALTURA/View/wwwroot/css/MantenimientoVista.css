@@ -92,12 +92,12 @@ main .soporte {
 
 /* Estilo para el botón "guardar" */
 .botones .guardar i {
-    color: #ffffff; /* Verde para el ícono "subir" */
+    color: #0b3516; /* Verde para el ícono "subir" */
 }
 
 /* Estilo para el botón "cargar" */
 .botones .cargar i {
-    color: #2196f3; /* Azul para el ícono "bajar" */
+    color: #0c007b; /* Azul para el ícono "bajar" */
 }
 
 /* Efecto al pasar el cursor por encima */
@@ -106,11 +106,11 @@ main .soporte {
 }
 
 .botones .guardar:hover i {
-    color: #b5b5b5; /* Cambia el color al pasar el mouse */
+    color: #001b32; /* Cambia el color al pasar el mouse */
 }
 
 .botones .cargar:hover i {
-    color: #1e81d2; /* Cambia el color al pasar el mouse */
+    color: #001b32; /* Cambia el color al pasar el mouse */
 }
 
 .btn {

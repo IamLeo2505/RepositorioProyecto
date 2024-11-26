@@ -26,7 +26,7 @@ namespace D_AlturaSystemAPI.Controllers
 
         [HttpGet]
         [Route("CrearBackup")]
-        public async Task<IActionResult> CrearBackup()
+        public async Task<IActionResult> CrearBackupAsync()
         {
             try
             {
@@ -35,9 +35,9 @@ namespace D_AlturaSystemAPI.Controllers
 
                 // Comando SQL para crear el backup
                 var sqlComando = $@"
-            BACKUP DATABASE [SystemAlturaCoffee] 
-            TO DISK = '{rutaBackup}' 
-            WITH FORMAT, INIT, NAME = 'Backup-{DateTime.Now:yyyyMMddHHmmss}'";
+                BACKUP DATABASE [SystemAlturaCoffee] 
+                TO DISK = '{rutaBackup}' 
+                WITH FORMAT, INIT, NAME = 'Backup-{DateTime.Now:yyyyMMddHHmmss}'";
 
                 using (var conexion = new SqlConnection("ConnectSQL"))
                 {
@@ -59,7 +59,7 @@ namespace D_AlturaSystemAPI.Controllers
             }
         }
 
-        [HttpPost("restaurar-backup")]
+        [HttpPost("CargarBackup")]
         public async Task<IActionResult> RestaurarBackup(IFormFile backup)
         {
             try
@@ -78,9 +78,9 @@ namespace D_AlturaSystemAPI.Controllers
 
                 // Comando SQL para restaurar la base de datos
                 var sqlComando = $@"
-            RESTORE DATABASE [SystemAlturaCoffee]
-            FROM DISK = '{rutaTemporal}'
-            WITH REPLACE";
+                RESTORE DATABASE [SystemAlturaCoffee]
+                FROM DISK = '{rutaTemporal}'
+                WITH REPLACE";
 
                 using (var conexion = new SqlConnection("ConnectSQL"))
                 {

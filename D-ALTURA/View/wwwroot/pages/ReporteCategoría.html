@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/interfazprincipal.css">
+    <title>Café de Altura - Reporte</title>
+    <link rel="stylesheet" href="/css/ReporteCategoría.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/IMG/Logo - Café de Altura.png" alt="Café de Altura">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="/Venta.html">Facturación</a>
+                        <a href="/pages/VistaCompra.html">Adquisición</a>
+                        <a href="#">Inventario</a>
+                        <a href="/pages/VistaCredito.html">Crédito</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Recursos Humanos</a>
+                    <div class="dropdown-content">
+                        <a href="pages/RegistrarCliente.html">Clientes</a>
+                        <a href="/pages/VistaProveedores.html">Proveedores</a>
+                        <a href="RegistrarEmpleado.html">Empleados</a>
+                        <a href="registrarmarca.html">Marca</a>
+                        <a href="pages/usuarios.html">Usuarios</a>
+                        <a href="RegistrarCategoria.html">Categoría</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Ayuda</a>
+                    <div class="dropdown-content">
+                        <a href="MantenimientoVista.html">Mantenimiento</a>
+                        <a href="ReporteVista.html">Reportes</a>
+                        <a href="SoporteVista.html">Soporte</a>
+                    </div>
+                </li>
+                <li><a href="#">Acerca de</a></li>     
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="ReporteCategoría.html">Reporte de Categorías</a></li>
+                <li><a href="ReporteCliente.html">Reporte de Clientes</a></li>
+                <li><a href="ReporteCompra.html">Reporte de Compras de Productos</a></li>
+                <li><a href="ReporteCrédito.html">Reporte de Crédito</a></li>
+                <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
+                <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
+                <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
+                <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
+                <li><a href="ReporteUsuarios.html">Reporte de Usuarios</a></li>
+                <li><a href="ReporteVenta.html">Reporte de Ventas</a></li>  
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="reporte-contenedor">
+                <h1>Reporte de Categorías</h1>
+                <button id="reportegeneralbtn" class="btn-accion">Ver Reporte General</button>
+
+                <div class="filtro-categoria">
+                    <label for="idcategoria">ID de la Categoría:</label>
+                    <input type="text" id="idcategoria" placeholder="Ingrese el ID de la Categoría">
+                    <button id="ReporteCategoríaBtn" class="btn-accion">Ver Reporte Por Categoría</button>
+                </div>
+
+                <iframe id="visorReporte" class="visor-reporte" src="" frameborder="0"></iframe>
+                <button id="descargarreporte" type="button">Descargar Reporte</button>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 - 2024 Café de Altura</p>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const descargarReporteBtn = document.getElementById('descargarreporte');
+        const visorReporte = document.getElementById('visorReporte');
+        const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
+        const reporteCategoriaBtn = document.getElementById('ReporteCategoríaBtn'); // Botón para buscar por empleado
+        const categoriaIdInput = document.getElementById('idcategoria'); // Campo de ID del empleado
+        
+        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteCategoria'; // URL general para reportes de empleados
+        const apicategoriaurl = 'https://localhost:5000/api/Reportes/ReporteCategoria'; // URL para reporte por ID de empleado
+
+        function mostrarAlertaCargando(mensaje) {
+            Swal.fire({
+                title: mensaje,
+                text: "Por favor, espera...",
+                icon: "info",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+
+        function cerrarAlerta() {
+            Swal.close();
+        }
+
+        function visualizarReporteGeneral() {
+            mostrarAlertaCargando("Generando reporte general...");
+            fetch(apiBaseUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte general');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte general.', 'error');
+            });
+        }
+
+        function visualizarReportePorCategoria(categoriaId) {
+            mostrarAlertaCargando("Generando reporte de la categoría...");
+            fetch(`${apicategoriaurl}/${categoriaId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte de la categoría');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte de la categoría.', 'error');
+            });
+        }
+
+        function descargarReporte(endpoint, nombreArchivo) {
+            mostrarAlertaCargando("Descargando reporte...");
+            fetch(endpoint, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al descargar el reporte');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = nombreArchivo;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
+            });
+        }
+
+        // Event Listeners
+        reporteGeneralBtn.addEventListener('click', () => {
+            visualizarReporteGeneral();
+        });
+
+        reporteCategoriaBtn.addEventListener('click', () => {
+            const categoriaId = categoriaIdInput.value.trim();
+            if (!categoriaId) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un ID de categoría.', 'warning');
+                return;
+            }
+            visualizarReportePorCategoria(categoriaId);
+        });
+
+        descargarReporteBtn.addEventListener('click', () => {
+            const categoriaId = categoriaIdInput.value.trim();
+            if (categoriaId) {
+                descargarReporte(`${apicategoriaurl}/${categoriaId}`, `ReporteCategoría_${categoriaId}.pdf`);
+            } else {
+                descargarReporte(apiBaseUrl, 'ReporteCategorías.pdf');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

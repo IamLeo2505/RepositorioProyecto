@@ -26,9 +26,9 @@
                     <a href="#" class="dropbtn">Recursos Humanos</a>
                     <div class="dropdown-content">
                         <a href="pages/RegistrarCliente.html">Clientes</a>
-                        <a href="#">Proveedores</a>
+                        <a href="pages/VistaProveedores.html">Proveedores</a>
                         <a href="#">Inventario</a>
-                        <a href="RegistrarEmpleado.html">Empleados</a>
+                        <a href="pages/VistaEmpleado.html">Empleados</a>
                         <a href="registrarmarca.html">Marca</a>
                         <a href="pages/usuarios.html">Usuarios</a>
                         <a href="RegistrarCategoria.html">Categoría</a>
@@ -51,20 +51,23 @@
         <section class="soporte">
             <h1>Formulario de Mantenimiento</h1>
             <div class="botones">
-                <button class="btn-guardar">
+                <button id="btn-guardar-backup" class="btn guardar">
                     <i class="fa-solid fa-cloud-arrow-down"></i>
                     <h3>Guardar respaldo</h3>
                 </button>
-                <button class="btn-cargar">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                <button id="btn-cargar-backup" class="btn cargar">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
                     <h3>Cargar respaldo</h3>
                 </button>
+                <input type="file" id="file-upload" style="display: none;">
             </div>
+            
         </section>
     </main>
 
     <footer>
         <p>&copy; 2023 - 2024 Café de Altura</p>
     </footer>
+    <script src="js/Mantenimiento.js"></script>
 </body>
 </html>

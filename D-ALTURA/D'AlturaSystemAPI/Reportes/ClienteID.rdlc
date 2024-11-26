@@ -6,22 +6,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.09078cm</Width>
+              <Width>2.21195cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.12795cm</Width>
+              <Width>3.24912cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.65711cm</Width>
+              <Width>3.77828cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.15428cm</Width>
+              <Width>2.27545cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.15428cm</Width>
+              <Width>2.27545cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.32877cm</Width>
+              <Width>1.44994cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -38,7 +38,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Nombre</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -50,6 +52,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -68,7 +71,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Apellidos</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -80,6 +85,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -98,7 +104,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Cédula</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -110,6 +118,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -128,7 +137,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>RUC</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -140,6 +151,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -158,7 +170,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Teléfono</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -170,6 +184,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -188,7 +203,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Estado</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -200,6 +217,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -223,7 +241,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!nombre.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -253,7 +273,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!apellidos.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -283,7 +305,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!dni.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -313,7 +337,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!ruc.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -343,7 +369,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!telefono.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -373,7 +401,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!activo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -419,9 +449,9 @@
         </TablixRowHierarchy>
         <DataSetName>dsClienteID</DataSetName>
         <Top>0.17639cm</Top>
-        <Left>1.09926cm</Left>
+        <Left>0.66002cm</Left>
         <Height>1.45964cm</Height>
-        <Width>14.51316cm</Width>
+        <Width>15.24022cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -432,116 +462,148 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>6.59293in</Width>
+  <Width>6.25994in</Width>
   <Page>
     <PageHeader>
-      <Height>2.52333cm</Height>
+      <Height>2.73848cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox1">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>REPORTE DE CLIENTE</Value>
+        <Rectangle Name="Rectangle1">
+          <ReportItems>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>REPORTE DEL CLIENTE</Value>
+                      <Style>
+                        <FontFamily>Bell MT</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.96633cm</Top>
+              <Left>5.9181cm</Left>
+              <Height>0.6cm</Height>
+              <Width>5.39983cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Logo">
+              <Source>Embedded</Source>
+              <Value>LogoCafédeAltura</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.06633cm</Top>
+              <Left>0.43175cm</Left>
+              <Height>1.5cm</Height>
+              <Width>1.65903cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Cliente NO.</Value>
+                      <Style>
+                        <FontFamily>Bell MT</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
                   <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.50403cm</Top>
-          <Left>6.8942cm</Left>
-          <Height>0.6cm</Height>
-          <Width>4.38384cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox2">
-          <CanGrow>true</CanGrow>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>1.84921cm</Top>
+              <Left>0.43175cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.5cm</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox9">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Sum(Fields!idcliente.Value, "dsClienteID")</Value>
+                      <Style>
+                        <FontFamily>Bell MT</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox9</rd:DefaultName>
+              <Top>1.84921cm</Top>
+              <Left>2.76008cm</Left>
+              <Height>0.6cm</Height>
+              <Width>0.55267cm</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
           <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Cliente NO.</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>1.67639cm</Top>
-          <Left>0.66887cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
-          <ZIndex>1</ZIndex>
+          <Left>0.66002cm</Left>
+          <Height>2.73848cm</Height>
+          <Width>15.24022cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
+            <BackgroundColor>SeaGreen</BackgroundColor>
           </Style>
-        </Textbox>
-        <Textbox Name="Textbox9">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Sum(Fields!idcliente.Value, "dsClienteID")</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox9</rd:DefaultName>
-          <Top>1.67639cm</Top>
-          <Left>2.63737cm</Left>
-          <Height>0.6cm</Height>
-          <Width>0.55267cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Image Name="Logo">
-          <Source>Embedded</Source>
-          <Value>LogoCafédeAltura</Value>
-          <Sizing>FitProportional</Sizing>
-          <Left>0.66887cm</Left>
-          <Height>1.5cm</Height>
-          <Width>1.5cm</Width>
-          <ZIndex>3</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
+        </Rectangle>
       </ReportItems>
       <Style>
         <Border>

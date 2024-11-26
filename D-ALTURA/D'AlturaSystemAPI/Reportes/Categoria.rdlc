@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.57925cm</Width>
+              <Width>1.09242cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>9.38975cm</Width>
+              <Width>4.86008cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -26,10 +26,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>ID</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -38,6 +44,8 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -56,10 +64,16 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Descripción</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -68,6 +82,8 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -91,10 +107,15 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!idcategoria.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>idcategoria</rd:DefaultName>
@@ -103,6 +124,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -121,10 +143,15 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!descripcion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>descripcion</rd:DefaultName>
@@ -133,6 +160,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -162,10 +190,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsCategoria</DataSetName>
-        <Top>0.85937cm</Top>
-        <Left>3.5687cm</Left>
+        <Top>0.17639cm</Top>
+        <Left>0.1677cm</Left>
         <Height>1.2cm</Height>
-        <Width>10.969cm</Width>
+        <Width>5.9525cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -179,54 +207,74 @@
   <Width>6.5in</Width>
   <Page>
     <PageHeader>
-      <Height>2.54cm</Height>
+      <Height>2.56209cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox1">
-          <CanGrow>true</CanGrow>
+        <Rectangle Name="Rectangle1">
+          <ReportItems>
+            <Textbox Name="Textbox3">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>REPORTE DE CATEGORÍAS</Value>
+                      <Style>
+                        <FontFamily>Bell MT</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.78994cm</Top>
+              <Left>4.74667cm</Left>
+              <Height>0.6cm</Height>
+              <Width>6.77566cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Logo2">
+              <Source>Embedded</Source>
+              <Value>LogoCafédeAltura</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.53104cm</Top>
+              <Left>0.45822cm</Left>
+              <Height>1.5cm</Height>
+              <Width>1.5cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+          </ReportItems>
           <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Reporte de Categorías </Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>1.45203cm</Top>
-          <Left>5.4737cm</Left>
-          <Height>0.6cm</Height>
-          <Width>4.44733cm</Width>
+          <Left>0.1677cm</Left>
+          <Height>2.56209cm</Height>
+          <Width>16.1746cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
+            <BackgroundColor>SeaGreen</BackgroundColor>
           </Style>
-        </Textbox>
-        <Image Name="Logo">
-          <Source>Embedded</Source>
-          <Value>LogoCafédeAltura</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.52cm</Top>
-          <Left>0.5835cm</Left>
-          <Height>1.5cm</Height>
-          <Width>1.5cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
+        </Rectangle>
       </ReportItems>
       <Style>
         <Border>

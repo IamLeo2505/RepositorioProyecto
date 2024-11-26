@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="IMG/Logo - Café de Altura.png" alt="Café de Altura">
+            <img src="/IMG/Logo - Café de Altura.png" alt="Café de Altura">
         </div>
         <nav class="navbar">
             <ul>
@@ -51,15 +51,16 @@
     <div class="container">
         <aside class="sidebar">
             <ul>
+                <li><a href="ReporteCategoría.html">Reporte de Categorías</a></li>
                 <li><a href="ReporteCliente.html">Reporte de Clientes</a></li>
-                <li><a href="#">Reporte de Empleados</a></li>
-                <li><a href="#">Reporte de Usuarios</a></li>
-                <li><a href="#">Reporte de Proveedores</a></li>
-                <li><a href="#">Reporte de Compras de Productos</a></li>
-                <li><a href="#">Reporte de Ventas</a></li>
-                <li><a href="#">Reporte de Inventario</a></li>
-                <li><a href="#">Reporte de Crédito</a></li>
-                <li><a href="#">Reporte de Marca</a></li>
+                <li><a href="ReporteCompra.html">Reporte de Compras de Productos</a></li>
+                <li><a href="ReporteCrédito.html">Reporte de Crédito</a></li>
+                <li><a href="ReporteEmpleado.html">Reporte de Empleados</a></li>
+                <li><a href="ReporteInventario.html">Reporte de Inventario</a></li>
+                <li><a href="ReporteMarca.html">Reporte de Marca</a></li>
+                <li><a href="ReporteProveedores.html">Reporte de Proveedores</a></li>
+                <li><a href="ReporteUsuarios.html">Reporte de Usuarios</a></li>
+                <li><a href="ReporteVenta.html">Reporte de Ventas</a></li>  
             </ul>
         </aside>
 
@@ -69,8 +70,8 @@
                 <button id="reportegeneralbtn" class="btn-accion">Ver Reporte General</button>
 
                 <div class="filtro-cliente">
-                    <label for="clienteID">ID del Cliente:</label>
-                    <input type="text" id="clienteId" placeholder="Ingrese el ID del cliente">
+                    <label for="idcliente">ID del Cliente:</label>
+                    <input type="text" id="idcliente" placeholder="Ingrese el ID del cliente">
                     <button id="reporteClienteBtn" class="btn-accion">Ver Reporte Por Cliente</button>
                 </div>
 
@@ -84,139 +85,137 @@
         <p>&copy; 2023 - 2024 Café de Altura</p>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const descargarReporteBtn = document.getElementById('descargarreporte');
-            const visorReporte = document.getElementById('visorReporte');
-            const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
-            const reporteClienteBtn = document.getElementById('reporteClienteBtn');
-            const clienteIdInput = document.getElementById('clienteId');
-           
-            const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteClientes'; // Ajusta la URL a tu API real
-
-            function mostrarAlertaCargando(mensaje) {
-                Swal.fire({
-                    title: mensaje,
-                    text: "Por favor, espera...",
-                    icon: "info",
-                    allowOutsideClick: false,
-                    showConfirmButton: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
-                });
-            }
-
-            function cerrarAlerta() {
-                Swal.close();
-            }
-
-            function visualizarReporte() {
-                mostrarAlertaCargando("Generando reporte...");
-                fetch(apiBaseUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    cerrarAlerta();
-                    if (!response.ok) {
-                        throw new Error('Error al cargar el reporte');
-                    }
-                    return response.blob();
-                })
-                .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
-                    visorReporte.src = url;
-                })
-                .catch(error => {
-                    cerrarAlerta();
-                    console.error('Error:', error);
-                    Swal.fire('Error', 'Hubo un problema al cargar el reporte.', 'error');
-                });
-            }
-
-            function visualizarReporteCliente(clienteIdInput) {
-    mostrarAlertaCargando("Generando reporte de cliente...");
-    fetch(`https://localhost:5000/api/Reportes/ReporteCliente/${clienteIdInput}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        cerrarAlerta();
-        if (!response.ok) {
-            throw new Error('Error al cargar el reporte del cliente');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
+          document.addEventListener('DOMContentLoaded', () => {
+        const descargarReporteBtn = document.getElementById('descargarreporte');
         const visorReporte = document.getElementById('visorReporte');
-        visorReporte.src = url;
-    })
-    .catch(error => {
-        cerrarAlerta();
-        console.error('Error:', error);
-        Swal.fire('Error', 'Hubo un problema al cargar el reporte del cliente.', 'error');
-    });
-}
+        const reporteGeneralBtn = document.getElementById('reportegeneralbtn');
+        const reporteEmpleadoBtn = document.getElementById('reporteClienteBtn'); // Botón para buscar por empleado
+        const clienteIdInput = document.getElementById('idcliente'); // Campo de ID del empleado
+        
+        const apiBaseUrl = 'https://localhost:5000/api/Reportes/ReporteClientes'; // URL general para reportes de empleados
+        const apiClienteUrl = 'https://localhost:5000/api/Reportes/ReporteCliente'; // URL para reporte por ID de empleado
 
-            function descargarReporte(endpoint, nombreArchivo) {
-                mostrarAlertaCargando("Descargando reporte...");
-                fetch(endpoint, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                })
-                .then(response => {
-                    cerrarAlerta();
-                    if (!response.ok) {
-                        throw new Error('Error al descargar el reporte');
-                    }
-                    return response.blob();
-                })
-                .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = nombreArchivo;
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                })
-                .catch(error => {
-                    cerrarAlerta();
-                    console.error('Error:', error);
-                    Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
-                });
+        function mostrarAlertaCargando(mensaje) {
+            Swal.fire({
+                title: mensaje,
+                text: "Por favor, espera...",
+                icon: "info",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+
+        function cerrarAlerta() {
+            Swal.close();
+        }
+
+        function visualizarReporteGeneral() {
+            mostrarAlertaCargando("Generando reporte general...");
+            fetch(apiBaseUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte general');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte general.', 'error');
+            });
+        }
+
+        function visualizarReportePorCliente(clienteId) {
+            mostrarAlertaCargando("Generando reporte del cliente...");
+            fetch(`${apiClienteUrl}/${clienteId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al cargar el reporte del empleado');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                visorReporte.src = url;
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar el reporte del empleado.', 'error');
+            });
+        }
+
+        function descargarReporte(endpoint, nombreArchivo) {
+            mostrarAlertaCargando("Descargando reporte...");
+            fetch(endpoint, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                cerrarAlerta();
+                if (!response.ok) {
+                    throw new Error('Error al descargar el reporte');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = nombreArchivo;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(error => {
+                cerrarAlerta();
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema al descargar el reporte.', 'error');
+            });
+        }
+
+        // Event Listeners
+        reporteGeneralBtn.addEventListener('click', () => {
+            visualizarReporteGeneral();
+        });
+
+        reporteEmpleadoBtn.addEventListener('click', () => {
+            const clienteId = clienteIdInput.value.trim();
+            if (!clienteId) {
+                Swal.fire('Advertencia', 'Por favor, ingrese un ID de Cliente.', 'warning');
+                return;
             }
+            visualizarReportePorCliente(clienteId);
+        });
 
-            reporteGeneralBtn.addEventListener('click', () => {
-                
-                visualizarReporte(apiBaseUrl);
-            });
-
-
-            reporteClienteBtn.addEventListener('click', () => {
-                const clienteId = clienteIdInput.value.trim();
-                if (!clienteId) {
-                    Swal.fire('Advertencia', 'Por favor, ingrese un ID de cliente.', 'warning');
-                    return;
-                }
-                visualizarReporte(clienteIdInput);
-            });
-
-            descargarReporteBtn.addEventListener('click', () => {
-                const clienteId = clienteIdInput.value.trim();
-                if (clienteId){
+        descargarReporteBtn.addEventListener('click', () => {
+            const clienteId = clienteIdInput.value.trim();
+            if (clienteId) {
                 descargarReporte(`${apiClienteUrl}/${clienteId}`, `ReporteCliente_${clienteId}.pdf`);
-
-                } else {
-                    descargarReporte(apiBaseUrl, 'ReporteClientes.pdf');
-                }
+            } else {
+                descargarReporte(apiBaseUrl, 'ReporteClientes.pdf');
+            }
         });
     });
     </script>

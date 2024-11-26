@@ -1,5 +1,5 @@
-document.getElementById('btn-guardar').addEventListener('click', () => {
-    fetch('/api/backup/crear-backup')
+document.getElementById('btn-guardar-backup').addEventListener('click', () => {
+    fetch('https://localhost:5000/api/Backup/CrearBackup')
         .then(response => response.blob())
         .then(blob => {
             const url = window.URL.createObjectURL(blob);
@@ -11,14 +11,14 @@ document.getElementById('btn-guardar').addEventListener('click', () => {
         .catch(error => console.error('Error al guardar el respaldo:', error));
 });
 
-document.getElementById('btn-cargar').addEventListener('change', (event) => {
+document.getElementById('btn-cargar-backup').addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
     const formData = new FormData();
     formData.append('backup', file);
 
-    fetch('/api/backup/restaurar-backup', {
+    fetch('https://localhost:5000/api/Backup/CargarBackup', {
         method: 'POST',
         body: formData
     })

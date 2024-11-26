@@ -6,25 +6,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.18747cm</Width>
+              <Width>1.13987cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.4524cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.4524cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.49766cm</Width>
+              <Width>3.45006cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.4524cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.4524cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.82267cm</Width>
+              <Width>1.77507cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -41,10 +41,15 @@
                           <TextRuns>
                             <TextRun>
                               <Value>ID</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -53,6 +58,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -70,11 +76,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>nombre</Value>
-                              <Style />
+                              <Value>Nombre</Value>
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -83,12 +94,14 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -100,11 +113,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>apellidos</Value>
-                              <Style />
+                              <Value>Apellidos</Value>
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -113,6 +130,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -130,11 +148,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>dni</Value>
-                              <Style />
+                              <Value>Cédula</Value>
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -143,6 +166,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -160,11 +184,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>telefono</Value>
-                              <Style />
+                              <Value>Teléfono</Value>
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox10</rd:DefaultName>
@@ -173,6 +202,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -190,11 +220,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>direccion</Value>
-                              <Style />
+                              <Value>Dirección</Value>
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox12</rd:DefaultName>
@@ -203,6 +238,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -220,11 +256,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>estado</Value>
-                              <Style />
+                              <Value>Estado</Value>
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox14</rd:DefaultName>
@@ -233,6 +274,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -256,10 +298,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!idempleado.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>idempleado</rd:DefaultName>
@@ -268,6 +314,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -286,7 +333,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!nombre.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -316,7 +365,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!apellidos.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -346,7 +397,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!dni.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -376,7 +429,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!telefono.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -406,7 +461,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!direccion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -436,7 +493,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!estado.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Bell MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -485,7 +544,7 @@
         <Top>0.92287cm</Top>
         <Left>0.7747cm</Left>
         <Height>1.2cm</Height>
-        <Width>16.5078cm</Width>
+        <Width>16.1746cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -496,48 +555,68 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>7.0708in</Width>
+  <Width>6.67295in</Width>
   <Page>
     <PageHeader>
-      <Height>2.54cm</Height>
+      <Height>2.56209cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox1">
-          <CanGrow>true</CanGrow>
+        <Rectangle Name="Rectangle1">
+          <ReportItems>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>REPORTE DE EMPLEADOS</Value>
+                      <Style>
+                        <FontFamily>Bell MT</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.78994cm</Top>
+              <Left>4.74667cm</Left>
+              <Height>0.6cm</Height>
+              <Width>6.77566cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
           <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Reporte de Empleados</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.94404cm</Top>
-          <Left>6.24533cm</Left>
-          <Height>0.6cm</Height>
-          <Width>4.2145cm</Width>
+          <Left>0.7747cm</Left>
+          <Height>2.56209cm</Height>
+          <Width>16.1746cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
+            <BackgroundColor>SeaGreen</BackgroundColor>
           </Style>
-        </Textbox>
+        </Rectangle>
         <Image Name="Logo">
           <Source>Embedded</Source>
           <Value>LogoCafédeAltura</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.5835cm</Top>
-          <Left>0.46217cm</Left>
+          <Top>0.393cm</Top>
+          <Left>1.29835cm</Left>
           <Height>1.5cm</Height>
           <Width>1.5cm</Width>
           <ZIndex>1</ZIndex>
