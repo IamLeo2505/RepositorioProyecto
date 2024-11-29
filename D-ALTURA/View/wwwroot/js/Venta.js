@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const producto = data.response;
 
             // Validar campos y asignar valores a los inputs
-            document.getElementById("producto-nombre").value = producto.nombre || "No disponible";
+            document.getElementById("producto-nombre").value = producto.nombreproducto;
             document.getElementById("stock-producto").value = producto.stock || 0;
             document.getElementById("categoria-producto").value = producto.idcategoria || "No disponible";
             document.getElementById("precio-producto").value = producto.precio_venta || 0;

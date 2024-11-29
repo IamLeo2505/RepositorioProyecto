@@ -48,7 +48,7 @@ namespace D_AlturaSystemAPI.Controllers
                             {
                                 idproducto = Convert.ToInt32(rd["idproducto"]),
                                 codigo = rd["codigo"].ToString(),
-                                nombre = rd["nombre"].ToString(),
+                                nombreproducto = rd["nombreproducto"].ToString(),
                                 descripcion = rd["descripcion"].ToString(),
                                 f_ingreso = Convert.ToDateTime(rd["f_ingreso"]),
                                 f_vencimiento = Convert.ToDateTime(rd["f_vencimiento"]),
@@ -100,7 +100,7 @@ namespace D_AlturaSystemAPI.Controllers
                             {
                                 idproducto = Convert.ToInt32(rd["idproducto"]),
                                 codigo = rd["codigo"].ToString(),
-                                nombre = rd["nombre"].ToString(),
+                                nombreproducto = rd["nombreproducto"].ToString(),
                                 descripcion = rd["descripcion"].ToString(),
                                 f_ingreso = Convert.ToDateTime(rd["f_ingreso"]),
                                 f_vencimiento = Convert.ToDateTime(rd["f_vencimiento"]),
@@ -151,7 +151,7 @@ namespace D_AlturaSystemAPI.Controllers
                             producto = new Producto()
                             {
                                 idproducto = Convert.ToInt32(rd["idproducto"]),
-                                nombre = rd["nombre"].ToString(),
+                                nombreproducto = rd["nombreproducto"].ToString(),
                                 stock = Convert.ToInt32(rd["stock"].ToString()),
                                 precio_venta = Convert.ToDecimal(rd["precio_venta"].ToString()),
                                 idcategoria = Convert.ToInt32(rd["idcategoria"])
@@ -190,7 +190,7 @@ namespace D_AlturaSystemAPI.Controllers
                     connection.Open();
                     var cmd = new SqlCommand("pA_guardar_productos", connection);
                     cmd.Parameters.AddWithValue("codigo", objeto.codigo);
-                    cmd.Parameters.AddWithValue("nombre", objeto.nombre);
+                    cmd.Parameters.AddWithValue("nombre", objeto.nombreproducto);
                     cmd.Parameters.AddWithValue("descripcion", objeto.descripcion);
                     cmd.Parameters.AddWithValue("precio_compra", objeto.precio_compra);
                     cmd.Parameters.AddWithValue("precio_venta", objeto.precio_venta);
@@ -229,7 +229,7 @@ namespace D_AlturaSystemAPI.Controllers
                     var cmd = new SqlCommand("pA_editar_producto", connection);
                     cmd.Parameters.AddWithValue("idproducto", objeto.idproducto == 0 ? DBNull.Value : objeto.idproducto);
                     cmd.Parameters.AddWithValue("codigo", objeto.codigo is null ? DBNull.Value : objeto.codigo);
-                    cmd.Parameters.AddWithValue("nombre", objeto.nombre is null ? DBNull.Value : objeto.nombre);
+                    cmd.Parameters.AddWithValue("nombre", objeto.nombreproducto is null ? DBNull.Value : objeto.nombreproducto);
                     cmd.Parameters.AddWithValue("descripcion", objeto.descripcion is null ? DBNull.Value : objeto.descripcion);
                     cmd.Parameters.AddWithValue("f_ingreso", objeto.f_ingreso == DateTime.MinValue ? DateTime.Now : objeto.f_ingreso);
                     cmd.Parameters.AddWithValue("f_vencimiento", objeto.f_vencimiento == DateTime.MinValue ? DateTime.Now : objeto.f_vencimiento);
