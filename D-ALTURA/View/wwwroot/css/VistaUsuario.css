@@ -18,7 +18,7 @@ main {
     justify-content: center;
     align-items: center;
     height: 100vh; /* Ocupa toda la altura del viewport */
-    background-image: url('../IMG/Background.jpeg'); /* Ruta de la imagen */
+    background-image: url('../IMG/Fondo_CSSA_optimizado.jpg'); /* Ruta de la imagen */
     background-size: cover; /* Ajusta la imagen para cubrir todo el espacio */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que se repita */

@@ -11,6 +11,7 @@ body, html {
     height: 100%;
     font-family: 'Gothic';
 }
+
 main {
     position: relative;
     display: flex;
@@ -24,7 +25,6 @@ main {
     overflow: hidden; /* Previene desbordamientos */
 }
 
-
 /* Imagen de fondo que cubre todo */
 .fondo {
     position: absolute;
@@ -34,9 +34,6 @@ main {
     height: 100%;
     object-fit: cover; /* Ajusta la imagen al contenedor */
     z-index: -1; /* Envía la imagen detrás del contenido */
-
-
-    
 }
 
 /* Contenedor principal */
@@ -169,7 +166,7 @@ main {
     background-color: #5d3200;
 }
 
-.listado-categorias {
+.listado-clientes {
     background-color: white;
     padding:  0;
     width: 100%;
@@ -182,14 +179,15 @@ main {
     box-sizing: border-box; 
 }
 
-.tabla-categorias {
+/* Tabla de proveedores */
+.tabla-proveedores {
     width: 100%;
     border-collapse: collapse; 
     table-layout: fixed; 
 }
 
-.tabla-categorias th,
-.tabla-categorias td {
+.tabla-proveedores th,
+.tabla-proveedores td {
     padding: 15px;
     text-align: center;
     border: 1px solid #ddd;
@@ -197,7 +195,7 @@ main {
     color: #381f07;
 }
 
-.tabla-categorias th {
+.tabla-proveedores th {
     background-color: #381f07;
     color: white;
     font-weight: bold;
@@ -206,17 +204,17 @@ main {
     z-index: 1;
 }
 
-.tabla-categorias tbody tr:hover {
+.tabla-proveedores tbody tr:hover {
     background-color: #f7f7f7;
 }
 
-.tabla-categorias td {
+.tabla-proveedores td {
     background-color: #f9f9f9;
     position: sticky; 
 }
 
-.tabla-categorias td,
-.tabla-categorias th {
+.tabla-proveedores td,
+.tabla-proveedores th {
     border-radius: 10px;
 }
 
@@ -236,10 +234,6 @@ main {
     margin: 0 5px;
 }
 
-.btn-guardar:hover{
-    color: seagreen;
-}
-
 .btn-editar:hover {
     color: #d1e709; /* Verde */
 }
@@ -248,54 +242,10 @@ main {
     color: #dc3545; /* Rojo */
 }
 
-.fa {
-    pointer-events: none; /* Evita que los eventos clic afecten solo el icono */
-}
-
-/* Hacer los bordes de los inputs invisibles solo en la tabla */
-table td input {
-    border: none;
-    outline: none;
-    background: transparent; /* Si quieres que no tenga fondo */
-    text-align: left;
-}
-
-.options-section{
-    display: flex;
-    justify-content: end;
-}
-
-
-.btn-nuevo {
-        justify-content: end;
-        border: none;
-        border-radius: 30px;
-        font-size: 15px;
-        height: 45px;
-        outline: none;
-        background: #381f07;
-        color: #ffffff;
-        cursor: pointer;
-        transition: 0.3s;
-        width: 120px;
- }
-    
-    .btn-nuevo:hover {
-        background-color: #5d3200;
-    }
-
+/* Formulario de registro */
 .registro {
     display: none;
 }
-
-.centered {
-    justify-content: center;
-}
-
-.side-by-side {
-    justify-content: space-between;
-}
-
 
 h1 {
     color: #381f07;
@@ -341,7 +291,6 @@ form {
     gap: 5px; 
 }
 
-
 .buttons {
     display: flex;
     justify-content: space-between;
@@ -367,4 +316,24 @@ form {
 
 .cancel {
     background: #381f07;
+}
+
+
+.options-section{
+    display: flex;
+    justify-content: end;
+}
+
+.btn-nuevo {
+    justify-content: end;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    background: #381f07;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 120px;
 }

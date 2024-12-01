@@ -1,7 +1,7 @@
 console.log("Hola mundo");
 
 // Función para listar clientes
-function listarClientes() {
+function listarInventario() {
     fetch('https://localhost:5000/api/Producto/Listado')
         .then(response => {
             if (!response.ok) {
