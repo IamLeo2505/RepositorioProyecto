@@ -11,35 +11,36 @@
 <body>
     <header>
         <div class="logo">
-            <img src="../IMG/Logo - Café de Altura.png" alt="Café de Altura">
+            <img src="/IMG/Logo - Café de Altura.png" alt="Café de Altura">
         </div>
         <nav class="navbar">
             <ul>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Servicios</a>
                     <div class="dropdown-content">
-                        <a href="Venta.html">Facturación</a>
-                        <a href="#">Adquisición</a>
-                        <a href="#">Crédito</a>
+                        <a href="pages/VistaVenta.html">Facturación</a>
+                        <a href="pages/VistaCompra.html">Adquisición</a>
+                        <a href="InventarioVista.html">Inventario</a>
+                        <a href="pages/VistaCredito.html">Crédito</a>
+                        <a href="RegistrarCategoria.html">Categoría</a>
+                        <a href="registrarmarca.html">Marca</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Recursos Humanos</a>
                     <div class="dropdown-content">
-                        <a href="#">Proveedores</a>
-                        <a href="#">Inventario</a>
-                        <a href="RegistrarEmpleado.html">Empleados</a>
-                        <a href="registrarmarca.html">Marca</a>
-                        <a href="pages/usuarios.html">Usuarios</a>
-                        <a href="RegistrarCategoria.html">Categoría</a>
+                        <a href="pages/VistaCliente.html">Clientes</a>
+                        <a href="pages/VistaProveedores.html">Proveedores</a>
+                        <a href="pages/VistaEmpleado.html">Empleados</a>
+                        <a href="pages/VistaUsuario.html">Usuarios</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">Ayuda</a>
                     <div class="dropdown-content">
-                        <a href="#">Mantenimiento</a>
-                        <a href="#">Reportes</a>
-                        <a href="#">Soporte</a>
+                        <a href="MantenimientoVista.html">Mantenimiento</a>
+                        <a href="ReporteVista.html">Reportes</a>
+                        <a href="SoporteVista.html">Soporte</a>
                     </div>
                 </li>
                 <li><a href="#">Acerca de</a></li>     
@@ -100,6 +101,58 @@
                         <button class="btn-nuevo" type="button">Nuevo</button>
                     </div>
                 </form>
+            </div>
+            <div class="registro">
+                <h1 class="titulo">Registrar Nueva Venta</h1>
+                <div class="form-registro">
+                    <form id="form-venta">
+                            <div class="input-field">
+                                <label for="fecha">Ingrese Fecha:</label>
+                                <input type="datetime-local" id="fecha" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="serie">Ingrese Serie:</label>
+                                <input type="text" id="serie" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="numero">Ingrese Numero:</label>
+                                <input type="number" id="numero" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="subtotal">Ingrese Subtotal:</label>
+                                <input type="number" id="subtotal" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="iva">Ingrese IVA:</label>
+                                <input type="number" id="iva" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="total">Ingrese Total:</label>
+                                <input type="number" id="total" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="estado">Seleccione Estado:</label>
+                                <div id="estado" class="radio">
+                                    <label><input type="radio" name="estado" value="Activo" required> Activo</label>
+                                    <label><input type="radio" name="estado" value="Inactivo" required> Inactivo</label>
+                                </div>
+                            </div>
+                            <!--Pendiente-->
+                            <div class="input-field">
+                                <label for="subtotal">Pendiente (Cliente):</label>
+                                <input type="number" id="subtotal" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="subtotal">Pendiente (Opciones):</label>
+                                <input type="number" id="subtotal" required>
+                            </div>
+                        </div>
+                <div class="botones">
+                     <button type="submit" id="guardar" class="button"><b>Guardar</b></button>
+                     <button type="reset" class="button" id="cancelarBtn"><b>Cancelar</b></button>
+                </div>
+                    </form>
+                </div>
             </div>
         </div>
     </main>

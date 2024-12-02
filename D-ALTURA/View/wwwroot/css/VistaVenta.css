@@ -17,7 +17,7 @@ main {
     justify-content: center;
     align-items: center;
     height: 100vh; /* Ocupa toda la altura del viewport */
-    background-image: url('../IMG/Background.jpeg'); /* Ruta de la imagen */
+    background-image: url('../IMG/Fondo_CSSA_optimizado.jpg'); /* Ruta de la imagen */
     background-size: cover; /* Ajusta la imagen para cubrir todo el espacio */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que se repita */
@@ -169,7 +169,7 @@ main {
     background-color: #5d3200;
 }
 
-.listado-clientes {
+.listado-venta {
     background-color: white;
     padding:  0;
     width: 100%;
@@ -182,14 +182,14 @@ main {
     box-sizing: border-box; 
 }
 
-.tabla-clientes {
+.tabla-venta {
     width: 100%;
     border-collapse: collapse; 
     table-layout: fixed; 
 }
 
-.tabla-clientes th,
-.tabla-clientes td {
+.tabla-venta th,
+.tabla-venta td {
     padding: 15px;
     text-align: center;
     border: 1px solid #ddd;
@@ -197,7 +197,7 @@ main {
     color: #381f07;
 }
 
-.tabla-clientes th {
+.tabla-venta th {
     background-color: #381f07;
     color: white;
     font-weight: bold;
@@ -206,17 +206,17 @@ main {
     z-index: 1;
 }
 
-.tabla-clientes tbody tr:hover {
+.tabla-venta tbody tr:hover {
     background-color: #f7f7f7;
 }
 
-.tabla-clientes td {
+.tabla-venta td {
     background-color: #f9f9f9;
     position: sticky; 
 }
 
-.tabla-clientes td,
-.tabla-clientes th {
+.tabla-venta td,
+.tabla-venta th {
     border-radius: 10px;
 }
 
