@@ -21,6 +21,11 @@ header {
     height: 60px;
 }
 
+.navbar {
+    z-index: 2; /* Asegúrate de que sea mayor al del contenedor */
+}
+
+
 .navbar ul {
     list-style-type: none;
     display: flex;

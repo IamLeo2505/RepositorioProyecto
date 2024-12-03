@@ -14,3 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lista los clientes al cargar la página
     listarCompras();
 });
+
+// Evento para cancelar el registro
+document.getElementById('cancelarBtn').addEventListener("click", function () {
+    console.log("Formulario de registro cancelado");
+    window.location.reload();
+});

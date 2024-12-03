@@ -286,7 +286,9 @@ table td input {
 
 .registro {
     display: none;
-}
+    max-height: calc(100vh - 50px); /*Disminuye el tamaño del contenedor*/
+    overflow-y: auto; /*Barra de desplazamiento*/
+  }
 
 .centered {
     justify-content: center;
