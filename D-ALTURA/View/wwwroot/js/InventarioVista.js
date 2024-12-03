@@ -19,7 +19,7 @@ function listarInventario() {
                 fila.id = `producto-${item.idproducto}`; // Agregar un ID único a la fila
                 fila.innerHTML = `
                     <td>${item.codigo}</td>
-                    <td>${item.nombre}</td>
+                    <td>${item.nombreproducto}</td>
                     <td>${item.descripcion}</td>
                     <td>${item.f_ingreso}</td>
                     <td>${item.f_vencimiento}</td>
@@ -58,7 +58,7 @@ async function obtenerProducto(idproducto) {
         alert(`
             ID: ${producto.idproducto}
             Codigo: ${producto.codigo}
-            Nombre: ${producto.nombre}
+            Nombre: ${producto.nombreproducto}
             Descripcion: ${producto.descripcion}
             FechaIngreso: ${producto.f_ingreso}
             FechaVencimiento: ${producto.f_vencimiento}
@@ -92,7 +92,7 @@ function eliminarProducto(idproducto) {
 
     isDeleting = true; // Marcamos que estamos en proceso de eliminación
 
-    fetch(`https://localhost:5000/api/Producto/Eliminar/{idproducto}`, {
+    fetch(`https://localhost:5000/api/Producto/Eliminar/${idproducto}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -147,7 +147,7 @@ document.getElementById('cancelarBtn').addEventListener("click", function () {
 document.getElementById('form-producto').addEventListener('submit', async function (event) {
     event.preventDefault();
     const codigo = document.getElementById('codigo').value.trim();
-    const nombre = document.getElementById('nombre').value.trim();
+    const nombreproducto = document.getElementById('nombreproducto').value.trim();
     const descripcion = document.getElementById('descripcion').value.trim();
     const f_ingreso = document.getElementById('f_ingreso').value.trim();
     const f_vencimiento = document.getElementById('f_vencimiento').value.trim();
@@ -158,7 +158,7 @@ document.getElementById('form-producto').addEventListener('submit', async functi
     const idcategoria = document.getElementById('idcategoria').value.trim();
 
     // Validar campos
-    if (!codigo || !nombre || !descripcion || !f_ingreso || !f_vencimiento || !stock || !precio_compra || !precio_venta || !estado || !idcategoria) {
+    if (!codigo || !nombreproducto || !descripcion || !f_ingreso || !f_vencimiento || !stock || !precio_compra || !precio_venta || !estado || !idcategoria) {
         alert('Por favor, complete todos los campos.');
         return;
     }
@@ -167,7 +167,7 @@ document.getElementById('form-producto').addEventListener('submit', async functi
         const response = await fetch('https://localhost:5000/api/Proveedor/Guardar Cambios', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ codigo, nombre, descripcion, f_ingreso, f_vencimiento, stock, precio_compra, precio_venta, estado, idcategoria })
+            body: JSON.stringify({ codigo, nombreproducto, descripcion, f_ingreso, f_vencimiento, stock, precio_compra, precio_venta, estado, idcategoria })
         });
 
         if (!response.ok) throw new Error('Error al guardar los datos.');
@@ -178,7 +178,7 @@ document.getElementById('form-producto').addEventListener('submit', async functi
 
         // Vaciar los campos del formulario
         document.getElementById('codigo').value = '';
-        document.getElementById('nombre').value = '';
+        document.getElementById('nombreproducto').value = '';
         document.getElementById('descripcion').value = '';
         document.getElementById('f_ingreso').value = '';
         document.getElementById('f_vencimiento').value = '';
@@ -234,7 +234,7 @@ async function guardarEdicion(idproducto) {
 
     // Obtener los valores de los campos editados
     const codigo = celdas[0].querySelector('input').value.trim();
-    const nombre = celdas[1].querySelector('input').value.trim();
+    const nombreproducto = celdas[1].querySelector('input').value.trim();
     const descripcion = celdas[2].querySelector('input').value.trim();
     const f_ingreso = celdas[3].querySelector('input').value.trim();
     const f_vencimiento = celdas[4].querySelector('input').value.trim();
@@ -245,7 +245,7 @@ async function guardarEdicion(idproducto) {
     const idcategoria = celdas[9].querySelector('input').value.trim();
 
     // Validar campos
-    if (!codigo || !nombre || !descripcion || !f_ingreso || !f_vencimiento || !stock || !precio_compra || !precio_venta || !estado || !idcategoria) {
+    if (!codigo || !nombreproducto || !descripcion || !f_ingreso || !f_vencimiento || !stock || !precio_compra || !precio_venta || !estado || !idcategoria) {
         alert('Por favor, complete todos los campos.');
         return;
     }
@@ -253,7 +253,7 @@ async function guardarEdicion(idproducto) {
     // Objeto que vamos a enviar al backend
     const productoData = {
         codigo: codigo,
-        nombre: nombre,
+        nombreproducto: nombreproducto,
         descripcion: descripcion,
         f_ingreso: f_ingreso,
         f_vencimiento: f_vencimiento,
@@ -295,7 +295,7 @@ async function guardarEdicion(idproducto) {
 
         // Actualizar los valores en la tabla
         celdas[0].innerText = codigo;
-        celdas[1].innerText = nombre;
+        celdas[1].innerText = nombreproducto;
         celdas[2].innerText = descripcion;
         celdas[3].innerText = f_ingreso;
         celdas[4].innerText = f_vencimiento;
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const fila = document.createElement("tr");
                         fila.innerHTML = `
                             <td>${producto.codigo}</td>
-                            <td>${producto.nombre}</td>
+                            <td>${producto.nombreproducto}</td>
                             <td>${producto.descripcion}</td>
                             <td>${producto.f_ingreso}</td>
                             <td>${producto.f_vencimiento}</td>
