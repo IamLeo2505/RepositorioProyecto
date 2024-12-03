@@ -1,6 +1,6 @@
 console.log("Hola mundo");
 
-// Función para listar clientes
+// Función para listar producto
 function listarInventario() {
     fetch('https://localhost:5000/api/Producto/Listado')
         .then(response => {
@@ -41,15 +41,15 @@ function listarInventario() {
             });
         })
         .catch(error => {
-            console.error('Error al listar productos:', error);
+            console.error('Error al listar inventario:', error);
             alert('No se pudo cargar el listado de productos.');
         });
 }
 
-// Función para obtener un cliente por ID
-async function obtenerProducto(id) {
+// Función para obtener un producto por ID
+async function obtenerProducto(idproducto) {
     try {
-        const response = await fetch(`https://localhost:5000/api/Producto/Obtener/${id}`);
+        const response = await fetch(`https://localhost:5000/api/Producto/Obtener/${idproducto}`);
         if (!response.ok) throw new Error('Error al obtener el Producto');
 
         const data = await response.json();
@@ -69,16 +69,16 @@ async function obtenerProducto(id) {
             IDCategoria: ${producto.idcategoria}
         `);
     } catch (error) {
-        console.error('Error al obtener el cliente:', error);
-        alert('Error al obtener el cliente.');
+        console.error('Error al obtener el producto:', error);
+        alert('Error al obtener el producto.');
     }
 }
 
-// Función para eliminar un cliente
+// Función para eliminar un producto
 let isDeleting = false;
 
-function eliminarCliente(id) {
-    console.log(`Intentando eliminar cliente con ID: ${id}`);
+function eliminarProducto(idproducto) {
+    console.log(`Intentando eliminar producto con ID: ${idproducto}`);
 
     if (isDeleting) {
         console.log('Ya se está procesando una solicitud de eliminación. Por favor, espera.');
@@ -109,7 +109,7 @@ function eliminarCliente(id) {
         .then(data => {
             console.log('Respuesta del servidor:', data);
             alert(data.mensaje || 'Producto eliminado correctamente.');
-            setTimeout(listarProductos, 500); // Refrescamos la lista después de eliminar
+            setTimeout(listarInventario, 500); // Refrescamos la lista después de eliminar
         })
         .catch(error => {
             console.error('Error al eliminar el producto:', error.message);
@@ -133,8 +133,8 @@ document.addEventListener("DOMContentLoaded", function () {
         backgroundContainer.classList.add("side-by-side");
     });
 
-    // Lista los clientes al cargar la página
-    listarProductos();
+    // Lista los producto al cargar la página
+    listarInventario();
 });
 
 // Evento para cancelar el registro
@@ -143,7 +143,7 @@ document.getElementById('cancelarBtn').addEventListener("click", function () {
     window.location.reload();
 });
 
-// Evento para guardar un cliente
+// Evento para guardar un producto
 document.getElementById('form-producto').addEventListener('submit', async function (event) {
     event.preventDefault();
     const codigo = document.getElementById('codigo').value.trim();
@@ -191,7 +191,7 @@ document.getElementById('form-producto').addEventListener('submit', async functi
         // Mensaje en la consola
         console.log("Hola mundo");
 
-        listarProductos(); // Refresca la lista
+        listarInventario(); // Refresca la lista
     } catch (error) {
         console.error('Error al guardar el producto:', error);
         alert('No se pudo guardar el producto.');
@@ -199,13 +199,13 @@ document.getElementById('form-producto').addEventListener('submit', async functi
 });
 
 
-// Función para editar un cliente
-function editarProducto(id) {
+// Función para editar un producto
+function editarProducto(idproducto) {
     // Prevenir la recarga de página accidental si el botón está dentro de un formulario
     event.preventDefault();  // Añadido para evitar recarga
 
-    // Obtener la fila correspondiente al cliente
-    const fila = document.querySelector(`#producto-${id}`);
+    // Obtener la fila correspondiente al producto
+    const fila = document.querySelector(`#producto-${idproducto}`);
     const celdas = fila.querySelectorAll('td');
 
     // Convertir las celdas en inputs para permitir la edición
@@ -223,13 +223,13 @@ function editarProducto(id) {
     // Cambiar el botón de "Editar" a "Guardar"
     const botones = celdas[10].querySelectorAll('button');
     botones[0].innerHTML = '<i class="fa fa-save"></i>';  // Cambiar a icono de guardar
-    botones[0].setAttribute('onclick', `guardarEdicion(${id})`);
+    botones[0].setAttribute('onclick', `guardarEdicion(${idproducto})`);
 }
 
 
-async function guardarEdicion(id) {
-    // Obtener la fila correspondiente al cliente
-    const fila = document.querySelector(`#producto-${id}`);
+async function guardarEdicion(idproducto) {
+    // Obtener la fila correspondiente al producto
+    const fila = document.querySelector(`#producto-${idproducto}`);
     const celdas = fila.querySelectorAll('td');
 
     // Obtener los valores de los campos editados
@@ -271,7 +271,7 @@ async function guardarEdicion(id) {
         const botonGuardar = celdas[10].querySelector('button');
         botonGuardar.classList.add('btn-guardar-verde');
 
-        // Enviar los datos al servidor para editar el cliente
+        // Enviar los datos al servidor para editar el producto
         const response = await fetch('https://localhost:5000/api/Producto/Editar', {
             method: 'PUT', // Usamos el método PUT para actualizar los datos
             headers: { 
@@ -285,7 +285,7 @@ async function guardarEdicion(id) {
         if (!response.ok) {
             const errorData = await response.json();
             console.error('Error del servidor:', errorData);
-            throw new Error('Error al editar el cliente.');
+            throw new Error('Error al editar el producto.');
         }
 
         // Respuesta exitosa
@@ -307,7 +307,7 @@ async function guardarEdicion(id) {
 
         // Cambiar el botón de "Guardar" de vuelta a "Editar"
         celdas[10].querySelector('button').innerHTML = 'Editar';
-        celdas[10].querySelector('button').setAttribute('onclick', `editarProducto(${id})`);
+        celdas[10].querySelector('button').setAttribute('onclick', `editarProducto(${idproducto})`);
 
         // Opcional: remover la clase después de un breve tiempo para que el color verde desaparezca
         setTimeout(() => {
@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearIcon = document.querySelector(".clear-icon");
     const buscarBtn = document.querySelector(".btn.buscar");
     const radioButtons = document.querySelectorAll("input[name='search']");
-    const tablaCliente = document.getElementById("tablaProducto");
+    const tablaProducto = document.getElementById("tablaProducto");
 
     // Mostrar el ícono cuando el usuario escribe
     searchBox.addEventListener("input", () => {
