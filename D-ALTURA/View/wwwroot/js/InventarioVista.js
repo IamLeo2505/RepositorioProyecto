@@ -402,7 +402,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </button>
                             </td>
                         `;
-                        f_ingreso
                         tablaProducto.appendChild(fila);
                     });
                 }

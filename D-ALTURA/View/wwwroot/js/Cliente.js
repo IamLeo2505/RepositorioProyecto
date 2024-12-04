@@ -267,12 +267,12 @@ async function guardarEdicion(idcliente) {
         alert('Cliente editado correctamente.');
 
         // Actualizar los valores en la tabla
-        celdas[1].innerText = nombre;
-        celdas[2].innerText = apellidos;
-        celdas[3].innerText = ruc;
-        celdas[4].innerText = dni;
-        celdas[5].innerText = telefono;
-        celdas[6].innerText = estado;
+        celdas[0].innerText = nombre;
+        celdas[1].innerText = apellidos;
+        celdas[2].innerText = ruc;
+        celdas[3].innerText = dni;
+        celdas[4].innerText = telefono;
+        celdas[5].innerText = estado;
 
         // Cambiar el botón de "Guardar" de vuelta a "Editar"
         celdas[6].querySelector('button').innerHTML = 'Editar';
