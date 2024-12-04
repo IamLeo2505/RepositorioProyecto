@@ -66,7 +66,7 @@ namespace D_AlturaSystemAPI.Controllers
                 {
 
                 }
-                return StatusCode(StatusCodes.Status200OK, new { message = "ok", response = listado });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Listado de Productos.", response = listado });
 
             }
             catch (Exception error)
@@ -116,7 +116,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 }
                 producto = listado.Where(item => item.idproducto == idproducto).FirstOrDefault();
-                return StatusCode(StatusCodes.Status200OK, new { message = "ok", response = producto });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Los datos del producto son: ", response = producto });
 
             }
             catch (Exception error)
@@ -162,7 +162,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 if (producto != null)
                 {
-                    return StatusCode(StatusCodes.Status200OK, new { message = "Correcto.", response = producto });
+                    return StatusCode(StatusCodes.Status200OK, new { message = "Se ha encontrado el producto.", response = producto });
                 }
                 else
                 {
@@ -190,7 +190,7 @@ namespace D_AlturaSystemAPI.Controllers
                     connection.Open();
                     var cmd = new SqlCommand("pA_guardar_productos", connection);
                     cmd.Parameters.AddWithValue("codigo", objeto.codigo);
-                    cmd.Parameters.AddWithValue("nombre", objeto.nombreproducto);
+                    cmd.Parameters.AddWithValue("nombreproducto", objeto.nombreproducto);
                     cmd.Parameters.AddWithValue("descripcion", objeto.descripcion);
                     cmd.Parameters.AddWithValue("precio_compra", objeto.precio_compra);
                     cmd.Parameters.AddWithValue("precio_venta", objeto.precio_venta);
@@ -205,7 +205,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 }
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "ok" });
+                return StatusCode(StatusCodes.Status200OK, new { message = "El producto ha sido guardado con éxito." });
 
             }
             catch (Exception error)
@@ -244,7 +244,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 }
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "Editado" });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Los datos del producto han sido editados con éxito." });
 
             }
             catch (Exception error)
@@ -273,7 +273,7 @@ namespace D_AlturaSystemAPI.Controllers
 
                 }
 
-                return StatusCode(StatusCodes.Status200OK, new { message = "Eliminado" });
+                return StatusCode(StatusCodes.Status200OK, new { message = "El producto ha sido eliminado." });
 
             }
             catch (Exception error)
