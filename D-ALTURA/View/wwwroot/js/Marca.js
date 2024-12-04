@@ -123,7 +123,6 @@ document.getElementById('cancelarBtn').addEventListener("click", function () {
     window.location.reload();
 });
 
-//Pendiente para Revisar, de aqui para abajo
 // Evento para guardar una marca
 document.getElementById('form-marca').addEventListener('submit', async function (event) {
     event.preventDefault();
