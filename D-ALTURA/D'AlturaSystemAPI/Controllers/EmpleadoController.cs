@@ -28,7 +28,7 @@ namespace D_AlturaSystemAPI.Controllers
 
 
         [HttpGet]
-        [Route("Lista de Empleados")]
+        [Route("ListadeEmpleados")]
         public IActionResult Listado()
         {
             List<Empleado> listado = new List<Empleado>();
