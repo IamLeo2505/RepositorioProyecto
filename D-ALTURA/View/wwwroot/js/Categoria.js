@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Función para listar Categoria
-function listarMarca() {
+function listarCategoria() {
     fetch('https://localhost:5000/api/Categoría/Listado de Categorías')
         .then(response => {
             if (!response.ok) {
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Lista los clientes al cargar la página
-    listarCategorias();
+    listarCategoria();
 });
 
 // Evento para cancelar el registro
@@ -194,7 +194,7 @@ document.getElementById('form-categoria').addEventListener('submit', async funct
         // Mensaje en la consola
         console.log("Hola mundo");
 
-        listarMarca(); // Refresca la lista
+        listarCategoria(); // Refresca la lista
     } catch (error) {
         console.error('Error al guardar la categoria:', error);
         alert('No se pudo guardar la categoria.');
