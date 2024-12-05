@@ -289,7 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
         buscarMarca(criterio, busqueda);
     });
 
-    //Pendiente porque no se si deberia ir o no ya que la API no tiene un evento de busqueda
     function buscarMarca(criterio, valor) {
         const url = `https://localhost:5000/api/Producto/BuscarProducto/?busqueda=${encodeURIComponent(valor)}&criterio=${encodeURIComponent(criterio)}`;
         
