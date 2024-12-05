@@ -77,7 +77,7 @@ function listarCategoria() {
 }
 
 // Función para obtener una categoria por ID
-async function obtenerMarca(idcategoria) {
+async function obtenerCategoria(idcategoria) {
     try {
         const response = await fetch(`https://localhost:5000/api/Categoría/Obtener/${idcategoria}`);
         if (!response.ok) throw new Error('Error al obtener la Categoria');
@@ -98,7 +98,7 @@ async function obtenerMarca(idcategoria) {
 // Función para eliminar una categoria
 let isDeleting = false;
 
-function eliminarMarca(idcategoria) {
+function eliminarCategoria(idcategoria) {
     console.log(`Intentando eliminar categoria con ID: ${idcategoria}`);
 
     if (isDeleting) {
@@ -203,7 +203,7 @@ document.getElementById('form-categoria').addEventListener('submit', async funct
 
 
 // Función para editar una categoria
-function editarMarca(idcategoria) {
+function editarCategoria(idcategoria) {
     // Prevenir la recarga de página accidental si el botón está dentro de un formulario
     event.preventDefault();  // Añadido para evitar recarga
 
@@ -213,7 +213,7 @@ function editarMarca(idcategoria) {
 
     // Convertir las celdas en inputs para permitir la edición
     celdas[0].innerHTML = `<input type="text" value="${celdas[0].innerText}" />`; // ID Categoria
-    celdas[1].innerHTML = `<input type="text" value="${celdas[1].innerText}" />`; // Nombre Categoria
+    celdas[1].innerHTML = `<input type="text" value="${celdas[1].innerText}" />`; // Descrpcion de Categoria
 
     // Cambiar el botón de "Editar" a "Guardar"
     const botones = celdas[2].querySelectorAll('button');
@@ -327,10 +327,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        buscarMarca(criterio, busqueda);
+        buscarCategoria(criterio, busqueda);
     });
 
-    function buscarMarca(criterio, valor) {
+    function buscarCategoria(criterio, valor) {
         const url = `https://localhost:5000/api/Categoría/BuscarCategoria/?busqueda=${encodeURIComponent(valor)}&criterio=${encodeURIComponent(criterio)}`;
         
         fetch(url)
