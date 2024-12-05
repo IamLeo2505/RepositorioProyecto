@@ -9,28 +9,29 @@ function listarCategoria() {
         })
         .then(data => {
             const categorias = data.response;
-            const tablaCategoria = document.getElementById('tablaCategoria');
-            tablaCategoria.innerHTML = ''; // Limpiar tabla antes de volver a llenarla
+            const tablaCategorias = document.getElementById('tablaCategorias');
+            tablaCategorias.innerHTML = ''; // Limpiar tabla antes de volver a llenarla
 
-            categorias.forEach(item => {
+            categorias.forEach(item => {    
                 const fila = document.createElement('tr');
                 fila.id = `categoria-${item.idcategoria}`; // Agregar un ID único a la fila
                 fila.innerHTML = `
+                    <td>${item.idcategoria}</td>
                     <td>${item.descripcion}</td>
                     <td>
-                        <button class="btn-editar" onclick="editarProducto(${item.idcategoria})">
+                        <button class="btn-editar" onclick="editarCategoria(${item.idcategoria})">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn-eliminar" onclick="eliminarProducto(${item.idcategoria})">
+                        <button class="btn-eliminar" onclick="eliminarCategoria(${item.idcategoria})">
                             <i class="fa fa-trash"></i>
                         </button>
                     </td>
                 `;
-                tablaCategoria.appendChild(fila);
+                tablaCategorias.appendChild(fila);
             });
         })
         .catch(error => {
-            console.error('Error al listar inventario:', error);
+            console.error('Error al listar categorías:', error);
             alert('No se pudo cargar el listado de categorias.');
         });
 }
@@ -46,7 +47,7 @@ async function obtenerCategoria(idcategoria) {
 
         alert(`
             ID: ${categoria.idcategoria}
-            Descripcion: ${categoria.descripcion}
+            Descripción: ${categoria.descripcion}
         `);
     } catch (error) {
         console.error('Error al obtener la categoria:', error);
@@ -82,7 +83,7 @@ function eliminarCategoria(idcategoria) {
         .then(response => {
             console.log('Estado de la respuesta:', response.status);
             if (!response.ok) {
-                throw new Error(`Error ${response.status}: ${response.statusText}`);
+                throw new Error(Error `${response.status}: ${response.statusText}`);
             }
             return response.json();
         })
@@ -163,26 +164,24 @@ document.getElementById('form-categoria').addEventListener('submit', async funct
 
 // Función para editar una categoria
 function editarCategoria(idcategoria) {
-    // Prevenir la recarga de página accidental si el botón está dentro de un formulario
-    event.preventDefault();  // Añadido para evitar recarga
+    // Prevenir el comportamiento por defecto
+    event.preventDefault();
 
-    // Obtener la fila correspondiente ala categoria
     const fila = document.querySelector(`#categoria-${idcategoria}`);
     const celdas = fila.querySelectorAll('td');
 
-    // Convertir las celdas en inputs para permitir la edición
-    celdas[0].innerHTML = `<input type="text" value="${celdas[0].innerText}" />`; // ID Categoria
-    celdas[1].innerHTML = `<input type="text" value="${celdas[1].innerText}" />`; // Descrpcion de Categoria
+    // Cambiar las celdas a inputs editables
+    celdas[1].innerHTML = `<input type="text" value="${celdas[1].innerText}" />`;
 
     // Cambiar el botón de "Editar" a "Guardar"
     const botones = celdas[2].querySelectorAll('button');
-    botones[0].innerHTML = '<i class="fa fa-save"></i>';  // Cambiar a icono de guardar
+    botones[0].innerHTML = '<i class="fa fa-save"></i>';
     botones[0].setAttribute('onclick', `guardarEdicion(${idcategoria})`);
 }
 
 
 async function guardarEdicion(idcategoria) {
-    // Obtener la fila correspondiente ala categoria
+    // Obtener la fila correspondiente a la categoria
     const fila = document.querySelector(`#categoria-${idcategoria}`);
     const celdas = fila.querySelectorAll('td');
 
@@ -196,11 +195,11 @@ async function guardarEdicion(idcategoria) {
     }
 
     // Objeto que vamos a enviar al backend
-    const marcaData = {
+    const categoriaData = {
         descripcion: descripcion
     };
 
-    console.log('Datos a enviar:', marcaData);
+    console.log('Datos a enviar:', categoriaData);
 
     try {
         // Cambiar el color del botón a verde mientras se guarda
@@ -213,7 +212,7 @@ async function guardarEdicion(idcategoria) {
             headers: { 
                 'Content-Type': 'application/json' // Especificamos que el cuerpo está en formato JSON
             },
-            body: JSON.stringify(marcaData)  // Convertimos el objeto a JSON
+            body: JSON.stringify(categoriaData)  // Convertimos el objeto a JSON
         });
 
         // Verificar el estado de la respuesta

@@ -61,8 +61,9 @@
                             <div class="container-criterio">
                                 <label>Criterio de Búsqueda:</label>
                                 <div class="container-radio">
-                                    <label><input type="radio" name="search" value="usuario"> Usuario</label>
-                                    <label><input type="radio" name="search" value="acceso"> Acceso</label>
+                                    <label><input type="radio" name="search" value="nombre"> USUARIO</label>
+                                    <label><input type="radio" name="search" value="dni"> ACCESO</label>
+                                    <label><input type="radio" name="search" value="ruc"> EMPLEADO</label>
                                 </div>
                             </div>
                             <div class="search-container">
@@ -70,7 +71,7 @@
                                 <i class="fas fa-times clear-icon" style="display: none;"></i>
                                 <button class="btn buscar" type="button">Buscar</button>
                             </div>
-                        </div>                                            
+                        </div>
                     </div>
 
                     <div class="listado-usuarios">
@@ -79,7 +80,7 @@
                                 <thead>
                                     <tr>
                                         <th>Usuario</th>
-                                        <th>Pass</th>
+                                        <th>Contraseña</th>
                                         <th>Acceso</th>
                                         <th>Estado</th>
                                         <th>Empleado</th>
@@ -87,23 +88,24 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tablaUsuarios">
-                                    <!-- Aquí se mostrarán los usuarios -->
+                                    <!-- Aquí se mostrarán los proveedores -->
                                 </tbody>
                             </table>
                         </div>
-                    </div>    
+                    </div>
 
                     <div class="options-section">
                         <button class="btn-nuevo" type="button">Nuevo</button>
                     </div>
                 </form>
             </div>
+
             <div class="registro">
                 <h1 class="titulo">Registrar Nuevo Usuario</h1>
                 <div class="form-registro">
                     <form id="form-usuario">
                         <div class="input-field">
-                            <label for="usuario">Ingrese Nombre de Usuario:</label>
+                            <label for="usuario">Ingrese Usuario:</label>
                             <input type="text" id="usuario" required>
                         </div>
                         <div class="input-field">
@@ -111,28 +113,30 @@
                             <input type="password" id="pass" required>
                         </div>
                         <div class="input-field">
-                            <label for="acceso">Acceso:</label>
+                            <label for="acceso">Ingrese Acceso:</label>
                             <select id="acceso" required>
-                                <option value="admin">Administrador</option>
-                                <option value="usuario">Usuario</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Cajero">Cajero</option>
+                                <option value="Bodeguero">Bodeguero</option>
+                                <option value="Gerente">Gerente</option>
                             </select>
                         </div>
                         <div class="input-field">
                             <label for="estado">Seleccione Estado:</label>
                             <div id="estado" class="radio">
-                                <label><input type="radio" name="estado" value="activo" required> Activo</label>
-                                <label><input type="radio" name="estado" value="inactivo" required> Inactivo</label>
+                                <label><input type="radio" name="estado" value="Activo" required> Activo</label>
+                                <label><input type="radio" name="estado" value="Inactivo" required> Inactivo</label>
                             </div>
-                        </div>
                         <div class="input-field">
-                            <label for="idempleado">Empleado Asociado:</label>
+                            <label for="idempleado">Ingrese Empleado Asociado:</label>
                             <input type="number" id="idempleado" required>
                         </div>
+                        </div>
+                        <div class="botones">
+                            <button type="submit" id="guardar" class="button"><b>Guardar</b></button>
+                            <button type="reset" class="button" id="cancelarBtn"><b>Cancelar</b></button>
+                        </div>
                     </form>
-                </div>
-                <div class="botones">
-                    <button type="submit" id="guardar" class="button"><b>Guardar</b></button>
-                    <button type="reset" class="button" id="cancelarBtn"><b>Cancelar</b></button>
                 </div>
             </div>
         </div>
@@ -140,6 +144,8 @@
     <footer>
         <p>&copy; 2023 - 2024 Café de Altura</p>
     </footer>
-<script src="../js/Usuario.js"></script>
+
+<script src="../js/usuario.js"></script>
 </body>
 </html>
+
