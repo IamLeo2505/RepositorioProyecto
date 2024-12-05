@@ -1,6 +1,6 @@
 // Función para listar Marca
 function listarMarca() {
-    fetch('https://localhost:5000/api/Marca/Listado de Marcas')
+    fetch('https://localhost:5000/api/Marca/ListadodeMarcas')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener el listado');

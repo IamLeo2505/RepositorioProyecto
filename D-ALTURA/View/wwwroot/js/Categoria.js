@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Función para listar Categoria
 function listarCategoria() {
-    fetch('https://localhost:5000/api/Categoría/Listado de Categorías')
+    fetch('https://localhost:5000/api/Categoría/ListadodeCategorías')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener el listado');

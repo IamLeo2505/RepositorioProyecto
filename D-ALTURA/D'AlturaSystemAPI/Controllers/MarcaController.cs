@@ -22,7 +22,7 @@ namespace D_AlturaSystemAPI.Controllers
 
 
         [HttpGet]
-        [Route("Listado de Marcas")]
+        [Route("ListadodeMarcas")]
         public IActionResult Listado()
         {
             List<Marca> listado = new List<Marca>();
