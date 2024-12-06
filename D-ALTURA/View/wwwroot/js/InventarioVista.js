@@ -164,7 +164,7 @@ document.getElementById('form-producto').addEventListener('submit', async functi
     }
 
     try {
-        const response = await fetch('https://localhost:5000/api/Proveedor/Guardar Cambios', {
+        const response = await fetch('https://localhost:5000/api/Producto/Guardar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ codigo, nombreproducto, descripcion, f_ingreso, f_vencimiento, stock, precio_compra, precio_venta, estado, idcategoria })
